@@ -1,5 +1,8 @@
 package kayttoliittyma;
 
+import peli.Peli;
+import peli.asetukset.PelinAsetukset;
+import peli.ennatyslista.Ennatyslistaaja;
 import valmiskomponentit.Ikkuna;
 
 import java.util.HashMap;
@@ -21,10 +24,11 @@ public class BlockOut implements Runnable {
 	private HashMap<ValittuIkkuna, Ikkuna> ikkunat;
 	private Etusivu etusivu;
 	
-	//private Peli peli;
-	//private PelinAsetukset pelinAsetukset;
+	private Peli peli;
+	private PelinAsetukset pelinAsetukset;
+	//private Nappainpaletti nappainpaletti;
 	//private Varipaletti varipaletti;
-	//private Ennatyslistaaja ennatyslistaaja;
+	private Ennatyslistaaja ennatyslistaaja;
 	
 	public void run() {
 		luoIkkunat();
@@ -53,41 +57,59 @@ public class BlockOut implements Runnable {
 		
 		this.ikkunat.put(ValittuIkkuna.TYHJA, new Ikkuna());
 		
-		/*
+		
 		pelinAsetukset = new PelinAsetukset();
 		this.ikkunat.put(ValittuIkkuna.ASETUKSET, pelinAsetukset);
+		/*
+		nappainpaletti = new Nappainpaletti();
+		this.ikkunat.put(ValittuIkkuna.NAPPULAT, nappainpaletti);
 		
 		varipaletti = new Varipaletti();
 		this.ikkunat.put(ValittuIkkuna.VARIT, varipaletti);
-		
+		*/
 		ennatyslistaaja = new Ennatyslistaaja();
 		this.ikkunat.put(ValittuIkkuna.ENNATYSLISTA, ennatyslistaaja);
-		*/
 		
 		this.valittuIkkuna = ValittuIkkuna.TYHJA;
-	}
-	
-	public ValittuIkkuna annaValittuIkkuna() {
-		return this.valittuIkkuna;
 	}
 	
 	public Ikkuna annaJPanel() {
 		return this.ikkunat.get(valittuIkkuna);
 	}
 	
-	public void vaihdaJPanel(ValittuIkkuna valittuIkkuna) {
-		this.valittuIkkuna = valittuIkkuna;
+	public void vaihdaJPanel(ValittuIkkuna nytValittuIkkuna) {
+		asetaPeliTarvittaessaTauolle(nytValittuIkkuna);
+		
+		this.valittuIkkuna = nytValittuIkkuna;
 		this.kehys.getContentPane().remove(1);
-		this.kehys.getContentPane().add( this.ikkunat.get(valittuIkkuna) );
+		this.kehys.getContentPane().add( this.ikkunat.get(nytValittuIkkuna) );
 		
-		this.etusivu.vaihdaNappuloidenAktiivisuuksiaTasmaaviksi( valittuIkkuna );
+		this.etusivu.vaihdaNappuloidenAktiivisuuksiaTasmaaviksi( nytValittuIkkuna );
 		
-		this.ikkunat.get(valittuIkkuna).revalidate();
+		this.ikkunat.get(nytValittuIkkuna).revalidate();
 		this.kehys.repaint();
 	}
 	
 	public void aloitaPeli() {
-		//TODO
+		if (onkoPeliKaynnissa()) {
+			this.peli.lopetaPeli(); // jos tulisi tulos ennatyslistalle niin ehtiikö käyttäjä edes nähdä sitä? jääkö kysymään nimeä?
+			this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
+		}
+		
+		this.peli = new Peli();
+		this.ikkunat.put(ValittuIkkuna.PELI, this.peli);
+		
+		vaihdaJPanel(ValittuIkkuna.PELI);
+	}
+	
+	public void asetaPeliTarvittaessaTauolle(ValittuIkkuna nytValittuIkkuna) {
+		if (!onkoPeliKaynnissa()) {
+			return;
+		}
+		
+		if (this.valittuIkkuna == ValittuIkkuna.PELI && nytValittuIkkuna != ValittuIkkuna.PELI) {
+			asetaPeliTauolle(true);
+		}
 	}
 	
 	public void asetaPeliTauolle(boolean tauolla) {
@@ -95,20 +117,38 @@ public class BlockOut implements Runnable {
 			return;
 		}
 		
-		//this.peli.asetaPeliTauolle(tauolla);
+		this.peli.asetaPeliTauolle(tauolla);
 		
 		if (tauolla) {
 			this.etusivu.vaihdaTaukoNappulanTeksti("Jatka");
 		}
 		else {
 			this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
-			
-			//TODO
+			kaynnistaPeliTauolta();
 		}
 	}
 	
-	public void lopetaPeli() {
+	private void kaynnistaPeliTauolta() {
+		this.peli.asetaUudetAsetukset(); //TODO
+		
+		vaihdaJPanel(ValittuIkkuna.PELI);
+	}
 	
+	public void lopetaPeli() {
+		this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
+		
+		boolean tulosPaaseeListalle = this.peli.lopetaPeli();
+		this.peli = null;
+		this.ikkunat.remove(ValittuIkkuna.PELI);
+		if (tulosPaaseeListalle) {
+			vaihdaJPanel(ValittuIkkuna.ENNATYSLISTA);
+		}
+		else if (this.valittuIkkuna == ValittuIkkuna.PELI) {
+			vaihdaJPanel(ValittuIkkuna.TYHJA);
+		}
+		else {
+			this.etusivu.vaihdaNappuloidenAktiivisuuksiaTasmaaviksi( valittuIkkuna );
+		}
 	}
 	
 	public boolean onkoPeliKaynnissa() {

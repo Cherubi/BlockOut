@@ -50,7 +50,7 @@ public class Etusivu extends JPanel {
 		this.asetukset.setFocusable(false);
 		this.add(this.asetukset);
 		
-		this.ennatyslista = new Nappula("Ennätyslista");
+		this.ennatyslista = new Nappula("Ennatyslista");
 		this.ennatyslista.addActionListener( new EnnatyslistaNappulaKuuntelija(this.kayttis) );
 		this.ennatyslista.setEnabled(true);
 		this.ennatyslista.setFocusable(false);
@@ -66,7 +66,7 @@ public class Etusivu extends JPanel {
 			this.tauko.setEnabled(true);
 			this.lopeta.setEnabled(true);
 		}
-		else if (kayttis.onkoPeliKaynnissa()) {
+		else if (!kayttis.onkoPeliKaynnissa()) {
 			this.tauko.setEnabled(false);
 			this.lopeta.setEnabled(false);
 		}
