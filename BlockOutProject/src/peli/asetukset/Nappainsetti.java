@@ -6,12 +6,18 @@ import java.awt.event.KeyEvent;
 public class Nappainsetti {
 	private HashMap<String, Integer> nappaimet;
 	
+	/**
+	* Hallinnoi peliin liittyvaa nappainsettia
+	*/
 	public Nappainsetti() {
 		nappaimet = new HashMap<String, Integer>();
 		
 		asetaPerusnappaimet();
 	}
 	
+	/**
+	* Asettaa peliin liittyvat perusnappaimet nappainsettiin
+	*/
 	private void asetaPerusnappaimet() {
 		nappaimet.put("ylos", KeyEvent.VK_UP);
 		nappaimet.put("alas", KeyEvent.VK_DOWN);
@@ -31,6 +37,11 @@ public class Nappainsetti {
 		nappaimet.put("tauko", KeyEvent.VK_P);
 	}
 	
+	/**
+	* Avaa nappainsetin tallenteesta.
+	* 
+	* @param Tallenne
+	*/
 	public void avaaNappainsetti(String tallenne) {
 		String[] osaset = tallenne.split(" ");
 		
@@ -50,6 +61,11 @@ public class Nappainsetti {
 		}
 	}
 	
+	/**
+	* Avaa tallenteesta palikan siirtelyyn liittyvat nappaimet
+	* 
+	* @param Nappainten KeyEvent-koodit
+	*/
 	private void asetaTallenteenSiirtonappaimet(String[] nappaimet) {
 		asetaYlosNappain( Integer.parseInt(nappaimet[0]) );
 		asetaAlasNappain( Integer.parseInt(nappaimet[1]) );
@@ -57,6 +73,12 @@ public class Nappainsetti {
 		asetaOikealleNappain( Integer.parseInt(nappaimet[3]) );
 	}
 	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
 	private void asetaTallenteenKiertonappaimet(String[] nappaimet) {
 		asetaYlapuoliEsilleNappain( Integer.parseInt(nappaimet[4]) );
 		asetaAlapuoliEsilleNappain( Integer.parseInt(nappaimet[5]) );

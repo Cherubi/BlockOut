@@ -14,7 +14,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class BlockOut implements Runnable {
-
+	
+	/**
+	* 
+	* 
+	* @param 
+	* @return
+	*/
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new BlockOut());
 	}
@@ -30,6 +36,9 @@ public class BlockOut implements Runnable {
 	//private Varipaletti varipaletti;
 	private Ennatyslistaaja ennatyslistaaja;
 	
+	/**
+	* Alustaa kayttoliittyman ja luo graafisen kayttoliittyman
+	*/
 	public void run() {
 		luoIkkunat();
 		
@@ -45,6 +54,9 @@ public class BlockOut implements Runnable {
 		this.kehys.setVisible(true);
 	}
 	
+	/**
+	* Luo graafisen kayttoliittyman ikkunan aloitustilaan
+	*/
 	private void luoAloitusIkkuna() {
 		this.etusivu = new Etusivu(this);
 		this.kehys.add(this.etusivu, BorderLayout.SOUTH);
@@ -52,6 +64,9 @@ public class BlockOut implements Runnable {
 		this.kehys.add(this.ikkunat.get(ValittuIkkuna.TYHJA), BorderLayout.CENTER);
 	}
 	
+	/**
+	* Luo graafisessa kayttoliittymassa myohemmin kaytettavat ikkunat
+	*/
 	private void luoIkkunat() {
 		this.ikkunat = new HashMap<ValittuIkkuna, Ikkuna>();
 		
@@ -73,10 +88,20 @@ public class BlockOut implements Runnable {
 		this.valittuIkkuna = ValittuIkkuna.TYHJA;
 	}
 	
+	/**
+	* Antaa kayttoliittymassa parhaillaan nakyvan ikkunan
+	* 
+	* @return Kayttoliittymassa nakyva ikkuna
+	*/
 	public Ikkuna annaJPanel() {
 		return this.ikkunat.get(valittuIkkuna);
 	}
 	
+	/**
+	* Vaihtaa kayttoliittymaan uuden ikkunan nakyviin vanhan tilalle
+	* 
+	* @param nytValittuIkkuna Uuden valittavan ikkunan tunnus
+	*/
 	public void vaihdaJPanel(ValittuIkkuna nytValittuIkkuna) {
 		asetaPeliTarvittaessaTauolle(nytValittuIkkuna);
 		
@@ -90,6 +115,9 @@ public class BlockOut implements Runnable {
 		this.kehys.repaint();
 	}
 	
+	/**
+	* Aloittaa pelin ja lopettaa ensin edellisen pelin jos se on viela kaynnissa. Vaihtaa ikkunaksi peli-ikkunan
+	*/
 	public void aloitaPeli() {
 		if (onkoPeliKaynnissa()) {
 			this.peli.lopetaPeli(); // jos tulisi tulos ennatyslistalle niin ehtiiko kayttaja edes nahda sita? jaako kysymaan nimea?
@@ -102,6 +130,11 @@ public class BlockOut implements Runnable {
 		vaihdaJPanel(ValittuIkkuna.PELI);
 	}
 	
+	/**
+	* Asettaa pelin tarvittaessa tauolle. Nain voi kayda jos peli on kaynnissa ja pelaaja avaa jonkun muun ikkunan peli-ikkunan tilalle
+	*
+	* @param nytValittuIkkuna Ikkuna, jota ollaan vaihtamassa nykyisen ikkunan tilalle
+	*/
 	public void asetaPeliTarvittaessaTauolle(ValittuIkkuna nytValittuIkkuna) {
 		if (!onkoPeliKaynnissa()) {
 			return;
@@ -112,6 +145,11 @@ public class BlockOut implements Runnable {
 		}
 	}
 	
+	/**
+	* Asettaa kaynnissa olevan pelin tauolle tai pois tauolta. Vaihtaa myos Tauko-nappulan tekstin tasmaavaksi.
+	* 
+	* @param tauolla Tieto siita halutaanko peli tauolle vai pois tauolta
+	*/
 	public void asetaPeliTauolle(boolean tauolla) {
 		if (!this.ikkunat.containsKey(ValittuIkkuna.PELI)) {
 			return;
@@ -128,12 +166,18 @@ public class BlockOut implements Runnable {
 		}
 	}
 	
+	/**
+	* Kaynnistaa pelin tauolta ja asettaa siihen nykyiset graafiset asetukset
+	*/
 	private void kaynnistaPeliTauolta() {
 		this.peli.asetaUudetAsetukset(); //TODO
 		
 		vaihdaJPanel(ValittuIkkuna.PELI);
 	}
 	
+	/**
+	* Lopettaa kaynnissa olevan pelin. Avaa ennatyslistan jos pelin tulos on paasemassa sille. Avaa tyhjan ikkunan jos nakymassa oli peli. Muuten ei vaihda ikkunaa.
+	*/
 	public void lopetaPeli() {
 		this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
 		
@@ -151,6 +195,11 @@ public class BlockOut implements Runnable {
 		}
 	}
 	
+	/**
+	* Antaa tiedon siita onko peli kaynnissa.
+	* 
+	* @return Tieto siita onko peli kaynnissa vai ei
+	*/
 	public boolean onkoPeliKaynnissa() {
 		return this.ikkunat.containsKey(ValittuIkkuna.PELI);
 	}

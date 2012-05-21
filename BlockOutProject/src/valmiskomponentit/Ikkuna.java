@@ -7,14 +7,27 @@ import java.awt.LayoutManager;
 import javax.swing.JPanel;
 
 public class Ikkuna extends JPanel {
+	/**
+	* JPanel, jolla on valkoiset reunukset
+	*/
 	public Ikkuna() {
 		super();
 	}
 	
+	/**
+	* JPanel, jolla on valkoiset reunukset ja valmiiksi maaritetty asettelu
+	* 
+	* @param layout JPanelin asettelu
+	*/
 	public Ikkuna(LayoutManager layout) {
 		super(layout);
 	}
 	
+	/**
+	* Piirtaa komponentin ja sille valkoiset reunat
+	* 
+	* @param g Grafiikka
+	*/
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -22,6 +35,11 @@ public class Ikkuna extends JPanel {
 		varitaReunat(g);
 	}
 	
+	/**
+	* Varittaa JPanelin reunat
+	* 
+	* @param g Grafiikka
+	*/
 	private void varitaReunat(Graphics g) {
 		g.setColor(Color.WHITE);
 		

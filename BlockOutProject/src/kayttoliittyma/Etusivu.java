@@ -12,6 +12,11 @@ public class Etusivu extends JPanel {
 	private BlockOut kayttis;
 	private Nappula tauko, uusiPeli, lopeta, asetukset, ennatyslista;
 	
+	/**
+	* Hallinnoi kayttoliittyman alalaidassa olevia nappuloita, joilla pelin voi aloittaa, lopettaa ja laittaa tauolle tai ennatyslistaa tai asetuksia voi katsella.
+	* 
+	* @param kayttis Kayttoliittyma johon nappulat ovat kiinnittyneena
+	*/
 	public Etusivu(BlockOut kayttis) {
 		super();
 		
@@ -21,6 +26,9 @@ public class Etusivu extends JPanel {
 		luoNappulat();
 	}
 	
+	/**
+	* Luo nappulat, joilla kayttoliittymaa voidaan navigoida
+	*/
 	private void luoNappulat() {
 		JPanel peliPaneli = new JPanel(new GridLayout(3,1));
 		
@@ -57,10 +65,20 @@ public class Etusivu extends JPanel {
 		this.add(ennatyslista);
 	}
 	
+	/**
+	* Vaihtaa Tauko-nappulan tekstia. (Vaihtoehtoja Tauko ja Jatka)
+	* 
+	* @param uusiTeksti Tauko-nappulan uusi teksti
+	*/
 	public void vaihdaTaukoNappulanTeksti(String uusiTeksti) {
 		this.tauko.setText(uusiTeksti);
 	}
 	
+	/**
+	* Vaihtaa nappuloiden aktiivisuuksia sen mukaisiksi mika nakyma kayttajalla on aktiivisena ja missa tilassa peli on
+	*
+	* @param valittuIkkuna Valitun ikkunan tunnus
+	*/
 	public void vaihdaNappuloidenAktiivisuuksiaTasmaaviksi( ValittuIkkuna valittuIkkuna ) {
 		if (valittuIkkuna == ValittuIkkuna.PELI) {
 			this.tauko.setEnabled(true);
@@ -90,11 +108,22 @@ public class Etusivu extends JPanel {
 		private BlockOut kayttis;
 		private Nappula nappula;
 		
+		/**
+		* Tauko-nappulan kuuntelija
+		* 
+		* @param kayttis Kayttoliittyma, johon nappula on kiinnitetty ja jota nappulalla kaytetaan
+		* @param nappula Nappula, jossa kuuntelija on kiinnittyneena
+		*/
 		public TaukoNappulaKuuntelija(BlockOut kayttis, Nappula nappula) {
 			this.kayttis = kayttis;
 			this.nappula = nappula;
 		}
 		
+		/**
+		* Selvittaa kuuntelijan saamien tapahtumien perusteella laitetaanko tauko paalle vai pois.
+		* 
+		* @param ae Klikkaustapahtuma
+		*/
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			if (nappula.getText().equals("Tauko")) {
@@ -109,10 +138,20 @@ public class Etusivu extends JPanel {
 	private static class UusiPeliNappulaKuuntelija implements ActionListener {
 		private BlockOut kayttis;
 		
+		/**
+		* Uusi peli-nappulan kuuntelija.
+		* 
+		* @param kayttis Kayttoliittyma, jossa nappula on ja jota halutaan nappulalla kayttaa
+		*/
 		public UusiPeliNappulaKuuntelija(BlockOut kayttis) {
 			this.kayttis = kayttis;
 		}
 		
+		/**
+		* Tapahtuman perusteella aloittaa pelin.
+		* 
+		* @param ae Tapahtuma
+		*/
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			this.kayttis.aloitaPeli();
@@ -122,10 +161,20 @@ public class Etusivu extends JPanel {
 	private static class LopetaNappulaKuuntelija implements ActionListener {
 		private BlockOut kayttis;
 		
+		/**
+		* Lopeta-nappulan kuuntelija
+		* 
+		* @param kayttis Kayttoliittyma, johon nappula on kiinnitetty
+		*/
 		public LopetaNappulaKuuntelija(BlockOut kayttis) {
 			this.kayttis = kayttis;
 		}
 		
+		/**
+		* Tapahtuman perusteella lopettaa pelin.
+		* 
+		* @param Tapahtuma
+		*/
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			this.kayttis.lopetaPeli();
@@ -135,10 +184,20 @@ public class Etusivu extends JPanel {
 	private static class AsetuksetNappulaKuuntelija implements ActionListener {
 		private BlockOut kayttis;
 		
+		/**
+		* Asetukset-nappulan kuuntelija.
+		* 
+		* @param kayttis Kayttoliittyma, johon nappulan on kiinnitetty
+		*/
 		public AsetuksetNappulaKuuntelija(BlockOut kayttis) {
 			this.kayttis = kayttis;
 		}
 		
+		/**
+		* Tapahtuman perusteella vaihtaa kayttoliittyman nakyman ikkunan asetuksiksi
+		* 
+		* @param ae Tapahtuma
+		*/
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			this.kayttis.vaihdaJPanel(ValittuIkkuna.ASETUKSET);
@@ -148,10 +207,20 @@ public class Etusivu extends JPanel {
 	private static class EnnatyslistaNappulaKuuntelija implements ActionListener {
 		private BlockOut kayttis;
 		
+		/**
+		* Ennatyslista-nappulan kuuntelija.
+		* 
+		* @param kayttis Kayttoliittyma, johon nappula on kiinnitetty
+		*/
 		public EnnatyslistaNappulaKuuntelija(BlockOut kayttis) {
 			this.kayttis = kayttis;
 		}
 		
+		/**
+		* Tapahtuman perusteella vaihtaa kayttoliittyman nakymassa ikkunaksi ennatyslista-ikkunan.
+		* 
+		* @param ae Tapahtuma
+		*/
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			this.kayttis.vaihdaJPanel(ValittuIkkuna.ENNATYSLISTA);
