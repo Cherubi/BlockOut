@@ -45,7 +45,7 @@ public class Asetukset {
 		
 		avaaPalikkasetti(lukija.nextLine());
 		this.nappainsetti.avaaNappainsetti(lukija.nextLine());
-		//TODO
+		this.varit.avaaVarit(lukija.nextLine());
 	}
 	
 	/**
