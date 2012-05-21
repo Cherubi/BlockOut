@@ -16,11 +16,28 @@ public class Ulottuvuudet {
 	public void avaaUlottuvuudet(String tallenne) {
 		String[] ominaisuudet = tallenne.split(" ");
 		
-		asetaLeveys( Integer.parseInt(ominaisuudet[0]) );
-		asetaKorkeus( Integer.parseInt(ominaisuudet[1]) );
-		asetaSyvyys( Integer.parseInt(ominaisuudet[2]) );
+		try {
+			asetaLeveys( Integer.parseInt(ominaisuudet[0]) );
+			asetaKorkeus( Integer.parseInt(ominaisuudet[1]) );
+			asetaSyvyys( Integer.parseInt(ominaisuudet[2]) );
+			
+			asetaLeikkauspiste( Integer.parseInt(ominaisuudet[3]) );
+		} catch(Exception e) {
+			System.out.println("Ulottuvuus-tallennetta avatessa tormattiin ongelmaan.");
+			e.printStackTrace();
+		}
+	}
+	
+	public String tallennaUlottuvuudet() {
+		String tallenne = "";
 		
-		asetaLeikkauspiste( Integer.parseInt(ominaisuudet[3]) );
+		tallenne += annaLeveys() + " ";
+		tallenne += annaKorkeus() + " ";
+		tallenne += annaSyvyys() + " ";
+		
+		tallenne += annaLeikkauspiste();
+		
+		return tallenne;
 	}
 	
 	public int annaLeveys() {

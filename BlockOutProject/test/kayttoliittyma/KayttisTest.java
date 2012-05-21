@@ -31,6 +31,9 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 	
 	FrameFixture frame;
 	
+	/**
+	 * Ohjelmasta tulee löytyä JFrame.
+	 */
 	@Override
 	protected void onSetUp() {
 		ApplicationLauncher.application(BlockOut.class).start();
@@ -65,14 +68,23 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 	
 	
 	
+	/**
+	 * JFramesta tulee löytyä aluksi nappulat: Tauko, Uusi peli, Lopeta, Asetukset ja Ennatyslista
+	 */
 	@Test
-	public void onkoEtusivunNapit() {
+	public void onkoEtusivunNappulat() {
 		String[] nappienNimet = {"Tauko", "Uusi peli", "Lopeta", "Asetukset", "Ennatyslista"};
 		for (String napinNimi : nappienNimet) {
 			assertTrue("Olethan lisännyt JFrameen \"" + napinNimi + "\"-JButtonin", loytyykoNappi(napinNimi));
 		}
 	}
 	
+	/**
+	 * Etsii JFramesta JButtonia.
+	 * 
+	 * @param teksti Teksti, joka JButtonilla tulee olla.
+	 * @return Tieto siitä löytyikö nappi vai ei.
+	 */
 	public boolean loytyykoNappi(String teksti) {
 		try {
 			frame.button(JButtonMatcher.withText(teksti));
@@ -82,16 +94,25 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		}
 	}
 	
+	/**
+	 * Testaa onko nappuloiden aktiivisuudet aluksi oikein. (Jokainen nappula on aktiivinen vain silloin kun siitä saa voida painaa.)
+	 */
 	@Test
 	public void onkoNappuloidenAktiivisuudetAluksiOikein() {
 		String[] nappienNimet = {"Tauko", "Uusi peli", "Lopeta", "Asetukset", "Ennatyslista"};
 		boolean[] nappienAktiivisuudet = {false, true, false, true, true};
 		for (int i=0; i<nappienNimet.length; i++) {
-			assertTrue("Nappulan \"" + nappienNimet[i] + "\" aktiivisuuden tulisi olla " + nappienAktiivisuudet[i] + ", mutta se oli " + !nappienAktiivisuudet[i], annaNappi(nappienNimet[i]).target.isEnabled() == nappienAktiivisuudet[i]);
+			assertTrue("Nappulan \"" + nappienNimet[i] + "\" aktiivisuuden tulisi olla " + nappienAktiivisuudet[i] + ", mutta se oli " + !nappienAktiivisuudet[i], annaNappula(nappienNimet[i]).target.isEnabled() == nappienAktiivisuudet[i]);
 		}
 	}
 	
-	public JButtonFixture annaNappi(String teksti) {
+	/**
+	 * Hakee JFramesta JButtonin.
+	 * 
+	 * @param teksti Teksti, joka haetulla JButtonilla halutaan olevan.
+	 * @return JButton, jolla on haettu teksti.
+	 */
+	public JButtonFixture annaNappula(String teksti) {
 		try {
 			return frame.button(JButtonMatcher.withText(teksti));
 		} catch(ComponentLookupException e) {
@@ -99,9 +120,14 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		}
 	}
 	
+	/**
+	 * Painaa JFramesta löytyvää nappulaa.
+	 * 
+	 * @param teksti Teksti, joka painettavalla nappulalla halutaan olevan.
+	 */
 	public void painaNappia(String teksti) {
 		try {
-			JButtonFixture nappula = annaNappi(teksti);
+			JButtonFixture nappula = annaNappula(teksti);
 			nappula.focus();
 			nappula.click();
 		} catch(Exception e) {
@@ -109,31 +135,48 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		}
 	}
 	
+	/**
+	 * Testaa onko JFramessa olevien JButtonien aktiivisuudet (isEnabled) haluttuja
+	 * 
+	 * @param aktiivisuudet JFramen JButtonien halutut aktiivisuudet
+	 */
 	public void onkoNappuloidenAktiivisuudetOikein(boolean... aktiivisuudet) {
 		String[] nappienNimet = {"Tauko", "Uusi peli", "Lopeta", "Asetukset", "Ennatyslista"};
 		for (int i=0; i<nappienNimet.length; i++) {
-			assertTrue("Nappulan \"" + nappienNimet[i] + "\" aktiivisuuden tulisi olla " + aktiivisuudet[i] + ", mutta se oli " + annaNappi(nappienNimet[i]).target.isEnabled(), annaNappi(nappienNimet[i]).target.isEnabled() == aktiivisuudet[i]);
+			assertTrue("Nappulan \"" + nappienNimet[i] + "\" aktiivisuuden tulisi olla " + aktiivisuudet[i] + ", mutta se oli " + annaNappula(nappienNimet[i]).target.isEnabled(), annaNappula(nappienNimet[i]).target.isEnabled() == aktiivisuudet[i]);
 		}
 	}
 	
+	/**
+	 * Testaa onko JButtonien aktiivisuudet oikein kun Asetukset-näppäintä on klikattu
+	 */
 	@Test
 	public void onkoNappuloidenAktiivisuudetOikeinAsetusNapaytyksenJalkeen() {
 		painaNappia("Asetukset");
 		onkoNappuloidenAktiivisuudetOikein(false, true, false, false, true);
 	}
 	
+	/**
+	 * Testaa onko JButtonien aktiivisuudet oikein kun Ennatys-näppiäntä on klikattu
+	 */
 	@Test
 	public void onkoNappuloidenAktiivisuudetOikeinEnnatyslistaNapaytyksenJalkeen() {
 		painaNappia("Ennatyslista");
 		onkoNappuloidenAktiivisuudetOikein(false, true, false, true, false);
 	}
 	
+	/**
+	 * Testaa onko JButtonien aktiivisuudet oikein kun Uusi peli-näppäintä on klikattu
+	 */
 	@Test
 	public void onkoNappuloidenAktiivisuudetOikeinUudenPelinAloituksenJalkeen() {
 		painaNappia("Uusi peli");
 		onkoNappuloidenAktiivisuudetOikein(true, true, true, true, true);
 	}
 	
+	/**
+	 * Testaa onko JButtonien aktiivisuudet oikein kun peli on laitettu tauolle Tauko-näppäintä klikkaamalla
+	 */
 	@Test
 	public void onkoNappuloidenAktiivisuudetOikeinTauonAsetuksenJalkeen() {
 		painaNappia("Uusi peli");
@@ -142,10 +185,13 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		String[] nappienNimet = {"Jatka", "Uusi peli", "Lopeta", "Asetukset", "Ennatyslista"};
 		boolean[] aktiivisuudet = {true, true, true, true, true};
 		for (int i=0; i<nappienNimet.length; i++) {
-			assertTrue("Nappulan \"" + nappienNimet[i] + "\" aktiivisuuden tulisi olla " + aktiivisuudet[i] + ", mutta se oli " + annaNappi(nappienNimet[i]).target.isEnabled(), annaNappi(nappienNimet[i]).target.isEnabled() == aktiivisuudet[i]);
+			assertTrue("Nappulan \"" + nappienNimet[i] + "\" aktiivisuuden tulisi olla " + aktiivisuudet[i] + ", mutta se oli " + annaNappula(nappienNimet[i]).target.isEnabled(), annaNappula(nappienNimet[i]).target.isEnabled() == aktiivisuudet[i]);
 		}
 	}
 	
+	/**
+	 * Testaa onko JButtonien aktiivisuudet oikein kun peli on lopetettu Lopeta-näppäintä klikkaamalla
+	 */
 	@Test
 	public void onkoNappuloidenAktiivisuudetOikeinPelinLopetuksenJalkeen() {
 		painaNappia("Uusi peli");
@@ -153,6 +199,9 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		onkoNappuloidenAktiivisuudetOikein(false, true, false, true, true);
 	}
 	
+	/**
+	 * Testaa muuttuuko Tauko-näppäin Jatka-näppäimeksi kun peli on aloitettu ja Asetukset-näppäintä klikataan
+	 */
 	@Test
 	public void muuttuukoTaukoNappulaJatkaksiKunPelinAikanaAvataanAsetukset() {
 		painaNappia("Uusi peli");
@@ -160,6 +209,9 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		assertTrue("Muuttuuhan tauko-nappulan tekstiksi \"Jatka\" kun Asetukset avataan pelin aikana", loytyykoNappi("Jatka"));
 	}
 	
+	/**
+	 * Testaa muuttuuko Tauko-näppäin Jatka-näppäimeksi kun peli on aloitettu ja Ennatyslista-näppäintä klikataan
+	 */
 	@Test
 	public void muuttuukoTaukoNappulaJatkaksiKunPelinAikanaAvataanEnnatyslista() {
 		painaNappia("Uusi peli");
@@ -167,6 +219,9 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		assertTrue("Muuttuuhan tauko-nappulan tekstiksi \"Jatka\" kun Ennatyslista avataan pelin aikana", loytyykoNappi("Jatka"));
 	}
 	
+	/**
+	 * Testaa onko Tauko-näppäin yhä Tauko-näppäin kun peli on aloitettu ja se lopetetaan
+	 */
 	@Test
 	public void pysyykoTaukoNappulaTaukonaKunPeliLopetetaan() {
 		painaNappia("Uusi peli");
@@ -174,6 +229,9 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		assertTrue("Onhan tauko-nappulan teksti \"Tauko\" pelin lopetuksen jälkeen", loytyykoNappi("Tauko"));
 	}
 	
+	/**
+	 * Testaa onko Tauko-näppäin yhä Tauko-näppäin kun pelin aikana klikataan Uusi peli-näppäintä
+	 */
 	@Test
 	public void onkoTaukonappulaYhaTaukoJosPelinAikanaAloitetaanUusiPeli() {
 		painaNappia("Uusi peli");
@@ -181,6 +239,9 @@ public class KayttisTest extends FestSwingJUnitTestCase {
 		assertTrue("Pysyyhän tauko-nappulan tekstinä \"Tauko\"-kun pelin aikana aloitetaan uusi peli", loytyykoNappi("Tauko"));
 	}
 	
+	/**
+	 * Testaa onko Jatka-näppäin jälleen Tauko-näppäin jos tauon aikana klikataan Uusi peli-näppäintä
+	 */
 	@Test
 	public void onkoTaukoNappulaJalleenTaukoJosPelinTauonAikanaAloitetaanUusiPeli() {
 		painaNappia("Uusi peli");

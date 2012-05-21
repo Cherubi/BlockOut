@@ -92,7 +92,7 @@ public class BlockOut implements Runnable {
 	
 	public void aloitaPeli() {
 		if (onkoPeliKaynnissa()) {
-			this.peli.lopetaPeli(); // jos tulisi tulos ennatyslistalle niin ehtiikö käyttäjä edes nähdä sitä? jääkö kysymään nimeä?
+			this.peli.lopetaPeli(); // jos tulisi tulos ennatyslistalle niin ehtiiko kayttaja edes nahda sita? jaako kysymaan nimea?
 			this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
 		}
 		

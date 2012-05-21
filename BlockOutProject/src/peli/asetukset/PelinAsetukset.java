@@ -13,4 +13,8 @@ public class PelinAsetukset extends Ikkuna {
 	public PelinAsetukset() {
 	
 	}
+	
+	public void tallennaTallennokset() {
+	
+	}
 }
