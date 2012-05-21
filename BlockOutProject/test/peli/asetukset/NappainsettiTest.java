@@ -102,11 +102,27 @@ public class NappainsettiTest {
 	}
 	
 	/**
+	 * Ohjelman tulee tallentaa nappainsetti oikein, jotta sita voidaan myohemmin lukea.
+	 */
+	@Test
+	public void nappainSetinTallennusLuoOikeanlaisenMerkkijononTallennukseen() {
+		String toimivaTallenne = "11 12 13 14 21 22 23 24 31 32 51 52 100";
+		this.nappainsetti.avaaNappainsetti(toimivaTallenne);
+		
+		String luettuTallenne = this.nappainsetti.tallennaNappainsetti();
+		assertTrue("Nappainsetin tallennus ei toimi.\nTallenteen olisi tullut olla: " + toimivaTallenne + "\nMutta se oli: " + luettuTallenne, luettuTallenne.equals(toimivaTallenne) );
+	}
+	
+	/**
 	 * Ohjelman tulee asettaa alkuperäiset näppäimet jos nappainsettitallenteen avauksessa ilmeni ongelmia.
 	 */
 	@Test
 	public void virheellisestiToiminutTallenneJohtaaPerussettiin() {
-	
+		String alkuperainenNappainsetti = this.nappainsetti.tallennaNappainsetti();
+		
+		this.nappainsetti.avaaNappainsetti("3 4 5 6 7 8 c 0 d sdf");
+		String uusiNappainsetti = this.nappainsetti.tallennaNappainsetti();
+		assertTrue("Nappainsetin olisi tullut pysya perussettina kun virheellinen tallenne koitettiin lukea.", uusiNappainsetti.equals( alkuperainenNappainsetti ) );
 	}
 	
 	/**
@@ -114,7 +130,8 @@ public class NappainsettiTest {
 	 */
 	@Test
 	public void kahtaNappaintaEiVoiAsettaaKahdelle() {
-	
+		this.nappainsetti.asetaAlasNappain(-50);
+		assertTrue("Kahta toimintoa ei kuuluisi voida asettaa samalle nappaimelle.", this.nappainsetti.asetaYlosNappain(-50) == false);
 	}
 	
 	/**
@@ -122,6 +139,16 @@ public class NappainsettiTest {
 	 */
 	@Test
 	public void nappaimenVoiAsettaaAiemminVapaallePaikalle() {
-	
+		String varatutNappaimet =this.nappainsetti.tallennaNappainsetti();
+		
+		int kokeiltavaVapaaKoodi = 0;
+		while (true) {
+			if ( !varatutNappaimet.contains(""+kokeiltavaVapaaKoodi) ) {
+				break;
+			}
+			kokeiltavaVapaaKoodi++;
+		}
+		
+		assertTrue("Pitaisi olla mahdollista asettaa toiminto nappaimelle, jota ei ole entuudestaan varattu.", this.nappainsetti.asetaYlosNappain(kokeiltavaVapaaKoodi));
 	}
 }

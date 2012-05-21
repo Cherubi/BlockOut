@@ -10,10 +10,18 @@ public class PelinAsetukset extends Ikkuna {
 	private ArrayList<Asetukset> tallennetutAsetukset;
 	private int valittuAsetus;
 	
+	/**
+	* Hallinnoi pelin asetuksia.
+	* 
+	* @param
+	*/
 	public PelinAsetukset() {
 	
 	}
 	
+	/**
+	* Tallentaa asetuksissa tehdyt muutokset.
+	*/
 	public void tallennaTallennokset() {
 	
 	}

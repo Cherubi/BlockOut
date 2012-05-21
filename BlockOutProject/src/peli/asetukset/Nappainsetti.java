@@ -74,10 +74,9 @@ public class Nappainsetti {
 	}
 	
 	/**
+	* Asettaa tallenteesta palikan kiertamiseen liittyvat nappaimet
 	* 
-	* 
-	* @param
-	* @return
+	* @param Nappainten KeyEvent-koodit
 	*/
 	private void asetaTallenteenKiertonappaimet(String[] nappaimet) {
 		asetaYlapuoliEsilleNappain( Integer.parseInt(nappaimet[4]) );
@@ -89,6 +88,11 @@ public class Nappainsetti {
 		asetaKierraVastapaivaanNappain( Integer.parseInt(nappaimet[9]) );
 	}
 	
+	/**
+	* Luo nappainsetista tallenteen.
+	* 
+	* @return Tallenne
+	*/
 	public String tallennaNappainsetti() {
 		String tallenne = annaYlosNappain() + " " + annaAlasNappain() + " " + annaVasemmalleNappain() + " " + annaOikealleNappain() + " ";
 		
@@ -109,10 +113,21 @@ public class Nappainsetti {
 	//
 	//*********************************
 	
+	/**
+	* Antaa ylos-nappaimen KeyEvent-koodin
+	* 
+	* @return Ylos-nappaimen KeyEvent-koodi
+	*/
 	public int annaYlosNappain() {
 		return this.nappaimet.get("ylos");
 	}
 	
+	/**
+	* Asettaa Ylos-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaYlosNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("ylos", uusiKoodi);
@@ -121,10 +136,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa alas-nappaimen KeyEvent-koodin
+	* 
+	* @return Alas-nappaimen KeyEvent-koodi
+	*/
 	public int annaAlasNappain() {
 		return this.nappaimet.get("alas");
 	}
 	
+	/**
+	* Asettaa Alas-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaAlasNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("alas", uusiKoodi);
@@ -133,10 +159,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa vasemmalle-nappaimen KeyEvent-koodin
+	* 
+	* @return Vasemmalle-nappaimen KeyEvent-koodi
+	*/
 	public int annaVasemmalleNappain() {
 		return this.nappaimet.get("vasemmalle");
 	}
 	
+	/**
+	* Asettaa Vasemmalle-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaVasemmalleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("vasemmalle", uusiKoodi);
@@ -145,10 +182,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa oikealle-nappaimen KeyEvent-koodin
+	* 
+	* @return Oikealle-nappaimen KeyEvent-koodi
+	*/
 	public int annaOikealleNappain() {
 		return this.nappaimet.get("oikealle");
 	}
 	
+	/**
+	* Asettaa Oikealle-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaOikealleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("oikealle", uusiKoodi);
@@ -157,10 +205,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa ylapuoli esille-nappaimen KeyEvent-koodin
+	* 
+	* @return Ylapuoli esille-nappaimen KeyEvent-koodi
+	*/
 	public int annaYlapuoliEsilleNappain() {
 		return this.nappaimet.get("ylapuoli esille");
 	}
 	
+	/**
+	* Asettaa Ylapuoli esille-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaYlapuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("ylapuoli esille", uusiKoodi);
@@ -169,10 +228,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa alapuoli esille-nappaimen KeyEvent-koodin
+	* 
+	* @return Alapuoli esille-nappaimen KeyEvent-koodi
+	*/
 	public int annaAlapuoliEsilleNappain() {
 		return this.nappaimet.get("alapuoli esille");
 	}
 	
+	/**
+	* Asettaa Alapuoli esille-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaAlapuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("alapuoli esille", uusiKoodi);
@@ -181,10 +251,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa vasenpuoli esille-nappaimen KeyEvent-koodin
+	* 
+	* @return Vasenpuoli esille-nappaimen KeyEvent-koodi
+	*/
 	public int annaVasenPuoliEsilleNappain() {
 		return this.nappaimet.get("vasen puoli esille");
 	}
 	
+	/**
+	* Asettaa Vasenpuoli esille-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaVasenPuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("vasen puoli esille", uusiKoodi);
@@ -193,10 +274,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa oikeapuoli esille-nappaimen KeyEvent-koodin
+	* 
+	* @return Oikeapuoli esille-nappaimen KeyEvent-koodi
+	*/
 	public int annaOikeaPuoliEsilleNappain() {
 		return this.nappaimet.get("oikea puoli esille");
 	}
 	
+	/**
+	* Asettaa Oikeapuoli esille-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaOikeaPuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("oikea puoli esille", uusiKoodi);
@@ -205,10 +297,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa kierra myotapaivaan-nappaimen KeyEvent-koodin
+	* 
+	* @return Kierra myotapaivaan-nappaimen KeyEvent-koodi
+	*/
 	public int annaKierraMyotapaivaanNappain() {
 		return this.nappaimet.get("myotapaivaan");
 	}
 	
+	/**
+	* Asettaa Kierra myotapaivaan-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaKierraMyotapaivaanNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("myotapaivaan", uusiKoodi);
@@ -217,10 +320,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa kierra vastapaivaan-nappaimen KeyEvent-koodin
+	* 
+	* @return Kierra vastapaivaan-nappaimen KeyEvent-koodi
+	*/
 	public int annaKierraVastapaivaanNappain() {
 		return this.nappaimet.get("vastapaivaan");
 	}
 	
+	/**
+	* Asettaa Kierra vastapaivaan-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaKierraVastapaivaanNappain(int uusiKoodi)  {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("vastapaivaan", uusiKoodi);
@@ -229,10 +343,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa tiputa-nappaimen KeyEvent-koodin
+	* 
+	* @return Tiputa-nappaimen KeyEvent-koodi
+	*/
 	public int annaTiputaNappain() {
 		return this.nappaimet.get("tiputa");
 	}
 	
+	/**
+	* Asettaa Tiputa-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaTiputaNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("tiputa", uusiKoodi);
@@ -241,10 +366,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa tiputa yksi kerros-nappaimen KeyEvent-koodin
+	* 
+	* @return Tiputa yksi kerros-nappaimen KeyEvent-koodi
+	*/
 	public int annaTiputaYksiKerrosNappain() {
 		return this.nappaimet.get("tiputa yksi kerros");
 	}
 	
+	/**
+	* Asettaa Tiputa yksi kerros-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaTiputaYksiKerrosNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("tiputa yksi kerros", uusiKoodi);
@@ -253,10 +389,21 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Antaa tauko-nappaimen KeyEvent-koodin
+	* 
+	* @return Tauko-nappaimen KeyEvent-koodi
+	*/
 	public int annaTaukoNappain() {
 		return this.nappaimet.get("tauko");
 	}
 	
+	/**
+	* Asettaa Tauko-nappaimen KeyEvent-koodin perusteella
+	* 
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
 	public boolean asetaTaukoNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("tauko", uusiKoodi);
@@ -265,6 +412,12 @@ public class Nappainsetti {
 		return false;
 	}
 	
+	/**
+	* Selvittaa onko KeyEvent-koodi jo jonkun toisen toiminnon kaytossa.
+	* 
+	* @param koodi KeyEvent-koodi, jolle etsitaan muita toimintoja
+	* @return Tieto siita onko KeyEvent-koodi jo varattu toiselle toiminnolle
+	*/
 	private boolean onkoNappainVarattu(int koodi) {
 		for (int varattuKoodi : this.nappaimet.values()) {
 			if (varattuKoodi == koodi) {

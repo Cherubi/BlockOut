@@ -14,10 +14,22 @@ public class Nappula extends JButton {
 	
 	private int nappulanKavennus;
 	
+	/**
+	* Luo JButtonin, jonka ulkonakoa on muutettu.
+	* 
+	* @param teksti Teksti, joka nappulaan halutaan
+	*/
 	public Nappula(String teksti) {
 		this(teksti, Color.WHITE, Color.BLACK);
 	}
 	
+	/**
+	* Luo JButtonin, jonka ulkonakoa on muutettu. Kayttaja valitsee tekstin ja taustan varin.
+	* 
+	* @param teksti Teksti, joka nappulaan halutaan
+	* @param tekstinVari Vari, jonka kayttaja haluaa tekstille
+	* @param taustanVari Vari, jonka kayttaja haluaa nappulalle tekstin taakse
+	*/
 	public Nappula(String teksti, Color tekstinVari, Color taustanVari) {
 		super(teksti);
 		
@@ -32,15 +44,31 @@ public class Nappula extends JButton {
 		this.nappulanKavennus = 0;
 	}
 	
+	/**
+	* Asettaa nappulaan uuden tekstin.
+	* 
+	* @param teksti Uusi teksti, joka nappulaan halutaan
+	*/
 	public void asetaTeksti(String teksti) {
 		setText(teksti);
 	}
 	
+	/**
+	* Asettaa fontin, jolla teksti kirjoitetaan nappulaan
+	* 
+	* @param fontinNimi Fontin nimi
+	* @param fontinKoko Fontin koko, jonka kokoinen tai jota pienempi fontin tulee olla
+	*/
 	public void asetaFontti(String fontinNimi, int fontinKoko) {
 		this.fontinNimi = fontinNimi;
 		this.fontinKoko = fontinKoko;
 	}
 	
+	/**
+	* Asettaa tekstin varin, jolla teksti kirjoitetaan
+	* 
+	* @param vari Asetettava vari
+	*/
 	public void asetaTekstinVari(Color vari) {
 		if (this.tekstinVariAktiivisena == this.tekstinVari) {
 			this.tekstinVari = vari;
@@ -48,6 +76,11 @@ public class Nappula extends JButton {
 		this.tekstinVariAktiivisena = vari;
 	}
 	
+	/**
+	* Asettaa taustan varin, jolla nappula varitetaan
+	* 
+	* @param Asetettava vari
+	*/
 	public void asetaTaustanVari(Color vari) {
 		if (this.taustanVariAktiivisena == this.taustanVari) {
 			this.taustanVari = vari;
@@ -55,10 +88,20 @@ public class Nappula extends JButton {
 		this.taustanVariAktiivisena = vari;
 	}
 	
+	/**
+	* Asettaa nappulan leveydelle kavennuksen minka verran nappulaa kavennetaan seka oikealta, etta vasemmalta
+	* 
+	* @param kavennus Kavennuksen maara
+	*/
 	public void asetaNappulanKavennus(int kavennus) {
 		this.nappulanKavennus = kavennus;
 	}
 	
+	/**
+	* Asettaa nappulan aktiivisuuden. Normaaliin JButtoniin verrattuna muuttaa myos nappulan tekstin ja taustan varit tummemmiksi.
+	* 
+	* @param Nappulan uusi aktiivisuus
+	*/
 	@Override
 	public void setEnabled(boolean aktiivinen) {
 		super.setEnabled(aktiivinen);
@@ -73,6 +116,11 @@ public class Nappula extends JButton {
 		}
 	}
 	
+	/**
+	* Piirtaa nappulan muunnellun nakoiseksi.
+	* 
+	* @param g Graphics
+	*/
 	@Override
 	public void paintComponent(Graphics g) {
 		varitaTausta(g);
@@ -80,11 +128,21 @@ public class Nappula extends JButton {
 		piirraTeksti(g);
 	}
 	
+	/**
+	* Varittaa nappulan taustan
+	* 
+	* @param g Graphics
+	*/
 	private void varitaTausta(Graphics g) {
 		g.setColor(this.taustanVari);
 		g.fillRect(5, 5, getWidth()-2*5, getHeight()-2*5);
 	}
 	
+	/**
+	* Piirtaa nappulan reunat
+	* 
+	* @param g Graphics
+	*/
 	private void varitaReunat(Graphics g) {
 		g.setColor(Color.WHITE);
 		
@@ -111,6 +169,11 @@ public class Nappula extends JButton {
 		g.drawRect(getWidth()-nappulanKavennus-5, 5-ekaYlitys, 1, getHeight()-2*5+ekaYlitys+tokaYlitys);
 	}
 	
+	/**
+	* Kirjoittaa tekstin nappulaan keskittamisen jalkeen.
+	* 
+	* @param g Graphics
+	*/
 	private void piirraTeksti(Graphics g) {
 		Font f = haeRuutuunSovitettuFontti(g);
 		int tekstinLeveys = laskeTekstinLeveys(g);
@@ -126,6 +189,12 @@ public class Nappula extends JButton {
 		g.drawString(getText(), nappulanKavennus+5+tekstinVaakakeskitys, 5+tekstinPystykeskitys + tekstinKorkeus);
 	}
 	
+	/**
+	* Etsii fonttikoon, jolla nappulan teksti mahtuu nappulaan.
+	* 
+	* @param g Graphics
+	* @return Fontti, jonka fonttikoko on asetettu
+	*/
 	private Font haeRuutuunSovitettuFontti(Graphics g) {
 		int tekstinLeveys = 0;
 		int fontinSovitettuKoko = this.fontinKoko;
@@ -142,11 +211,23 @@ public class Nappula extends JButton {
 		return f;
 	}
 	
+	/**
+	* Laskee tekstin leveyden grafiikalle asetetun fontin perusteella
+	* 
+	* @param g Graphics
+	* @return Tekstin leveys
+	*/
 	private int laskeTekstinLeveys(Graphics g) {
 		FontMetrics fm = g.getFontMetrics();
 		return fm.charsWidth(getText().toCharArray(), 0, getText().length());
 	}
 	
+	/**
+	* Laskee tekstin korkeuden grafiikalle asetetun fontin perusteella
+	* 
+	* @param g Graphics
+	* @return Tekstin korkeus
+	*/
 	private int laskeTekstinKorkeus(Graphics g) {
 		FontMetrics fm = g.getFontMetrics();
 		return fm.getMaxAscent();

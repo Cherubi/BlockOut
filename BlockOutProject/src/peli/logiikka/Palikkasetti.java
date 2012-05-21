@@ -5,10 +5,20 @@ public enum Palikkasetti {
 	
 	private String nimi;
 	
+	/**
+	* Luo pelin palikkasetin.
+	* 
+	* @param setti Halutun setin String-esitys
+	*/
 	private Palikkasetti(String setti) {
 		this.nimi = setti;
 	}
 	
+	/**
+	* Antaa palikkasetin nimen.
+	* 
+	* @return Palikkasetin String-esitys
+	*/
 	public String annaNimi() {
 		return this.nimi;
 	}
