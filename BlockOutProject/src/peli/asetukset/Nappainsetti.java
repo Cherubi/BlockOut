@@ -56,6 +56,7 @@ public class Nappainsetti {
 			
 			asetaTaukoNappain( Integer.parseInt(osaset[12]) );
 		} catch (Exception e) {
+			System.out.println("Tallennettu nappainsetti oli virheellinen. Luodaan uusi. Jos olet juuri paivittanyt ohjelman on tama aivan odotettua eika poista mitaan mita olisit voinut aiemmin tallentaa.");
 			this.nappaimet.clear();
 			asetaPerusnappaimet();
 		}

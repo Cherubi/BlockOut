@@ -1,6 +1,7 @@
 package peli.asetukset;
 
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class Varit {
 	private ArrayList<Color> varit;
@@ -27,17 +28,20 @@ public class Varit {
 	public void avaaVarit(String tallenne) {
 		String[] tallennevarit = tallenne.split(" ");
 		
-		if (tallennevarit.length() > 0) {
+		if (tallennevarit.length > 0) {
 			varit.clear();
 		}
 		
 		for (int i=0; i<tallennevarit.length; i++) {
-			int hashKoodi = Integer.parseInt(tallennevarit[i]);
 			try {
+				int hashKoodi = Integer.parseInt(tallennevarit[i]);
 				Color vari = new Color( hashKoodi );
 				this.varit.add(vari);
+			} catch (NumberFormatException e) {
+				System.out.println("Varin luonti ei onnistunut, koska syote ei ollut kokonaisnumero vaan " + tallennevarit[i].getClass() + ".");
+				this.varit.add(Color.GRAY);
 			} catch (Exception e) {
-				System.out.println("VŠrin luonti ei onnistunut.");
+				System.out.println("Varin luonti ei onnistunut hashKoodista, joka on outoa koska kaikille kokonaisluvuille tulisi olla vari");
 				this.varit.add(Color.GRAY);
 			}
 		}
@@ -110,7 +114,7 @@ public class Varit {
 			return true;
 		}
 		
-		System.out.println("TŠlle kerrokselle (" + kerros + ") ei voida antaa vŠriŠ.");
+		System.out.println("Talle kerrokselle (" + kerros + ") ei voida antaa varia.");
 		return false;
 	}
 	
@@ -121,8 +125,8 @@ public class Varit {
 	* @param vari Vari, joka kerrokselle asetetaan
 	*/
 	private void vaihdaOlemassaOlevanKerroksenVari(int kerros, Color vari) {
-		Color vaihdettavaVari = varit.get(kerros-1);
-		vaihdettavaVari = vari;
+		varit.remove(kerros-1);
+		varit.add(kerros-1, vari);
 	}
 	
 	/**
