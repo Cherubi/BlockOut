@@ -56,7 +56,7 @@ public class PelinAsetukset extends Ikkuna {
 			lukija = new Scanner(new File(tallenneosoite));
 			lueTallennokset(lukija);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("Tiedoston: asetukset avaaminen ei onnistunut. (Olemassaolevan tiedoston tulee olla samassa kansiossa jar:n kanssa.) Luodaan uusi, joka tallennetaan kun muutoksia tehdŠŠn.");
 			alustaAsetukset();
 		} finally {
@@ -149,6 +149,7 @@ public class PelinAsetukset extends Ikkuna {
 		luoOtsikko();
 		
 		this.talletetutPaneli = new TalletetutAsetuksetPaneli( this, tallennetutAsetukset, valittuAsetus );
+		this.talletetutPaneli.setOpaque(false);
 		this.add(talletetutPaneli, BorderLayout.WEST);
 		
 		this.asetuksetPaneli = new AsetuksetPaneli( talletetutPaneli, annaValitutAsetukset(), valittuAsetus != 0 );
@@ -180,7 +181,10 @@ public class PelinAsetukset extends Ikkuna {
 	* @param id Valittavan asetukset id/jarjestysnumero
 	*/
 	public void vaihdaValittuaAsetusta(int id) {
-		if (id == -1) {
+		if (id < -1 || id >= annaAsetustenMaara()) {
+			return;
+		}
+		else if (id == -1) {
 			luoUusiAsetus();
 		}
 		else {
@@ -244,9 +248,9 @@ public class PelinAsetukset extends Ikkuna {
 	* 
 	* @param vari, joka halutaan antaa asetuksille
 	*/
-	//public void annaVariAsetuksille(Color vari) {
-	//	//TODO
-	//}
+	public void annaVariAsetuksille(Color vari) {
+		//TODO
+	}
 	
 	/**
 	* Etsii fontin, jonka tietokoneen kayttojarjestelma ymmartaa.
@@ -277,17 +281,4 @@ public class PelinAsetukset extends Ikkuna {
 		return "futura";
 	}
 	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
-	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
 }

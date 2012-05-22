@@ -1,9 +1,14 @@
 package peli;
 
+import kayttoliittyma.BlockOut;
+import peli.asetukset.Asetukset;
+//import peli.ennatyslista.Ennatyslistaaja;
+//import peli.grafiikka.Piirturi;
 import valmiskomponentit.Ikkuna;
 
 public class Peli extends Ikkuna {
-	
+	private BlockOut kayttis;
+//	private Piirturi piirturi;
 	
 	/**
 	* Alustaa ja aloittaa pelin

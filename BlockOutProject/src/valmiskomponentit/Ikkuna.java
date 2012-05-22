@@ -32,6 +32,9 @@ public class Ikkuna extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, getWidth(), getHeight());
+		
 		varitaReunat(g);
 	}
 	

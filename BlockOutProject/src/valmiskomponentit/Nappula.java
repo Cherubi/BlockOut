@@ -33,6 +33,8 @@ public class Nappula extends JButton {
 	public Nappula(String teksti, Color tekstinVari, Color taustanVari) {
 		super(teksti);
 		
+		this.setBorderPainted(false); //WINDOWSia varten
+		
 		this.tekstinVari = tekstinVari;
 		this.tekstinVariAktiivisena = tekstinVari;
 		this.taustanVari = taustanVari;
@@ -134,8 +136,11 @@ public class Nappula extends JButton {
 	* @param g Graphics
 	*/
 	private void varitaTausta(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(0+nappulanKavennus, 0, getWidth()-2*nappulanKavennus, getHeight());
+		
 		g.setColor(this.taustanVari);
-		g.fillRect(5, 5, getWidth()-2*5, getHeight()-2*5);
+		g.fillRect(5+nappulanKavennus, 5, getWidth()-2*5-nappulanKavennus*2, getHeight()-2*5);
 	}
 	
 	/**
