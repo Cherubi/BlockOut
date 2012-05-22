@@ -73,7 +73,7 @@ public class BlockOut implements Runnable {
 		this.ikkunat.put(ValittuIkkuna.TYHJA, new Ikkuna());
 		
 		
-		pelinAsetukset = new PelinAsetukset();
+		pelinAsetukset = new PelinAsetukset(this, "asetukset.javafile");
 		this.ikkunat.put(ValittuIkkuna.ASETUKSET, pelinAsetukset);
 		/*
 		nappainpaletti = new Nappainpaletti();
