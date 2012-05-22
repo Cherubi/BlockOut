@@ -3,6 +3,7 @@ package peli.asetukset;
 import peli.logiikka.Palikkasetti;
 
 import java.util.Scanner;
+import java.io.FileWriter;
 
 public class Asetukset {
 	private PelinAsetukset pelinAsetukset;
@@ -67,11 +68,18 @@ public class Asetukset {
 	/**
 	* Tallentaa asetukset niin kuin pelaaja on ne kayttoliittymasta valinnut.
 	* 
-	* @param
-	* @return
+	* @param kirjuri FileWriter, johon on avattu tiedosto mihin kirjoitetaan
 	*/
-	public void tallennaAsetukset() {
-		//TODO
+	public void tallennaAsetukset(FileWriter kirjuri) throws Exception {
+		kirjuri.write(asetustenNimi + "\n");
+		
+		kirjuri.write(ulottuvuudet.tallennaUlottuvuudet() + "\n");
+		kirjuri.write(aloitustaso + "\n");
+		
+		kirjuri.write(palikkasetti.annaNimi().toLowerCase() + "\n");
+		
+		kirjuri.write(nappainsetti.tallennaNappainsetti() + "\n");
+		kirjuri.write(varit.tallennaVarit() + "\n");
 	}
 	
 	//*********************************

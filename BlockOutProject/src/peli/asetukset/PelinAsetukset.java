@@ -6,17 +6,21 @@ import valmiskomponentit.Ikkuna;
 import java.util.ArrayList;
 
 public class PelinAsetukset extends Ikkuna {
-	BlockOut kayttis;
+	private BlockOut kayttis;
+	private String tallenneosoite;
+	
 	private ArrayList<Asetukset> tallennetutAsetukset;
 	private int valittuAsetus;
 	
 	/**
 	* Hallinnoi pelin asetuksia.
 	* 
-	* @param
+	* @param kayttis Kayttoliittyma, johon asetukset on kiinnitetty
+	* @param tallenneosoite Tallennetiedoston osoite
 	*/
-	public PelinAsetukset() {
-	
+	public PelinAsetukset(BlockOut kayttis, String tallenneosoite) {
+		this.kayttis = kayttis;
+		this.tallenneosoite = tallenneosoite;
 	}
 	
 	/**
