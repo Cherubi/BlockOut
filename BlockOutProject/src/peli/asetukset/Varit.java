@@ -86,7 +86,7 @@ public class Varit {
 		}
 		
 		if (kerros <= 0) {
-			System.out.println("TŠlle kerrokselle (" + kerros + ") ei voida antaa vŠriŠ.");
+			System.out.println("Talle kerrokselle (" + kerros + ") ei voida antaa varia.");
 			return Color.GRAY;
 		}
 		
@@ -101,7 +101,7 @@ public class Varit {
 	*/
 	public boolean vaihdaVari(int kerros, Color vari) {
 		if (kerros <= 0) {
-			System.out.println("TŠlle kerrokselle (" + kerros + ") ei voida antaa vŠriŠ.");
+			System.out.println("Talle kerrokselle (" + kerros + ") ei voida antaa varia.");
 			return false;
 		}
 		

@@ -57,7 +57,7 @@ public class PelinAsetukset extends Ikkuna {
 			lueTallennokset(lukija);
 		} catch (Exception e) {
 			//e.printStackTrace();
-			System.out.println("Tiedoston: asetukset avaaminen ei onnistunut. (Olemassaolevan tiedoston tulee olla samassa kansiossa jar:n kanssa.) Luodaan uusi, joka tallennetaan kun muutoksia tehdŠŠn.");
+			System.out.println("Tiedoston: asetukset avaaminen ei onnistunut. (Olemassaolevan tiedoston tulee olla samassa kansiossa jar:n kanssa.) Luodaan uusi, joka tallennetaan kun muutoksia tehdaan.");
 			alustaAsetukset();
 		} finally {
 			try {

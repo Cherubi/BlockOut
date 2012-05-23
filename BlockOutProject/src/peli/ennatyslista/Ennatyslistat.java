@@ -29,8 +29,8 @@ public class Ennatyslistat {
 		this.listojenPituus = 10;
 		avaaListat();
 		
-		/*lisaaListalle(53892, "jänis", 5, 5, 10, Palikkasetti.FLAT);
-		lisaaListalle(52692, "jänis", 5, 5, 10, Palikkasetti.FLAT);
+		/*lisaaListalle(53892, "janis", 5, 5, 10, Palikkasetti.FLAT);
+		lisaaListalle(52692, "janis", 5, 5, 10, Palikkasetti.FLAT);
 		lisaaListalle(22570, "sari", 5, 5, 10, Palikkasetti.FLAT);
 		lisaaListalle(16567, "martin", 5, 5, 10, Palikkasetti.FLAT);
 		lisaaListalle(10986, "mauri", 5, 5, 10, Palikkasetti.FLAT);

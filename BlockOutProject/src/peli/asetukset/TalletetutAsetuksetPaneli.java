@@ -70,7 +70,7 @@ public class TalletetutAsetuksetPaneli extends JPanel {
 		}
 		
 		while (asetusId < 5) {
-			luoUusiNappula("TyhjŠ", -1, false);
+			luoUusiNappula("Tyhja", -1, false);
 			asetusId++;
 		}
 	}
@@ -225,13 +225,6 @@ public class TalletetutAsetuksetPaneli extends JPanel {
 		
 		nappula.addActionListener(new Kuuntelija(this, id));
 	}
-	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
 	
 	
 	/**

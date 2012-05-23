@@ -18,4 +18,11 @@ public class Ennatyslistaaja extends Ikkuna {
 	public Ennatyslistaaja() {
 		this.ennatyslistat = new Ennatyslistat("ennatyslistat.javafile");
 	}
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
 }
