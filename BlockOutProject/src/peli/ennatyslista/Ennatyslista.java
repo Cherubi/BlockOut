@@ -42,12 +42,14 @@ public class Ennatyslista implements Serializable {
 		this.syvyys = syvyys;
 		
 		this.palikkasetti = palikkasetti;
+		
+		luoUusiEnnatyslista();
 	}
 	
 	/**
 	* Luo uuden ennatyslistan.
 	*/
-	public void luoUusiEnnatyslista() {
+	private void luoUusiEnnatyslista() {
 		this.lista = new ArrayList<Ennatys>();
 		for (int i=1; i<=pituus; i++) {
 			lista.add( new Ennatys(0, "--") );

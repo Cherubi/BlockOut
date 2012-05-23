@@ -97,7 +97,6 @@ public class Ennatyslistat {
 			}
 					
 			Ennatyslista lista = new Ennatyslista(pienempiLeveys, suurempiLeveys, syvyys, palikkasetti);
-			lista.luoUusiEnnatyslista();
 			lista.avaaLista(lukija);
 			this.listat.add(lista);
 		}
@@ -192,7 +191,6 @@ public class Ennatyslistat {
 		Ennatyslista uusiLista = new Ennatyslista(listojenPituus, pienempiLeveys, suurempiLeveys, syvyys, palikkasetti.annaNimi());
 		listat.add(uusiLista);
 		System.out.println("Luotu uusi ennatyslista talle koolle.");
-		uusiLista.luoUusiEnnatyslista();
 		return uusiLista;
 	}
 	
