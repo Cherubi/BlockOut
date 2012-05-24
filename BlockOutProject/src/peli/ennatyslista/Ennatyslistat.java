@@ -113,12 +113,10 @@ public class Ennatyslistat {
 	*/
 	private boolean tallenteenMaareetSopivat(int pienempiLeveys, int suurempiLeveys, int syvyys, String palikkasetti) {
 		if (pienempiLeveys > suurempiLeveys) {
-			System.out.println("1");
 			return false;
 		}
 		
 		if (pienempiLeveys < 3 || pienempiLeveys > 7 || suurempiLeveys < 3 || suurempiLeveys > 7 || syvyys < 6 || syvyys > 18) {
-			System.out.println("2");
 			return false;
 		}
 		
@@ -126,7 +124,6 @@ public class Ennatyslistat {
 			return true;
 		}
 		else {
-			System.out.println("3");
 			return false;
 		}
 	}
