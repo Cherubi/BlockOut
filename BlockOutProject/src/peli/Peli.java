@@ -43,4 +43,46 @@ public class Peli extends Ikkuna {
 	public boolean lopetaPeli() {
 		return false;
 	}
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
+	
+	/**
+	* 
+	* 
+	* @param
+	* @return
+	*/
 }

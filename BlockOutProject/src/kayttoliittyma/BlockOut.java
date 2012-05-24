@@ -124,6 +124,7 @@ public class BlockOut implements Runnable {
 			this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
 		}
 		
+		this.ennatyslistaaja.poistaEnnatyslistanKysely();
 		this.peli = new Peli();
 		this.ikkunat.put(ValittuIkkuna.PELI, this.peli);
 		
