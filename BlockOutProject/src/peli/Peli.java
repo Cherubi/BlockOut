@@ -118,6 +118,15 @@ public class Peli extends Ikkuna {
 	}
 	
 	/**
+	* Kertoo onko peli tauolla.
+	* 
+	* @return Tieto siita onko peli tauolla vai ei
+	*/
+	public boolean onkoTauolla() {
+		return this.tauolla;
+	}
+	
+	/**
 	* Lopettaa pelin.
 	* 
 	* @return Tieto siita paasiko pelin pistetulos ennatyslistalle
@@ -127,10 +136,26 @@ public class Peli extends Ikkuna {
 	}
 	
 	/**
+	* Antaa silla hetkella pelattavan tason.
 	* 
+	* @return Taso, jota pelataan
 	*/
 	public int annaTaso() {
 		return this.taso;
+	}
+	
+	/**
+	* Lisaa pelattujen palojen maaraa ja kun pelattuja paloja tulee tarpeeksi nostaa tasoa.
+	* 
+	* @maara Uusien pelattujen palojen maara
+	*/
+	public void lisaaPelattujenPalojenMaaraa(int maara) {
+		this.pelattujaPalikoita += maara;
+		
+		if (this.pelattujaPalikoita >= 15*( kentta.annaLeveys() + kentta.annaKorkeus() ) * (this.taso+1) ) {
+			this.taso++;
+			this.tiputustenVali *= aikatasokerroin;
+		}
 	}
 	
 	//*******************************************
@@ -139,12 +164,35 @@ public class Peli extends Ikkuna {
 	//
 	//*******************************************
 	
-	private void annaTippuvaPalikka() {
-		//return this.tippuvaPalikka;
+	/**
+	* Hakee uuden tippuvan palikan kenttaan edellisen tilalle ja lisaa sille ajastimen huolehtimaan tippumisesta.
+	*/
+	public void haeUusiPalikkaKenttaan() {
+		haeTippuvaPalikka();
+		paivita();
+		
+		ajastaSeuraavaTiputus();
 	}
 	
 	private void haeTippuvaPalikka() {
-		this.tippuvaPalikka = null;
+		//TODO jos tippuva palikka reunojen paalla jo annettaessa niin ei saisi johtaa gameoveriin, ratkaisuehdotus: palikat annetaan niin, ettei tule tata ongelmaa
+		if (!kentta.onkoKentanEdustaVapaana()) {
+			this.tauolla = true;
+			this.gameOver = true;
+			this.gameOverHetki = System.currentTimeMillis();
+			return;
+		}
+		
+		this.tippuvaPalikka = new TippuvaPalikka(palikkavarasto.annaPalikka(), kentta, this);
+	}
+	
+	/**
+	* Antaa silla hetkella tippuvan palikan.
+	* 
+	* @return Tippuva palikka
+	*/
+	public TippuvaPalikka annaTippuvaPalikka() {
+		return this.tippuvaPalikka;
 	}
 	
 	private void ajastaSeuraavaTiputus() {}
