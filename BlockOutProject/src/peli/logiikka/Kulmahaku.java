@@ -110,6 +110,7 @@ public class Kulmahaku {
 			
 			if (onkoTahko(nelio)) {
 				kasitteleTahko(edellinenNelio, i+1, j+1, k);
+				nelio = "1111";
 			}
 			else if (liittyykoPaatepisteeseen(edellinenNelio, nelio)) {
 				kasitteleMuuttuvaSarma(edellinenNelio, nelio, i+1, j+1, k);

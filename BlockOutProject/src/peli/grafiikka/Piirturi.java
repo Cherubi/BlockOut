@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 public class Piirturi {
 	private Peli peli;
 	private Piste3DHaku piste3DHaku;
+	
 	private Reunapiirturi reunapiirturi;
+	private TippuvaPalikkapiirturi tippuvaPalikkapiirturi;
 	
 	private int ikkunanLeveys, ikkunanKorkeus, tietopalkinLeveys;
 	
@@ -52,6 +54,8 @@ public class Piirturi {
 	
 	private void luoSisaisetPiirturit() {
 		this.reunapiirturi = new Reunapiirturi(this.piste3DHaku);
+		
+		this.tippuvaPalikkapiirturi = new TippuvaPalikkapiirturi( this.piste3DHaku );
 	}
 	
 	/**
@@ -71,5 +75,9 @@ public class Piirturi {
 	*/
 	public void piirra(Graphics g, Pala[][][] kuilu, TippuvaPalikka tippuvaPalikka, int palojaSisaltavienKerrostenMaara) {
 		this.reunapiirturi.piirra(g, kuilu);
+		
+		if (!peli.onkoTauolla()) {
+			this.tippuvaPalikkapiirturi.piirra(g, tippuvaPalikka);
+		}
 	}
 }
