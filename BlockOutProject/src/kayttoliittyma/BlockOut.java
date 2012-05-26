@@ -125,7 +125,8 @@ public class BlockOut implements Runnable {
 		}
 		
 		this.ennatyslistaaja.poistaEnnatyslistanKysely();
-		this.peli = new Peli();
+		this.peli = new Peli(this, pelinAsetukset.annaValitutAsetukset(), ennatyslistaaja);
+		this.peli.aloitaPeli();
 		this.ikkunat.put(ValittuIkkuna.PELI, this.peli);
 		
 		vaihdaJPanel(ValittuIkkuna.PELI);
