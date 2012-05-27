@@ -18,7 +18,7 @@ public class Ulottuvuudet {
 	/**
 	* Avaa tallennetut ulottuvuudet.
 	* 
-	* @param Tallenne
+	* @param tallenne Tallenne
 	*/
 	public void avaaUlottuvuudet(String tallenne) {
 		String[] ominaisuudet = tallenne.split(" ");

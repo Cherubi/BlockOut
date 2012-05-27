@@ -104,7 +104,13 @@ public class Piste3DHaku {
 	* @param x Palan x-koordinaatti kuilussa
 	* @param y Palan y-koordinaatti kuilussa
 	* @param z Palan z-koordinaatti kuilussa
-	* @param
+	* @param keskiX Palikan keskipiste x-akselilla kuilussa
+	* @param keskiY Palikan keskipiste y-akselilla kuilussa
+	* @param keskiZ Palikan keskipiste z-akselilla kuilussa
+	* @param kulmaIJ Kuvan viive asteina XY-tasossa
+	* @param kulmaJK Kuvan viive asteina YZ-tasossa
+	* @param kulmaIK Kuvan viive asteina XZ-tasossa
+	* 
 	*/
 	public Koordinaatti koordinaatit(double x, double y, double z, int keskiX, int keskiY, int keskiZ, int kulmaIJ, int kulmaJK, int kulmaIK) {
 		// nakyy etta toimii, mutta miksi?

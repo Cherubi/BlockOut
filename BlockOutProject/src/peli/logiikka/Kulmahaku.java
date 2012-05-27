@@ -125,7 +125,7 @@ public class Kulmahaku {
 	private String nelionSisalto(int indI, int indJ, int indK, int leveys, int korkeus, int syvyys) {
 		// jarjestys: 12
 		// 			  34
-		// merkinnat: 0 = tyhjä, 1 = tippuva
+		// merkinnat: 0 = tyhja, 1 = tippuva
 		
 		String nelio = "";
 		

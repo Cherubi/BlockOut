@@ -81,7 +81,7 @@ public class Nappula extends JButton {
 	/**
 	* Asettaa taustan varin, jolla nappula varitetaan
 	* 
-	* @param Asetettava vari
+	* @param vari Asetettava vari
 	*/
 	public void asetaTaustanVari(Color vari) {
 		if (this.taustanVariAktiivisena == this.taustanVari) {
@@ -102,7 +102,7 @@ public class Nappula extends JButton {
 	/**
 	* Asettaa nappulan aktiivisuuden. Normaaliin JButtoniin verrattuna muuttaa myos nappulan tekstin ja taustan varit tummemmiksi.
 	* 
-	* @param Nappulan uusi aktiivisuus
+	* @param aktiivinen Nappulan uusi aktiivisuus
 	*/
 	@Override
 	public void setEnabled(boolean aktiivinen) {

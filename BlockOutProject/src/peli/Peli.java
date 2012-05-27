@@ -147,7 +147,7 @@ public class Peli extends Ikkuna {
 	/**
 	* Lisaa pelattujen palojen maaraa ja kun pelattuja paloja tulee tarpeeksi nostaa tasoa.
 	* 
-	* @maara Uusien pelattujen palojen maara
+	* @param maara Uusien pelattujen palojen maara
 	*/
 	public void lisaaPelattujenPalojenMaaraa(int maara) {
 		this.pelattujaPalikoita += maara;
@@ -197,34 +197,6 @@ public class Peli extends Ikkuna {
 	
 	private void ajastaSeuraavaTiputus() {}
 	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
-	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
-	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
-	
-	/**
-	* 
-	* 
-	* @param
-	* @return
-	*/
-	
 	//*******************************************
 	//
 	// Hallinnoi pelin etenemista
@@ -232,10 +204,7 @@ public class Peli extends Ikkuna {
 	//*******************************************
 	
 	/**
-	* 
-	* 
-	* @param
-	* @return
+	* Paivittaa nakyman.
 	*/
 	public void paivita() {
 		this.repaint();

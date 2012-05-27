@@ -202,7 +202,7 @@ public class Kentta {
 				return false;
 			}
 		
-		//kentän edessä olevat palaset
+		//kentan edessa olevat palaset
 		} catch (IndexOutOfBoundsException e) {
 			if (i<1 || j<1 || i>this.leveys || j>this.korkeus) {
 				return false;

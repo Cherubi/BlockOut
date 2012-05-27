@@ -50,7 +50,7 @@ public class Varit {
 	/**
 	* Luo vareista tallenteen.
 	* 
-	* @param Tallenne
+	* @return Tallenne
 	*/
 	public String tallennaVarit() {
 		String tallenne = "";

@@ -100,7 +100,8 @@ public class Asetukset {
 	/**
 	* Asettaa asetuksiin uuden nimen.
 	* 
-	* @param Asetusten uusi nimi
+	* @param nimi Asetusten uusi nimi
+	* @return Tieto siita lisattiinko nimi vai ei
 	*/
 	public boolean asetaAsetustenNimi(String nimi) {
 		this.asetustenNimi = nimi;

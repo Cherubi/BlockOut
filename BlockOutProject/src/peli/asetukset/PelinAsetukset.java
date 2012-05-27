@@ -246,7 +246,7 @@ public class PelinAsetukset extends Ikkuna {
 	/**
 	* Antaa varin asetuksille jos Varipaletti ei nyt sitten anna sita suoraan vareille.
 	* 
-	* @param vari, joka halutaan antaa asetuksille
+	* @param vari Vari, joka halutaan antaa asetuksille
 	*/
 	public void annaVariAsetuksille(Color vari) {
 		//TODO

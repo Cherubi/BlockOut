@@ -59,6 +59,19 @@ public class Piirturi {
 	}
 	
 	/**
+	* Asettaa osan kayttajan pelin aikana vaihtamista asetuksista kaynnissa olevaan peliin.
+	* 
+	* @param leikkauspiste Kuvan leikkauspiste
+	* @param varit Varit, joilla eri kerrokset halutaan varitettavan
+	*/
+	public void asetaUudetAsetukset(int leikkauspiste, Varit varit) {
+		//this.palikkapiirturi.asetaUudetVarit( varit.annaVarit() );
+		//this.statistiikkapiirturi.asetaUudetVarit( varit );
+		
+		this.piste3DHaku.asetaUusiLeikkauspiste(leikkauspiste);
+	}
+	
+	/**
 	* Paivittaa nakyman.
 	*/
 	public void paivita() {

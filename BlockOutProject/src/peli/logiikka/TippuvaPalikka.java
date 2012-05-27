@@ -5,7 +5,7 @@ import peli.Peli;
 public class TippuvaPalikka {
 	private Palikka palikka;
 	private int x, y, z;
-	private int dAlfaXY, dAlfaYZ, dAlfaXZ; // vastapäivään positiivinen, 0° idässä
+	private int dAlfaXY, dAlfaYZ, dAlfaXZ; // vastapaivaan positiivinen, 0 astetta idassa
 	private Kentta kentta;
 	private Peli peli;
 	
@@ -69,7 +69,7 @@ public class TippuvaPalikka {
 	* @param dx Siirrettava matka x-suunnassa
 	* @param dy Siirrettava matka y-suunnassa
 	*/
-	//vain siirrot, kentta hoitaa tippuvien palikoiden jähmettämisen
+	//vain siirrot, kentta hoitaa tippuvien palikoiden jahmettamisen
 	public void siirra(int dx, int dy) {
 		siirra(dx, dy, 0);
 	}
@@ -101,7 +101,7 @@ public class TippuvaPalikka {
 	* Tiputtaa palikan VARATTUjen palojen paalle tai pohjalle.
 	*/
 	public void tiputa() {
-		int tiputusKorkeus = 0; //vai oikeasta pohjasta eikä siitä mihin pystyy tippumaan
+		int tiputusKorkeus = 0; //vai oikeasta pohjasta eika siita mihin pystyy tippumaan
 		
 		while (siirra(0, 0, 1)) {
 			tiputusKorkeus++;

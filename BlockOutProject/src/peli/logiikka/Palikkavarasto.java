@@ -353,12 +353,22 @@ public class Palikkavarasto {
 		palikat.add( p );
 	}
 	
+	/**
+	* Antaa satunnaisen palikan kayttajan valitsemasta palikkasetista.
+	* 
+	* @return Satunnainen palikka
+	*/
 	public Palikka annaPalikka() {
 		Random arpoja = new Random();
 		
 		return palikat.get( arpoja.nextInt(palikat.size()) ).kopioi();
 	}
 	
+	/**
+	* Antaa kayttajan maaritteleman palikkasetin.
+	* 
+	* @return Palikkasetti
+	*/
 	public Palikkasetti annaPalikkasetti() {
 		return this.setti;
 	}

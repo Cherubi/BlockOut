@@ -40,7 +40,7 @@ public class Nappainsetti {
 	/**
 	* Avaa nappainsetin tallenteesta.
 	* 
-	* @param Tallenne
+	* @param tallenne Tallenne
 	*/
 	public void avaaNappainsetti(String tallenne) {
 		String[] osaset = tallenne.split(" ");

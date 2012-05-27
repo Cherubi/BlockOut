@@ -48,7 +48,7 @@ public class Ennatyslistaaja extends Ikkuna {
 		
 		this.kysytaanNimea = false;
 		this.lisattavanPisteet = -1;
-		this.lisattavanNimi = ""; //max 15 merkkiä //TODO FontMetrics
+		this.lisattavanNimi = ""; //max 15 merkkia //TODO FontMetrics
 		
 		luoJPanelinSisalto();
 		
@@ -194,7 +194,7 @@ public class Ennatyslistaaja extends Ikkuna {
 		int pienempiLeveys = Math.min(leveys, korkeus);
 		int suurempiLeveys = Math.max(leveys, korkeus);
 		
-		//valmistautuu oikean listan ja nimikyselyn näyttämiseen
+		//valmistautuu oikean listan ja nimikyselyn nayttamiseen
 		this.kysytaanNimea = true;
 		this.lisattavanPisteet = pisteet;
 		this.lisattavanNimi = "";

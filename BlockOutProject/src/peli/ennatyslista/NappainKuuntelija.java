@@ -26,7 +26,7 @@ public class NappainKuuntelija implements KeyListener {
 		else if (ke.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 			ennatyslistaaja.poistaNimestaMerkki();
 		}
-		else if (merkki.matches("\\p{ASCII}|[ŒŠš€…§]")) {
+		else if (merkki.matches("\\p{ASCII}")) { //TODO AakkosetJaErikoismerkit
 			ennatyslistaaja.lisaaNimeenMerkki(merkki);
 		}
 	}

@@ -10,6 +10,12 @@ public class Palikka {
 	private int alapisteet, ylapisteet, palojenMaara;
 	private HashMap<Koordinaatti, ArrayList<Koordinaatti>> sarmat;
 	
+	/**
+	* Hallinnoi yhden palikan sisaista rakennetta ja palikkaan liittyvia peruspisteita.
+	* 
+	* @param alapisteet Alemmat peruspisteet
+	* @param ylapisteet Ylemmat peruspisteet
+	*/
 	public Palikka(int alapisteet, int ylapisteet) {
 		this.palikka = new Pala[5][5][5];
 		palikanTyhjaksiAlustus(this.palikka);
@@ -31,7 +37,19 @@ public class Palikka {
 		}
 	}
 	
+	/**
+	* Lisaa palikkaan palan.
+	* 
+	* @param x Palan x-koordinaatti
+	* @param y Palan y-koordinaatti
+	* @param z Palan z-koordinaatti
+	*/
 	public void lisaaPala(int x, int y, int z) {
+		if (this.palikka[x-1][y-1][z-1] == Pala.TIPPUVA) {
+			System.out.println("Palikkaan ei tulisi lisata kahta palaa paallekkain. Koordinaatit olivat " + x + ", " + y + ", " + z);
+			return;
+		}
+		
 		this.palikka[x-1][y-1][z-1] = Pala.TIPPUVA;
 		this.palojenMaara++;
 		

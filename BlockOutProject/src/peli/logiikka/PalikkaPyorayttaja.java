@@ -67,7 +67,7 @@ public class PalikkaPyorayttaja {
 		return uusi;
 	}
 	
-	public Pala[][][] pyoritaOikeaPuoliEsille(Pala[][][] uusi) {
+	private Pala[][][] pyoritaOikeaPuoliEsille(Pala[][][] uusi) {
 		System.out.println("vasen puoli");
 		for (int k=0; k<5; k++) {
 			

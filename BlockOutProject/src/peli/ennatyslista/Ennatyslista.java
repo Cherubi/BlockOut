@@ -176,7 +176,7 @@ public class Ennatyslista implements Serializable {
 	/**
 	* Antaa ennatyslistalta listasijan.
 	* 
-	* @param Listasijan numero, joka halutaan
+	* @param monesko Listasijan numero, joka halutaan
 	* @return Listasijan pitajan pisteet ja nimi merkkijonona
 	*/
 	public String annaListanSija(int monesko) {
