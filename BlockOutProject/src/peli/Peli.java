@@ -58,8 +58,8 @@ public class Peli extends Ikkuna {
 		alustaLogiikka(asetukset, ulottuvuudet);
 		alustaGrafiikka(asetukset, ulottuvuudet);
 		
-		//NappainKuuntelija nappainKuuntelija = new NappainKuuntelija( this, this.kayttis, asetukset.annaNappainsetti() );
-		//this.addKeyListener(nappainKuuntelija);
+		NappainKuuntelija nappainKuuntelija = new NappainKuuntelija( this, this.kayttis, asetukset.annaNappainsetti() );
+		this.addKeyListener(nappainKuuntelija);
 	}
 	
 	private void alustaTilanne(int aloitustaso) {
@@ -132,6 +132,29 @@ public class Peli extends Ikkuna {
 	* @return Tieto siita paasiko pelin pistetulos ennatyslistalle
 	*/
 	public boolean lopetaPeli() {
+		return false;
+	}
+	
+	/**
+	* Kertoo onko peli paattynyt Game Overiin.
+	* 
+	* @return Tieto siita onko game over vai ei
+	*/
+	public boolean onkoGameOver() {
+		return this.gameOver;
+	}
+	
+	/**
+	* Kertoo onko pelin paattymisesta sekunti. Kaytannollinen kun jarjestelma game over ilmoituksen jalkeen seuraavaksi odottaa kayttajaa painamaan jotain nappainta, etta pelisessio lopetetaan, niin kayttaja ehtii lopettaa palikan kuumeisen kaantelyn.
+	* 
+	* @return Tieto siita onko game overista sekunti
+	*/
+	public boolean onkoGameOveristaSekunti() {
+		if (gameOverHetki != -1) {
+			if (System.currentTimeMillis()-1000 >= gameOverHetki) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
