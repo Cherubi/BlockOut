@@ -204,7 +204,7 @@ public class TippuvaPalikka {
 			dAlfaXZ += 90*x;
 		}
 		else if (y != 0) {
-			dAlfaYZ += 90*y;
+			dAlfaYZ += -90*y;
 		}
 		this.peli.paivita();
 		

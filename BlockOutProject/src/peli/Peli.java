@@ -6,6 +6,7 @@ import peli.asetukset.Ulottuvuudet;
 import peli.ennatyslista.Ennatyslistaaja;
 import peli.grafiikka.Piirturi;
 import peli.logiikka.Kentta;
+import peli.logiikka.Palikkasetti;
 import peli.logiikka.Palikkavarasto;
 import peli.logiikka.Pistelaskija;
 import peli.logiikka.TippuvaPalikka;
@@ -33,6 +34,7 @@ public class Peli extends Ikkuna {
 	
 	private Pistelaskija pistelaskija;
 	private int taso, pelattujaPalikoita;
+	private Palikkasetti palikkasetti;
 	private boolean tauolla, gameOver;
 	private long gameOverHetki;
 	
@@ -46,6 +48,8 @@ public class Peli extends Ikkuna {
 	public Peli(BlockOut kayttis, Asetukset asetukset, Ennatyslistaaja ennatyslistaaja) {
 		this.kayttis = kayttis;
 		this.ennatyslistaaja = ennatyslistaaja;
+		
+		this.palikkasetti = asetukset.annaPalikkasetti();
 		
 		asetaPeliValmiiksi(asetukset);
 	}
@@ -82,7 +86,7 @@ public class Peli extends Ikkuna {
 	}
 	
 	private void alustaGrafiikka(Asetukset asetukset, Ulottuvuudet ulottuvuudet) {
-		this.piirturi = new Piirturi( this, 800, 491, ulottuvuudet, asetukset.annaPalikkasetti(), asetukset.annaVarit(), this.pistelaskija );
+		this.piirturi = new Piirturi( this, 800, 491, ulottuvuudet, asetukset.annaPalikkasetti(), asetukset.annaVarit(), this.pistelaskija, this.ennatyslistaaja );
 	}
 	
 	/**
@@ -168,6 +172,15 @@ public class Peli extends Ikkuna {
 	}
 	
 	/**
+	* Kertoo pelattujen palojen maaran. Tippuva palikka koostuu usein useasta palasta.
+	* 
+	* @return Palojen maara
+	*/
+	public int annaPelattujenPalojenMaara() {
+		return this.pelattujaPalikoita;
+	}
+	
+	/**
 	* Lisaa pelattujen palojen maaraa ja kun pelattuja paloja tulee tarpeeksi nostaa tasoa.
 	* 
 	* @param maara Uusien pelattujen palojen maara
@@ -179,6 +192,15 @@ public class Peli extends Ikkuna {
 			this.taso++;
 			this.tiputustenVali *= aikatasokerroin;
 		}
+	}
+	
+	/**
+	* Antaa pelattavan palikkasetin.
+	* 
+	* @return Pelattava palikkasetti
+	*/
+	public Palikkasetti annaPalikkasetti() {
+		return this.palikkasetti;
 	}
 	
 	//*******************************************
@@ -253,7 +275,7 @@ public class Peli extends Ikkuna {
 			g.setFont(fontti);
 			g.drawString("Press any key.", 800/5*2+20, 491/2+30);
 			
-			if (this.ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), palikkavarasto.annaPalikkasetti() )) {
+			if (this.ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), this.palikkasetti )) {
 				//TODO nayta tato
 			}
 		}

@@ -3,6 +3,7 @@ package peli.grafiikka;
 import peli.Peli;
 import peli.asetukset.Ulottuvuudet;
 import peli.asetukset.Varit;
+import peli.ennatyslista.Ennatyslistaaja;
 import peli.logiikka.Pala;
 import peli.logiikka.Palikkasetti;
 import peli.logiikka.Pistelaskija;
@@ -16,7 +17,9 @@ public class Piirturi {
 	private Piste3DHaku piste3DHaku;
 	
 	private Reunapiirturi reunapiirturi;
+	private Palikkapiirturi palikkapiirturi;
 	private TippuvaPalikkapiirturi tippuvaPalikkapiirturi;
+	private Statistiikkapiirturi statistiikkapiirturi;
 	
 	private int ikkunanLeveys, ikkunanKorkeus, tietopalkinLeveys;
 	
@@ -31,7 +34,7 @@ public class Piirturi {
 	* @param varit Eri kerrosten piirtamiseen tarkoitetut varit
 	* @param pistelaskija Pelin pistelaskija
 	*/
-	public Piirturi(Peli peli, int ikkunanLeveys, int ikkunanKorkeus, Ulottuvuudet ulottuvuudet, Palikkasetti palikkasetti, Varit varit, Pistelaskija pistelaskija) {
+	public Piirturi(Peli peli, int ikkunanLeveys, int ikkunanKorkeus, Ulottuvuudet ulottuvuudet, Palikkasetti palikkasetti, Varit varit, Pistelaskija pistelaskija, Ennatyslistaaja ennatyslistaaja) {
 		this.peli = peli;
 		
 		this.ikkunanLeveys = ikkunanLeveys;
@@ -40,7 +43,7 @@ public class Piirturi {
 		
 		luoPiste3DHaku(ulottuvuudet);
 		
-		luoSisaisetPiirturit();
+		luoSisaisetPiirturit(varit, ulottuvuudet, pistelaskija, ennatyslistaaja);
 	}
 	
 	private void luoPiste3DHaku(Ulottuvuudet ulottuvuudet) {
@@ -52,10 +55,14 @@ public class Piirturi {
 		this.piste3DHaku = new Piste3DHaku( this.ikkunanLeveys-this.tietopalkinLeveys*2, this.tietopalkinLeveys, this.ikkunanKorkeus, leikkauspiste, kentanLeveys, kentanKorkeus, kentanSyvyys );
 	}
 	
-	private void luoSisaisetPiirturit() {
+	private void luoSisaisetPiirturit(Varit varit, Ulottuvuudet ulottuvuudet, Pistelaskija pistelaskija, Ennatyslistaaja ennatyslistaaja) {
 		this.reunapiirturi = new Reunapiirturi(this.piste3DHaku);
 		
+		this.palikkapiirturi = new Palikkapiirturi(this.piste3DHaku, varit.annaVarit());
+		
 		this.tippuvaPalikkapiirturi = new TippuvaPalikkapiirturi( this.piste3DHaku );
+		
+		this.statistiikkapiirturi = new Statistiikkapiirturi( this.tietopalkinLeveys, ulottuvuudet, varit, this.peli, pistelaskija, ennatyslistaaja );
 	}
 	
 	/**
@@ -88,9 +95,12 @@ public class Piirturi {
 	*/
 	public void piirra(Graphics g, Pala[][][] kuilu, TippuvaPalikka tippuvaPalikka, int palojaSisaltavienKerrostenMaara) {
 		this.reunapiirturi.piirra(g, kuilu);
+		this.palikkapiirturi.piirra(g, kuilu);
 		
 		if (!peli.onkoTauolla()) {
 			this.tippuvaPalikkapiirturi.piirra(g, tippuvaPalikka);
 		}
+		
+		this.statistiikkapiirturi.piirra(g, ikkunanLeveys, ikkunanKorkeus, palojaSisaltavienKerrostenMaara);
 	}
 }

@@ -40,6 +40,7 @@ public class PalikkaPyorayttaja {
 	}
 	
 	private Pala[][][] pyoritaYlapuoliEsille(Pala[][][] uusi) {
+		System.out.println("alapuoli");
 		for (int k=0; k<5; k++) {
 			
 			for (int i=0; i<5; i++) {
@@ -54,6 +55,7 @@ public class PalikkaPyorayttaja {
 	}
 	
 	private Pala[][][] pyoritaAlapuoliEsille(Pala[][][] uusi) {
+		System.out.println("ylapuoli");
 		for (int k=0; k<5; k++) {
 			
 			for (int i=0; i<5; i++) {
