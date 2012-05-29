@@ -72,8 +72,8 @@ public class Piirturi {
 	* @param varit Varit, joilla eri kerrokset halutaan varitettavan
 	*/
 	public void asetaUudetAsetukset(int leikkauspiste, Varit varit) {
-		//this.palikkapiirturi.asetaUudetVarit( varit.annaVarit() );
-		//this.statistiikkapiirturi.asetaUudetVarit( varit );
+		this.palikkapiirturi.asetaUudetVarit( varit.annaVarit() );
+		this.statistiikkapiirturi.asetaUudetVarit( varit );
 		
 		this.piste3DHaku.asetaUusiLeikkauspiste(leikkauspiste);
 	}

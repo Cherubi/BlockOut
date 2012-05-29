@@ -9,6 +9,13 @@ public class TippuvaPalikka {
 	private Kentta kentta;
 	private Peli peli;
 	
+	/**
+	* Huolehtii palikan sijainnista ja siirtelysta.
+	* 
+	* @param palikka Palikka, jonka sijainnista ja siirtelysta huolehditaan
+	* @param kentta Kentta, johon palikka on tippumassa ja johon sen tulee mahtua
+	* @param peli Peli, joka paivittaa nakymaa ja joka sisaltaa palikan
+	*/
 	public TippuvaPalikka(Palikka palikka, Kentta kentta, Peli peli) {
 		this.palikka = palikka;
 		
@@ -101,7 +108,7 @@ public class TippuvaPalikka {
 	* Tiputtaa palikan VARATTUjen palojen paalle tai pohjalle.
 	*/
 	public void tiputa() {
-		int tiputusKorkeus = 0; //vai oikeasta pohjasta eika siita mihin pystyy tippumaan
+		int tiputusKorkeus = 0; //TODO vai oikeasta pohjasta eika siita mihin pystyy tippumaan
 		
 		while (siirra(0, 0, 1)) {
 			tiputusKorkeus++;
@@ -144,7 +151,7 @@ public class TippuvaPalikka {
 	* 
 	* @return Kulma asteina
 	*/
-	public int annaIJKulma() {
+	public int annaXYKulma() {
 		return this.dAlfaXY;
 	}
 	
@@ -153,7 +160,7 @@ public class TippuvaPalikka {
 	* 
 	* @return Kulma asteina
 	*/
-	public int annaJKKulma() {
+	public int annaYZKulma() {
 		return this.dAlfaYZ;
 	}
 	
@@ -162,7 +169,7 @@ public class TippuvaPalikka {
 	* 
 	* @return Kulma asteina
 	*/
-	public int annaIKKulma() {
+	public int annaXZKulma() {
 		return this.dAlfaXZ;
 	}
 	

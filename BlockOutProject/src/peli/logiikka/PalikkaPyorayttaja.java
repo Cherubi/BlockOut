@@ -2,6 +2,7 @@ package peli.logiikka;
 
 public class PalikkaPyorayttaja {
 	private Pala[][][] palikka;
+	private int koko;
 	
 	/**
 	* Osaa pyoraytella 3D-taulukoita, jotka on rakennettu Paloista.
@@ -10,6 +11,7 @@ public class PalikkaPyorayttaja {
 	*/
 	public PalikkaPyorayttaja(Pala[][][] palikka) {
 		this.palikka = palikka;
+		this.koko = palikka.length; //kaikkiin suuntiin saman kokoinen
 	}
 	
 	/**
@@ -41,11 +43,11 @@ public class PalikkaPyorayttaja {
 	
 	private Pala[][][] pyoritaYlapuoliEsille(Pala[][][] uusi) {
 		System.out.println("alapuoli");
-		for (int k=0; k<5; k++) {
+		for (int k=0; k<koko; k++) {
 			
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
-					uusi[i][j][k] = palikka[i][4-k][j];
+			for (int i=0; i<koko; i++) {
+				for (int j=0; j<koko; j++) {
+					uusi[i][j][k] = palikka[i][koko-1-k][j];
 				}
 			}
 			
@@ -56,11 +58,11 @@ public class PalikkaPyorayttaja {
 	
 	private Pala[][][] pyoritaAlapuoliEsille(Pala[][][] uusi) {
 		System.out.println("ylapuoli");
-		for (int k=0; k<5; k++) {
+		for (int k=0; k<koko; k++) {
 			
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
-					uusi[i][j][k] = palikka[i][k][4-j];
+			for (int i=0; i<koko; i++) {
+				for (int j=0; j<koko; j++) {
+					uusi[i][j][k] = palikka[i][k][koko-1-j];
 				}
 			}
 			
@@ -71,11 +73,11 @@ public class PalikkaPyorayttaja {
 	
 	private Pala[][][] pyoritaOikeaPuoliEsille(Pala[][][] uusi) {
 		System.out.println("vasen puoli");
-		for (int k=0; k<5; k++) {
+		for (int k=0; k<koko; k++) {
 			
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
-					uusi[i][j][k] = palikka[4-k][j][i];
+			for (int i=0; i<koko; i++) {
+				for (int j=0; j<koko; j++) {
+					uusi[i][j][k] = palikka[koko-1-k][j][i];
 				}
 			}
 			
@@ -86,11 +88,11 @@ public class PalikkaPyorayttaja {
 	
 	private Pala[][][] pyoritaVasenPuoliEsille(Pala[][][] uusi) {
 		System.out.println("oikea puoli");
-		for (int k=0; k<5; k++) {
+		for (int k=0; k<koko; k++) {
 			
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
-					uusi[i][j][k] = palikka[k][j][4-i];
+			for (int i=0; i<koko; i++) {
+				for (int j=0; j<koko; j++) {
+					uusi[i][j][k] = palikka[k][j][koko-1-i];
 				}
 			}
 			
@@ -118,11 +120,11 @@ public class PalikkaPyorayttaja {
 	
 	private Pala[][][] pyoritaVastapaivaan(Pala[][][] uusi) {
 		System.out.println("myotapaivaan");
-		for (int k=0; k<5; k++) {
+		for (int k=0; k<koko; k++) {
 			
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
-					uusi[i][j][k] = palikka[4-j][i][k];
+			for (int i=0; i<koko; i++) {
+				for (int j=0; j<koko; j++) {
+					uusi[i][j][k] = palikka[koko-1-j][i][k];
 				}
 			}
 			
@@ -133,11 +135,11 @@ public class PalikkaPyorayttaja {
 	
 	private Pala[][][] pyoritaMyotapaivaan(Pala[][][] uusi) {
 		System.out.println("vastapaivaan");
-		for (int k=0; k<5; k++) {
+		for (int k=0; k<koko; k++) {
 			
-			for (int i=0; i<5; i++) {
-				for (int j=0; j<5; j++) {
-					uusi[i][j][k] = palikka[j][4-i][k];
+			for (int i=0; i<koko; i++) {
+				for (int j=0; j<koko; j++) {
+					uusi[i][j][k] = palikka[j][koko-1-i][k];
 				}
 			}
 			

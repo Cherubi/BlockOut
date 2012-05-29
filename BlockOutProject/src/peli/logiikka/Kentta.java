@@ -202,11 +202,12 @@ public class Kentta {
 				return false;
 			}
 		
-		//kentan edessa olevat palaset
 		} catch (IndexOutOfBoundsException e) {
+			//kentan reunojen sisalla olevat palaset
 			if (i<1 || j<1 || i>this.leveys || j>this.korkeus) {
 				return false;
 			}
+			//kentan edessa olevat palaset
 			return true;
 		}
 	}

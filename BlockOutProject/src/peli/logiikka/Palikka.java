@@ -7,17 +7,33 @@ import java.util.HashMap;
 
 public class Palikka {
 	private Pala[][][] palikka;
+	private int koko;
 	private int alapisteet, ylapisteet, palojenMaara;
 	private HashMap<Koordinaatti, ArrayList<Koordinaatti>> sarmat;
 	
 	/**
-	* Hallinnoi yhden palikan sisaista rakennetta ja palikkaan liittyvia peruspisteita.
+	* Hallinnoi yhden palikan sisaista rakennetta ja palikkaan liittyvia peruspisteita. Voidaan luoda 3x3x3 palikoita.
 	* 
 	* @param alapisteet Alemmat peruspisteet
 	* @param ylapisteet Ylemmat peruspisteet
 	*/
 	public Palikka(int alapisteet, int ylapisteet) {
-		this.palikka = new Pala[5][5][5];
+		this(3, alapisteet, ylapisteet);
+	}
+	
+	/**
+	* Hallinnoi yhden palikan sisaista rakennetta ja palikkaan liittyvia peruspisteita.
+	* 
+	* @param koko Palikan leveys/korkeus/syvyys
+	* @param alapisteet Alemmat peruspisteet
+	* @param ylapisteet Ylemmat peruspisteet
+	*/
+	public Palikka(int koko, int alapisteet, int ylapisteet) {
+		if (koko%2 == 0) {
+			koko++;
+		}
+		this.koko = koko+2;
+		this.palikka = new Pala[this.koko][this.koko][this.koko];
 		palikanTyhjaksiAlustus(this.palikka);
 		
 		this.alapisteet = alapisteet;
@@ -28,9 +44,9 @@ public class Palikka {
 	}
 	
 	private void palikanTyhjaksiAlustus(Pala[][][] palikka) {
-		for (int i=0; i<5; i++) {
-			for (int j=0; j<5; j++) {
-				for (int k=0; k<5; k++) {
+		for (int i=0; i<koko; i++) {
+			for (int j=0; j<koko; j++) {
+				for (int k=0; k<koko; k++) {
 					palikka[i][j][k] = Pala.TYHJA;
 				}
 			}
@@ -63,11 +79,11 @@ public class Palikka {
 	* @return Kopioitu palikka
 	*/
 	public Palikka kopioi() {
-		Palikka kopioituPalikka = new Palikka( this.alapisteet, this.ylapisteet );
+		Palikka kopioituPalikka = new Palikka( koko-2, this.alapisteet, this.ylapisteet );
 		
-		for (int i=0; i<5; i++) {
-			for (int j=0; j<5; j++) {
-				for (int k=0; k<5; k++) {
+		for (int i=0; i<koko; i++) {
+			for (int j=0; j<koko; j++) {
+				for (int k=0; k<koko; k++) {
 					if (palikka[i][j][k] == Pala.TIPPUVA) {
 						kopioituPalikka.lisaaPala(i+1,j+1,k+1);;
 					}
@@ -132,7 +148,7 @@ public class Palikka {
 	* @param y Haluttu tahko on ylapuoli (y=-1) tai alapuoli (y=1), jos muu tahko niin 0
 	*/
 	public void pyoritaSuuntaEsille(int x, int y) {
-		Pala[][][] uusi = new Pala[5][5][5];
+		Pala[][][] uusi = new Pala[koko][koko][koko];
 		palikanTyhjaksiAlustus(uusi);
 		
 		PalikkaPyorayttaja pyorayttaja = new PalikkaPyorayttaja( this.palikka );
@@ -148,7 +164,7 @@ public class Palikka {
 	* @param myotapaivaan Tieto siita pyoritetaanko myotapaivaan vai vastakkaiseen suuntaan
 	*/
 	public void pyoritaMyotapaivaan(boolean myotapaivaan) {
-		Pala[][][] uusi = new Pala[5][5][5];
+		Pala[][][] uusi = new Pala[koko][koko][koko];
 		palikanTyhjaksiAlustus(uusi);
 		
 		PalikkaPyorayttaja pyorayttaja = new PalikkaPyorayttaja( this.palikka );

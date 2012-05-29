@@ -55,10 +55,10 @@ public class TippuvaPalikkapiirturi {
 		int y = kuiluKoordinaatti.annaY() + palikanY - 2;
 		int z = kuiluKoordinaatti.annaZ() + palikanZ - 2;
 		
-		int dAlfaIJ = tippuvaPalikka.annaIJKulma();
-		int dAlfaJK = tippuvaPalikka.annaJKKulma();
-		int dAlfaIK = tippuvaPalikka.annaIKKulma();
+		int dAlfaXY = tippuvaPalikka.annaXYKulma();
+		int dAlfaYZ = tippuvaPalikka.annaYZKulma();
+		int dAlfaXZ = tippuvaPalikka.annaXZKulma();
 		
-		return piste.koordinaatit(x, y, z, palikanX, palikanY, palikanZ, dAlfaIJ, dAlfaJK, dAlfaIK);
+		return piste.koordinaatit(x, y, z, palikanX, palikanY, palikanZ, dAlfaXY, dAlfaYZ, dAlfaXZ);
 	}
 }
