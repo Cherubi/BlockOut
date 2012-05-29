@@ -1,5 +1,6 @@
 package peli.asetukset;
 
+import peli.asetukset.logiikka.Asetukset;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 

@@ -107,7 +107,7 @@ public class TippuvaPalikka {
 	/**
 	* Tiputtaa palikan VARATTUjen palojen paalle tai pohjalle.
 	*/
-	public void tiputa() {
+	public void tiputaPohjalle() {
 		int tiputusKorkeus = 0; //TODO vai oikeasta pohjasta eika siita mihin pystyy tippumaan
 		
 		while (siirra(0, 0, 1)) {
@@ -131,18 +131,18 @@ public class TippuvaPalikka {
 		//TODO jos lyhyempi matka toiseen suuntaan niin vaihda suunta
 		
 		if (this.dAlfaXY != 0) {
-			this.dAlfaXY += -5*(dAlfaXY/Math.abs(dAlfaXY));
+			this.dAlfaXY += -10*(dAlfaXY/Math.abs(dAlfaXY));
 		}
 		if (this.dAlfaYZ != 0) {
-			this.dAlfaYZ += -5*(dAlfaYZ/Math.abs(dAlfaYZ));
+			this.dAlfaYZ += -10*(dAlfaYZ/Math.abs(dAlfaYZ));
 		}
 		if (this.dAlfaXZ != 0) {
-			this.dAlfaXZ += -5*(dAlfaXZ/Math.abs(dAlfaXZ));
+			this.dAlfaXZ += -10*(dAlfaXZ/Math.abs(dAlfaXZ));
 		}
 		
 		this.peli.paivita();
 		if (this.dAlfaXY != 0 || this.dAlfaYZ != 0 || this.dAlfaXZ != 0) {
-			new PyoritysAjastin(peli, this, 10);
+			new PyoritysAjastin(peli, this, 20);
 		}
 	}
 	
@@ -216,7 +216,7 @@ public class TippuvaPalikka {
 		this.peli.paivita();
 		
 		if (Math.abs(dAlfaXY) + Math.abs(dAlfaYZ) + Math.abs(dAlfaXZ) == 90) {
-			new PyoritysAjastin(peli, this, 10);
+			new PyoritysAjastin(peli, this, 20);
 		}
 	}
 	
@@ -253,7 +253,7 @@ public class TippuvaPalikka {
 		this.peli.paivita();
 		
 		if (Math.abs(dAlfaXY) + Math.abs(dAlfaYZ) + Math.abs(dAlfaXZ) == 90) {
-			new PyoritysAjastin(peli, this, 10);
+			new PyoritysAjastin(peli, this, 20);
 		}
 	}
 	
@@ -330,13 +330,14 @@ public class TippuvaPalikka {
 	
 	private boolean mahtuukoPalikkaKenttaan(int dx, int dy, int dz) {
 		Pala[][][] palikka = this.palikka.annaPalikka();
+		int keskipiste = this.palikka.annaKeskipiste();
 		
 		for (int k=0; k<palikka[0][0].length; k++) {
 			for (int j=0; j<palikka[0].length; j++) {
 				for (int i=0; i<palikka.length; i++) {
 					
 					if (palikka[i][j][k] == Pala.TIPPUVA) {
-						if (!kentta.mahtuukoPalaKenttaan( i-2+x+dx, j-2+y+dy, k-2+z+dz)) {
+						if (!kentta.mahtuukoPalaKenttaan( i-keskipiste+x+dx, j-keskipiste+y+dy, k-keskipiste+z+dz)) {
 							return false;
 						}
 					}

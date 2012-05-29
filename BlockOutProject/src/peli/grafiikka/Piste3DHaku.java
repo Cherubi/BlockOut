@@ -107,26 +107,26 @@ public class Piste3DHaku {
 	* @param keskiX Palikan keskipiste x-akselilla kuilussa
 	* @param keskiY Palikan keskipiste y-akselilla kuilussa
 	* @param keskiZ Palikan keskipiste z-akselilla kuilussa
-	* @param kulmaIJ Kuvan viive asteina XY-tasossa
-	* @param kulmaJK Kuvan viive asteina YZ-tasossa
-	* @param kulmaIK Kuvan viive asteina XZ-tasossa
+	* @param kulmaXY Kuvan viive asteina XY-tasossa
+	* @param kulmaYZ Kuvan viive asteina YZ-tasossa
+	* @param kulmaXZ Kuvan viive asteina XZ-tasossa
 	* 
 	*/
-	public Koordinaatti koordinaatit(double x, double y, double z, int keskiX, int keskiY, int keskiZ, int kulmaIJ, int kulmaJK, int kulmaIK) {
+	public Koordinaatti koordinaatit(double x, double y, double z, int keskiX, int keskiY, int keskiZ, int kulmaXY, int kulmaYZ, int kulmaXZ) {
 		// nakyy etta toimii, mutta miksi?
 		int kulmaX = -1;
 		int kulmaY = -1;
 		int kulmaZ = -1;
 		
-		DoubleKoordinaatti xy = kaannaOikeaanKulmaan(x, y, kulmaX, kulmaY, keskiX, keskiY, kulmaIJ);
+		DoubleKoordinaatti xy = kaannaOikeaanKulmaan(x, y, kulmaX, kulmaY, keskiX, keskiY, kulmaXY);
 		x = xy.annaX();
 		y = xy.annaY();
 		
-		DoubleKoordinaatti yz = kaannaOikeaanKulmaan(z, y, kulmaZ, kulmaY, keskiZ, keskiY, kulmaJK);
+		DoubleKoordinaatti yz = kaannaOikeaanKulmaan(z, y, kulmaZ, kulmaY, keskiZ, keskiY, kulmaYZ);
 		z = yz.annaX();
 		y = yz.annaY();
 		
-		DoubleKoordinaatti xz = kaannaOikeaanKulmaan(z, x, kulmaZ, kulmaX, keskiZ, keskiX, kulmaIK);
+		DoubleKoordinaatti xz = kaannaOikeaanKulmaan(z, x, kulmaZ, kulmaX, keskiZ, keskiX, kulmaXZ);
 		z = xz.annaX();
 		x = xz.annaY();
 		

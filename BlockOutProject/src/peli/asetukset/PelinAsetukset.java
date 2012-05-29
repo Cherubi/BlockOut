@@ -1,5 +1,6 @@
 package peli.asetukset;
 
+import peli.asetukset.logiikka.Asetukset;
 import kayttoliittyma.BlockOut;
 import valmiskomponentit.Ikkuna;
 

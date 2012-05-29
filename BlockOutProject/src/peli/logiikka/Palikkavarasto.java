@@ -20,6 +20,18 @@ public class Palikkavarasto {
 	}
 	
 	private void luoPalikat() {
+		/*
+		Palikka p = new Palikka(1, 2, 10);
+		p.lisaaPala(2,2,2);
+		palikat.add( p );
+		
+		p = new Palikka(5, 5, 80);
+		p.lisaaPala(4,4,4);
+		p.lisaaPala(1,4,4);
+		p.lisaaPala(2,4,4);
+		p.lisaaPala(5,4,4);
+		palikat.add( p );
+		*/
 		if (setti == Palikkasetti.FLAT) {
 			luoFlatExtendedPalikat();
 			luoFlatBasicExtendedPalikat();
@@ -33,6 +45,7 @@ public class Palikkavarasto {
 			luoFlatBasicExtendedPalikat();
 			luoExtendedPalikat();
 		}
+		
 	}
 	
 	private void luoFlatExtendedPalikat() {

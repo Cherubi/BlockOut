@@ -24,8 +24,8 @@ public class Nappainsetti {
 		nappaimet.put("vasemmalle", KeyEvent.VK_LEFT);
 		nappaimet.put("oikealle", KeyEvent.VK_RIGHT);
 		
-		nappaimet.put("ylapuoli esille", KeyEvent.VK_Q);
-		nappaimet.put("alapuoli esille", KeyEvent.VK_A);
+		nappaimet.put("ylapuoli esille", KeyEvent.VK_A);
+		nappaimet.put("alapuoli esille", KeyEvent.VK_Q);
 		nappaimet.put("vasen puoli esille", KeyEvent.VK_W);
 		nappaimet.put("oikea puoli esille", KeyEvent.VK_S);
 		nappaimet.put("myotapaivaan", KeyEvent.VK_D);

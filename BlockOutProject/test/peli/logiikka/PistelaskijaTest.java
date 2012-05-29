@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import peli.Peli;
-import peli.asetukset.Asetukset;
+import peli.asetukset.logiikka.Asetukset;
 import peli.asetukset.PelinAsetukset;
 import peli.ennatyslista.Ennatyslistaaja;
 

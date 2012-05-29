@@ -115,13 +115,14 @@ public class Kentta {
 	
 	private void muutaPalatTippuvistaVaratuiksi(Palikka annettuPalikka, int x, int y, int z) {
 		Pala[][][] palikka = annettuPalikka.annaPalikka();
+		int keskipiste = (palikka.length-1)/2;
 		
 		for (int k=0; k<palikka[0][0].length; k++) {
 			for (int j=0; j<palikka[0].length; j++) {
 				for (int i=0; i<palikka.length; i++) {
 					
-					if (palikka[i][j][k]==Pala.TIPPUVA && k-2+z>=0) {
-						kentta[i-2+x][j-2+y][k-2+z] = Pala.VARATTU;
+					if (palikka[i][j][k]==Pala.TIPPUVA && k-keskipiste+z>=0) {
+						kentta[ i-keskipiste+x ][ j-keskipiste+y ][ k-keskipiste+z ] = Pala.VARATTU;
 					}
 					
 				}

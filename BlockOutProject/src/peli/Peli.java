@@ -1,7 +1,7 @@
 package peli;
 
 import kayttoliittyma.BlockOut;
-import peli.asetukset.Asetukset;
+import peli.asetukset.logiikka.Asetukset;
 import peli.asetukset.Ulottuvuudet;
 import peli.ennatyslista.Ennatyslistaaja;
 import peli.grafiikka.Piirturi;
@@ -92,8 +92,11 @@ public class Peli extends Ikkuna {
 	/**
 	* Asettaa peliin uudet asetukset. Kayttajan muuttamista asetuksista vain grafiikkaan ja nappaimiin vaikuttavat asetukset otetaan voimaan.
 	*/
-	public void asetaUudetAsetukset() {
-	
+	public void asetaUudetAsetukset(Asetukset asetukset) {
+		this.piirturi.asetaUudetAsetukset( asetukset.annaUlottuvuudet().annaLeikkauspiste(), asetukset.annaVarit() );
+		
+		this.removeKeyListener( this.getKeyListeners()[0] );
+		this.addKeyListener( new NappainKuuntelija( this, this.kayttis, asetukset.annaNappainsetti() ) );
 	}
 	
 	//*******************************************
@@ -118,7 +121,14 @@ public class Peli extends Ikkuna {
 	* @param tauolla Tieto siita halutaanko peli tauolle vai tauolta pois
 	*/
 	public void asetaPeliTauolle(boolean tauolla) {
-	
+		if (this.tauolla == true && tauolla == false) {
+			ajastaSeuraavaTiputus();
+		}
+		if (this.tauolla == false && tauolla == true) {
+			paivita(); //palikka piiloon
+		}
+		
+		this.tauolla = tauolla;
 	}
 	
 	/**
@@ -136,7 +146,25 @@ public class Peli extends Ikkuna {
 	* @return Tieto siita paasiko pelin pistetulos ennatyslistalle
 	*/
 	public boolean lopetaPeli() {
-		return false;
+		this.gameOver = true;
+		asetaPeliTauolle(true);
+		
+		return selvitaEnnatyslistallePaasy();
+	}
+	
+	private boolean selvitaEnnatyslistallePaasy() {
+		int pisteet = pistelaskija.annaPisteet();
+		int leveys = kentta.annaLeveys();
+		int korkeus = kentta.annaKorkeus();
+		int syvyys = kentta.annaSyvyys();
+		
+		if (! this.ennatyslistaaja.paaseekoListalle(pisteet, leveys, korkeus, syvyys, this.palikkasetti) ) {
+			return false;
+		}
+		
+		this.ennatyslistaaja.annaEnnatyslistalleKasiteltavaksi( pisteet, leveys, korkeus, syvyys, this.palikkasetti );
+		
+		return true;
 	}
 	
 	/**
@@ -188,7 +216,7 @@ public class Peli extends Ikkuna {
 	public void lisaaPelattujenPalojenMaaraa(int maara) {
 		this.pelattujaPalikoita += maara;
 		
-		if (this.pelattujaPalikoita >= 15*( kentta.annaLeveys() + kentta.annaKorkeus() ) * (this.taso+1) ) {
+		if (taso < 10 && this.pelattujaPalikoita >= 15*( kentta.annaLeveys() + kentta.annaKorkeus() ) * (this.taso+1) ) {
 			this.taso++;
 			this.tiputustenVali *= aikatasokerroin;
 		}
@@ -240,11 +268,25 @@ public class Peli extends Ikkuna {
 		return this.tippuvaPalikka;
 	}
 	
-	private void ajastaSeuraavaTiputus() {}
+	/**
+	* Tiputtaa palikkaa yhden verran.
+	*/
+	public void tiputaPalikkaa() {
+		if (!tippuvaPalikka.siirra(0, 0, 1)) {
+			tippuvaPalikka.tiputaPohjalle();
+		}
+		else {
+			ajastaSeuraavaTiputus();
+		}
+	}
+	
+	private void ajastaSeuraavaTiputus() {
+		new Ajastin(this, tippuvaPalikka, (int)(tiputustenVali*1000) + 160); //160 drop time
+	}
 	
 	//*******************************************
 	//
-	// Hallinnoi pelin etenemista
+	// Hallinnoi pelin piirtoa
 	//
 	//*******************************************
 	
@@ -267,17 +309,21 @@ public class Peli extends Ikkuna {
 		this.piirturi.piirra(g, kentta.annaKentta(), tippuvaPalikka, kentta.annaPalojaSisaltavienKerrostenMaara() );
 		
 		if (gameOver) {
-			g.setColor(Color.BLACK);
-			Font fontti = new Font("futura", Font.PLAIN, 30);
-			g.setFont(fontti);
-			g.drawString("Game over", 800/5*2, 491/2);
-			fontti = new Font("futura", Font.PLAIN, 14);
-			g.setFont(fontti);
-			g.drawString("Press any key.", 800/5*2+20, 491/2+30);
-			
-			if (this.ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), this.palikkasetti )) {
-				//TODO nayta tato
-			}
+			piirraGameOver(g);
+		}
+	}
+	
+	private void piirraGameOver(Graphics g) {
+		g.setColor(Color.BLACK);
+		Font fontti = new Font("futura", Font.PLAIN, 30);
+		g.setFont(fontti);
+		g.drawString("Game over", 800/5*2, 491/2);
+		fontti = new Font("futura", Font.PLAIN, 14);
+		g.setFont(fontti);
+		g.drawString("Press any key.", 800/5*2+20, 491/2+30);
+		
+		if (this.ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), this.palikkasetti )) {
+			//TODO nayta tato
 		}
 	}
 }

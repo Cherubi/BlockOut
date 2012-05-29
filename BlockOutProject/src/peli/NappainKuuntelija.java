@@ -117,7 +117,7 @@ public class NappainKuuntelija implements KeyListener {
 	
 	private boolean onkoTiputus(int koodi) {
 		if (koodi == nappainsetti.annaTiputaNappain()) {
-			peli.annaTippuvaPalikka().tiputa();
+			peli.annaTippuvaPalikka().tiputaPohjalle();
 			return true;
 		}
 		return false;

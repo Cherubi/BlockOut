@@ -166,7 +166,7 @@ public class BlockOut implements Runnable {
 	* Kaynnistaa pelin tauolta ja asettaa siihen nykyiset graafiset asetukset
 	*/
 	private void kaynnistaPeliTauolta() {
-		this.peli.asetaUudetAsetukset(); //TODO
+		this.peli.asetaUudetAsetukset( this.pelinAsetukset.annaValitutAsetukset() );
 		
 		vaihdaJPanel(ValittuIkkuna.PELI);
 	}

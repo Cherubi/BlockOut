@@ -53,24 +53,30 @@ public class Palikka {
 		}
 	}
 	
+	//012
+	//01234
+	//0123456
+	
 	/**
 	* Lisaa palikkaan palan.
 	* 
 	* @param x Palan x-koordinaatti
 	* @param y Palan y-koordinaatti
 	* @param z Palan z-koordinaatti
+	* @return Tieto siita onnistuiko palikan lisaaminen vai ei
 	*/
-	public void lisaaPala(int x, int y, int z) {
+	public boolean lisaaPala(int x, int y, int z) {
 		if (this.palikka[x-1][y-1][z-1] == Pala.TIPPUVA) {
-			System.out.println("Palikkaan ei tulisi lisata kahta palaa paallekkain. Koordinaatit olivat " + x + ", " + y + ", " + z);
-			return;
+			return false;
 		}
 		
 		this.palikka[x-1][y-1][z-1] = Pala.TIPPUVA;
 		this.palojenMaara++;
 		
 		Kulmahaku kulmahaku = new Kulmahaku(this.palikka);
-		this.sarmat = kulmahaku.haeSarmat();	
+		this.sarmat = kulmahaku.haeSarmat();
+		
+		return true;
 	}
 	
 	/**
@@ -101,6 +107,15 @@ public class Palikka {
 	*/
 	public Pala[][][] annaPalikka() {
 		return this.palikka;
+	}
+	
+	/**
+	* Antaa palikan keskipisteen koordinaatin. Keskipisteen koordinaatti on kaikista suunnista samassa kohdassa.
+	* 
+	* @return Palikan keskipiste
+	*/
+	public int annaKeskipiste() {
+		return (koko-1)/2;
 	}
 	
 	/**
