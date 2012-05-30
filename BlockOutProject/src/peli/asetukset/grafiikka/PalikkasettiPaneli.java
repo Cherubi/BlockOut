@@ -20,6 +20,9 @@ public class PalikkasettiPaneli extends JPanel {
 	
 	/**
 	* Luo JPanelin, joka sisaltaa nappulat palikkasettien vaihteluun.
+	* 
+	* @param asetukset Pelin valitut asetukset
+	* @param fontinNimi Fontin nimi
 	*/
 	public PalikkasettiPaneli(Asetukset asetukset, String fontinNimi) {
 		this.asetukset = asetukset;

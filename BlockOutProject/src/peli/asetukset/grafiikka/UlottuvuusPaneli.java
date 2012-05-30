@@ -17,6 +17,12 @@ public class UlottuvuusPaneli extends JPanel {
 	private Asetukset asetukset;
 	private String fontinNimi;
 	
+	/**
+	* Luo panelin, josta kasin voidaan vaihtaa pelin kuilun ulottuvuuksia.
+	* @param asetuksetPaneli Paneli, jota voidaan pyytaa vaihtamaan vaihtelevan panelin nayttamaa aihetta
+	* @param asetukset Pelin valitut asetukset
+	* @param fontinNimi Fontin nimi
+	*/
 	public UlottuvuusPaneli(AsetuksetPaneli asetuksetPaneli, Asetukset asetukset, String fontinNimi) {
 		this.asetuksetPaneli = asetuksetPaneli;
 		this.asetukset = asetukset;
@@ -108,5 +114,21 @@ public class UlottuvuusPaneli extends JPanel {
 	
 	public void luoOikeaVaihtelevaPalsta(String aihe) {
 		asetuksetPaneli.luoOikeaVaihtelevaPalsta(aihe);
+	}
+	
+	public void asetaPyydettyArvo(int arvo) {
+		for (Component komponentti : this.getComponents()) {
+			if (! (komponentti instanceof Nappula)) {
+				continue;
+			}
+			
+			Nappula nappula = (Nappula)komponentti;
+			if (nappula.getText().equals("")) {
+				nappula.setText(arvo+"");
+				break;
+			}
+		}
+		
+		muutaUlottuvuusNappuloidenAktiivisuuksia(true);
 	}
 }

@@ -1,13 +1,18 @@
 package peli.asetukset.logiikka;
 
+import peli.asetukset.PelinAsetukset;
+
 public class Ulottuvuudet {
+	private PelinAsetukset pelinAsetukset;
 	private int ruutujaLeveyssuunnassa, ruutujaKorkeussuunnassa, ruutujaSyvyyssuunnassa;
 	private int leikkauspisteenEtaisyys; //mitattu ruuduissa
 	
 	/**
 	* Hallinnoi pelin ulottuvuuksia.
 	*/
-	public Ulottuvuudet() {
+	public Ulottuvuudet(PelinAsetukset pelinAsetukset) {
+		this.pelinAsetukset = pelinAsetukset;
+		
 		this.ruutujaLeveyssuunnassa = 5;
 		this.ruutujaKorkeussuunnassa = 5;
 		this.ruutujaSyvyyssuunnassa = 10;
@@ -88,6 +93,7 @@ public class Ulottuvuudet {
 	public boolean asetaLeveys(int leveys) {
 		if (leveys >= annaMinimiLeveys() && leveys <= annaMaksimiLeveys()) {
 			this.ruutujaLeveyssuunnassa = leveys;
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -129,6 +135,7 @@ public class Ulottuvuudet {
 	public boolean asetaKorkeus(int korkeus) {
 		if (korkeus >= annaMinimiKorkeus() && korkeus <= annaMaksimiKorkeus()) {
 			this.ruutujaKorkeussuunnassa = korkeus;
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -176,6 +183,8 @@ public class Ulottuvuudet {
 				asetaLeikkauspiste(syvyys+4);
 			}
 			
+			pelinAsetukset.tallennaTallennokset();
+			return true;
 		}
 		return false;
 	}
@@ -198,6 +207,7 @@ public class Ulottuvuudet {
 	public boolean asetaLeikkauspiste(int leikkauspiste) {
 		if (leikkauspiste > annaSyvyys()) {
 			this.leikkauspisteenEtaisyys = leikkauspiste;
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;

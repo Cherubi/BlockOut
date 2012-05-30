@@ -26,7 +26,7 @@ public class Asetukset {
 		
 		this.asetustenNimi = "";
 		
-		this.ulottuvuudet = new Ulottuvuudet();
+		this.ulottuvuudet = new Ulottuvuudet(pelinAsetukset);
 		this.aloitustaso = 0;
 		
 		this.palikkasetti = Palikkasetti.FLAT;

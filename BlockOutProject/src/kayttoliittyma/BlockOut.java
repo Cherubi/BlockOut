@@ -2,6 +2,8 @@ package kayttoliittyma;
 
 import peli.Peli;
 import peli.asetukset.PelinAsetukset;
+import peli.asetukset.logiikka.Asetukset;
+import peli.asetukset.logiikka.Ulottuvuudet;
 import peli.ennatyslista.Ennatyslistaaja;
 import valmiskomponentit.Ikkuna;
 
@@ -102,11 +104,21 @@ public class BlockOut implements Runnable {
 		this.valittuIkkuna = nytValittuIkkuna;
 		this.kehys.getContentPane().remove(1);
 		this.kehys.getContentPane().add( this.ikkunat.get(nytValittuIkkuna) );
+		if (nytValittuIkkuna == ValittuIkkuna.ENNATYSLISTA) {
+			asetaUusimmatAsetuksetEnnatyslistaan();
+		}
 		
 		this.etusivu.vaihdaNappuloidenAktiivisuuksiaTasmaaviksi( nytValittuIkkuna );
 		
 		this.ikkunat.get(nytValittuIkkuna).revalidate();
 		this.kehys.repaint();
+	}
+	
+	private void asetaUusimmatAsetuksetEnnatyslistaan() {
+		Asetukset asetukset = this.pelinAsetukset.annaValitutAsetukset();
+		Ulottuvuudet ulottuvuudet = asetukset.annaUlottuvuudet();
+		
+		this.ennatyslistaaja.saadaEnnatyslistanParametrit( ulottuvuudet.annaLeveys(), ulottuvuudet.annaKorkeus(), ulottuvuudet.annaSyvyys(), asetukset.annaPalikkasetti() );
 	}
 	
 	/**

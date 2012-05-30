@@ -299,7 +299,12 @@ public class Ennatyslistaaja extends Ikkuna {
 		super.paintComponent(g);
 		
 		piirraOtsikko(g);
-		piirraListasijat(g);
+		if (yleinenListaNakyvissa) {
+			piirraYleisetListasijat(g);
+		}
+		else {
+			piirraKuilukohtaisetListasijat(g);
+		}
 		
 		if (kysytaanNimea) {
 			piirraNimikysely(g);
@@ -313,12 +318,20 @@ public class Ennatyslistaaja extends Ikkuna {
 		g.drawString("Ennatyslista", 35, 80);
 	}
 	
-	private void piirraListasijat(Graphics g) {
+	private void piirraKuilukohtaisetListasijat(Graphics g) {
+		piirraListasijat(g, valittuPienempiLeveys, valittuSuurempiLeveys, valittuSyvyys, valittuPalikkasetti);
+	}
+	
+	private void piirraYleisetListasijat(Graphics g) {
+		piirraListasijat(g, -1, -1, -1, Palikkasetti.VOID);
+	}
+	
+	private void piirraListasijat(Graphics g, int pienempiLeveys, int suurempiLeveys, int syvyys, Palikkasetti palikkasetti) {
 		Font fontti = new Font(haeFontti(), Font.PLAIN, 18);
 		g.setFont(fontti);
 		
 		for (int i=1; i<=ennatyslistat.annaListanSijojenMaara(); i++) {
-			String sijanPitaja = ennatyslistat.annaListanSija(i, valittuPienempiLeveys, valittuSuurempiLeveys, valittuSyvyys, valittuPalikkasetti);
+			String sijanPitaja = ennatyslistat.annaListanSija(i, pienempiLeveys, suurempiLeveys, syvyys, palikkasetti);
 			
 			g.drawString(i + ":", 40, 100 + 30*i);
 			g.drawString(sijanPitaja, 60, 100 + 30*i);

@@ -23,6 +23,8 @@ public class AsetuksetPaneli extends JPanel {
 	private JLabel asetuksenNimi;
 	private boolean muokattavissa;
 	
+	private UlottuvuusPaneli ulottuvuusPaneli;
+	
 	private String fontinNimi;
 	
 	/**
@@ -136,7 +138,8 @@ public class AsetuksetPaneli extends JPanel {
 		JPanel keskinPalsta = new JPanel(new GridLayout(2,1));
 		keskinPalsta.setOpaque(false);
 		
-		keskinPalsta.add(new UlottuvuusPaneli(this, asetukset, fontinNimi));
+		this.ulottuvuusPaneli = new UlottuvuusPaneli(this, asetukset, fontinNimi);
+		keskinPalsta.add(ulottuvuusPaneli);
 		
 		Nappula variNappula = new Nappula("Varit");
 		variNappula.setFocusable(false);
@@ -160,9 +163,19 @@ public class AsetuksetPaneli extends JPanel {
 		
 		JPanel vaihtelevaAlue = new JPanel(new FlowLayout());
 		vaihtelevaAlue.setOpaque(false);
-		vaihtelevaAlue.add(new VaihtelevaPaneli(asetukset, aihe, fontinNimi));
+		vaihtelevaAlue.add(new VaihtelevaPaneli(this, asetukset, aihe, fontinNimi));
 		
 		asetusalue.add(vaihtelevaAlue);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	/**
+	* Luo vaihtelevaan palstaan jalleen Taso-kyselyn ja paivittaa UlottuvuudetPanelin.
+	*/
+	public void asetaVaihtelevaPalstaPerustilaan(int arvo) {
+		ulottuvuusPaneli.asetaPyydettyArvo(arvo);
+		luoOikeaVaihtelevaPalsta("Taso");
 	}
 	
 	private void haeFontti() {
