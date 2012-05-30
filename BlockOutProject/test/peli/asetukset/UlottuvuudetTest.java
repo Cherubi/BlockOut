@@ -4,6 +4,7 @@
  */
 package peli.asetukset;
 
+import kayttoliittyma.BlockOut;
 import peli.asetukset.logiikka.Ulottuvuudet;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -19,7 +20,7 @@ public class UlottuvuudetTest {
 	 * Testaa ulottuvuuksia.
 	 */
 	public UlottuvuudetTest() {
-		ulottuvuudet = new Ulottuvuudet();
+		ulottuvuudet = new Ulottuvuudet(new PelinAsetukset(new BlockOut(), "tiedosto"));
 	}
 
 	/*@BeforeClass

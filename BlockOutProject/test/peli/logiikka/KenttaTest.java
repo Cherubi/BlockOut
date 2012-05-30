@@ -4,11 +4,13 @@
  */
 package peli.logiikka;
 
+import kayttoliittyma.BlockOut;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
+import peli.asetukset.PelinAsetukset;
 import peli.asetukset.logiikka.Ulottuvuudet;
 
 /**
@@ -31,7 +33,7 @@ public class KenttaTest {
 	
 	@Before
 	public void setUp() {
-		Ulottuvuudet ulottuvuudet = new Ulottuvuudet();
+		Ulottuvuudet ulottuvuudet = new Ulottuvuudet(new PelinAsetukset(new BlockOut(), "tiedosto"));
 		this.kentta = new Kentta(null, null, ulottuvuudet);
 	}
 	
