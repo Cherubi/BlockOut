@@ -130,8 +130,11 @@ public class BlockOut implements Runnable {
 			this.etusivu.vaihdaTaukoNappulanTeksti("Tauko");
 		}
 		
+		int leveys = this.ikkunat.get(valittuIkkuna).getWidth();
+		int korkeus = this.ikkunat.get(valittuIkkuna).getHeight();
+		
 		this.ennatyslistaaja.poistaEnnatyslistanKysely();
-		this.peli = new Peli(this, pelinAsetukset.annaValitutAsetukset(), ennatyslistaaja);
+		this.peli = new Peli(this, pelinAsetukset.annaValitutAsetukset(), ennatyslistaaja, leveys, korkeus);
 		this.peli.aloitaPeli();
 		this.ikkunat.put(ValittuIkkuna.PELI, this.peli);
 		

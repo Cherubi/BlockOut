@@ -9,8 +9,14 @@ import peli.logiikka.Palikkasetti;
 import peli.logiikka.Pistelaskija;
 import peli.logiikka.TippuvaPalikka;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 
 public class Piirturi {
 	private Peli peli;
@@ -102,5 +108,31 @@ public class Piirturi {
 		}
 		
 		this.statistiikkapiirturi.piirra(g, ikkunanLeveys, ikkunanKorkeus, palojaSisaltavienKerrostenMaara);
+	}
+	
+	public void piirraGameOver(Graphics g, JPanel kuvanKuuntelija, boolean paaseekoListalle) {
+		int ikkunanLeveys = kuvanKuuntelija.getWidth();
+		int ikkunanKorkeus = kuvanKuuntelija.getHeight();
+		
+		g.setColor(Color.BLACK);
+		Font fontti = new Font("futura", Font.PLAIN, 30);
+		g.setFont(fontti);
+		g.drawString("Game over", ikkunanLeveys/5*2, ikkunanKorkeus/2);
+		fontti = new Font("futura", Font.PLAIN, 14);
+		g.setFont(fontti);
+		g.drawString("Press any key.", ikkunanLeveys/5*2+20, ikkunanKorkeus/2+30);
+		
+		if (paaseekoListalle) {
+			piirraTato(g, kuvanKuuntelija, ikkunanLeveys, ikkunanKorkeus);
+		}
+	}
+	
+	private void piirraTato(Graphics g, JPanel kuvanKuuntelija, int ikkunanLeveys, int ikkunanKorkeus) {
+		try {
+			URL url = Piirturi.class.getResource("Tato.gif");
+			Image tato = Toolkit.getDefaultToolkit().getImage(url);
+			
+			g.drawImage(tato, ikkunanLeveys/7*4, ikkunanKorkeus/3, kuvanKuuntelija);
+		} catch (Exception e) {}
 	}
 }

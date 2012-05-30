@@ -48,22 +48,24 @@ public class Peli extends Ikkuna {
 	* @param asetukset Kayttajan valitsemat asetukset
 	* @param ennatyslistaaja Ennatyslistan hallinnoija
 	*/
-	public Peli(BlockOut kayttis, Asetukset asetukset, Ennatyslistaaja ennatyslistaaja) {
+	public Peli(BlockOut kayttis, Asetukset asetukset, Ennatyslistaaja ennatyslistaaja, int leveys, int korkeus) {
+		super(); //vai olisko, etta konstruktoritonta superia kutsutaan automaattisesti jos sita ei kirjoteta tahan?
+		
 		this.kayttis = kayttis;
 		this.ennatyslistaaja = ennatyslistaaja;
 		
 		this.palikkasetti = asetukset.annaPalikkasetti();
 		
-		asetaPeliValmiiksi(asetukset);
+		asetaPeliValmiiksi(asetukset, leveys, korkeus);
 	}
 	
-	private void asetaPeliValmiiksi(Asetukset asetukset) {
+	private void asetaPeliValmiiksi(Asetukset asetukset, int leveys, int korkeus) {
 		alustaTilanne(asetukset.annaAloitustaso());
 		
 		Ulottuvuudet ulottuvuudet = asetukset.annaUlottuvuudet();
 		
 		alustaLogiikka(asetukset, ulottuvuudet);
-		alustaGrafiikka(asetukset, ulottuvuudet);
+		alustaGrafiikka(asetukset, ulottuvuudet, leveys, korkeus);
 		
 		NappainKuuntelija nappainKuuntelija = new NappainKuuntelija( this, this.kayttis, asetukset.annaNappainsetti() );
 		this.addKeyListener(nappainKuuntelija);
@@ -88,8 +90,8 @@ public class Peli extends Ikkuna {
 		this.palikkavarasto = new Palikkavarasto(asetukset.annaPalikkasetti());
 	}
 	
-	private void alustaGrafiikka(Asetukset asetukset, Ulottuvuudet ulottuvuudet) {
-		this.piirturi = new Piirturi( this, 800, 491, ulottuvuudet, asetukset.annaPalikkasetti(), asetukset.annaVarit(), this.pistelaskija, this.ennatyslistaaja );
+	private void alustaGrafiikka(Asetukset asetukset, Ulottuvuudet ulottuvuudet, int leveys, int korkeus) {
+		this.piirturi = new Piirturi( this, leveys, korkeus, ulottuvuudet, asetukset.annaPalikkasetti(), asetukset.annaVarit(), this.pistelaskija, this.ennatyslistaaja );
 	}
 	
 	/**
@@ -312,30 +314,8 @@ public class Peli extends Ikkuna {
 		this.piirturi.piirra(g, kentta.annaKentta(), tippuvaPalikka, kentta.annaPalojaSisaltavienKerrostenMaara() );
 		
 		if (gameOver) {
-			piirraGameOver(g);
+			boolean paaseekoListalle = ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), this.palikkasetti );
+			this.piirturi.piirraGameOver(g, this, paaseekoListalle);
 		}
-	}
-	
-	private void piirraGameOver(Graphics g) {
-		g.setColor(Color.BLACK);
-		Font fontti = new Font("futura", Font.PLAIN, 30);
-		g.setFont(fontti);
-		g.drawString("Game over", 800/5*2, 491/2);
-		fontti = new Font("futura", Font.PLAIN, 14);
-		g.setFont(fontti);
-		g.drawString("Press any key.", 800/5*2+20, 491/2+30);
-		
-		if (this.ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), this.palikkasetti )) {
-			piirraTato(g);
-		}
-	}
-	
-	private void piirraTato(Graphics g) {
-		try {
-			URL url = Peli.class.getResource("Tato.gif");
-			Image tato = Toolkit.getDefaultToolkit().getImage(url);
-			
-			g.drawImage(tato, 800/7*4, 491/3, this);
-		} catch (Exception e) {}
 	}
 }
