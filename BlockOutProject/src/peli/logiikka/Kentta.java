@@ -1,7 +1,7 @@
 package peli.logiikka;
 
 import peli.Peli;
-import peli.asetukset.Ulottuvuudet;
+import peli.asetukset.logiikka.Ulottuvuudet;
 
 public class Kentta {
 	private Peli peli;

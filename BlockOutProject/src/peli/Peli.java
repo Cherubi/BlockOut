@@ -2,7 +2,7 @@ package peli;
 
 import kayttoliittyma.BlockOut;
 import peli.asetukset.logiikka.Asetukset;
-import peli.asetukset.Ulottuvuudet;
+import peli.asetukset.logiikka.Ulottuvuudet;
 import peli.ennatyslista.Ennatyslistaaja;
 import peli.grafiikka.Piirturi;
 import peli.logiikka.Kentta;
@@ -16,6 +16,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+
 public class Peli extends Ikkuna {
 	private BlockOut kayttis;
 	private Piirturi piirturi;
@@ -26,7 +30,6 @@ public class Peli extends Ikkuna {
 	private Kentta kentta;
 	private Palikkavarasto palikkavarasto;
 	private TippuvaPalikka tippuvaPalikka;
-	//private Ajastin ajastin;
 	private double tiputustenVali;
 	private double pohjaAika = 5.51, aikatasokerroin = 0.64;
 	
@@ -323,7 +326,16 @@ public class Peli extends Ikkuna {
 		g.drawString("Press any key.", 800/5*2+20, 491/2+30);
 		
 		if (this.ennatyslistaaja.paaseekoListalle( pistelaskija.annaPisteet(), kentta.annaLeveys(), kentta.annaKorkeus(), kentta.annaSyvyys(), this.palikkasetti )) {
-			//TODO nayta tato
+			piirraTato(g);
 		}
+	}
+	
+	private void piirraTato(Graphics g) {
+		try {
+			URL url = Peli.class.getResource("Tato.gif");
+			Image tato = Toolkit.getDefaultToolkit().getImage(url);
+			
+			g.drawImage(tato, 800/7*4, 491/3, this);
+		} catch (Exception e) {}
 	}
 }

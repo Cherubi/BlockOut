@@ -1,4 +1,4 @@
-package peli.asetukset;
+package peli.asetukset.logiikka;
 
 public class Ulottuvuudet {
 	private int ruutujaLeveyssuunnassa, ruutujaKorkeussuunnassa, ruutujaSyvyyssuunnassa;

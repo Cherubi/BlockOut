@@ -1,4 +1,4 @@
-package peli.asetukset;
+package peli.asetukset.grafiikka;
 
 import peli.asetukset.logiikka.Asetukset;
 import valmiskomponentit.Nappula;
@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
+import peli.asetukset.PelinAsetukset;
 
 public class TalletetutAsetuksetPaneli extends JPanel {
 	private PelinAsetukset pelinAsetukset;

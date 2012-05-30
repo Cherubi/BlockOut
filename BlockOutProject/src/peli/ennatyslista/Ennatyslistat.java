@@ -20,6 +20,7 @@ public class Ennatyslistat {
 	private ArrayList<Ennatyslista> listat;
 	private String listojenOsoite;
 	private int listojenPituus;
+	private boolean yleinenListaOlemassa;
 	
 	/**
 	* Hallinnoi eri ennatyslistoja
@@ -27,6 +28,7 @@ public class Ennatyslistat {
 	public Ennatyslistat(String osoite) {
 		this.listojenOsoite = osoite;
 		this.listojenPituus = 10;
+		this.yleinenListaOlemassa = false;
 		avaaListat();
 		
 		/*lisaaListalle(53892, "janis", 5, 5, 10, Palikkasetti.FLAT);
@@ -112,6 +114,11 @@ public class Ennatyslistat {
 	* @return Tieto siita oliko maareet sopivia
 	*/
 	private boolean tallenteenMaareetSopivat(int pienempiLeveys, int suurempiLeveys, int syvyys, String palikkasetti) {
+		if (!yleinenListaOlemassa && pienempiLeveys==-1 && suurempiLeveys==-1 && syvyys==-1 && palikkasetti.toLowerCase().equals("void")) {
+			yleinenListaOlemassa = true;
+			return true;
+		}
+		
 		if (pienempiLeveys > suurempiLeveys) {
 			return false;
 		}

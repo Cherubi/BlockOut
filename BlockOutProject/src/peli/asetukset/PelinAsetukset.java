@@ -1,5 +1,8 @@
 package peli.asetukset;
 
+import peli.asetukset.grafiikka.NappainKuuntelija;
+import peli.asetukset.grafiikka.AsetuksetPaneli;
+import peli.asetukset.grafiikka.TalletetutAsetuksetPaneli;
 import peli.asetukset.logiikka.Asetukset;
 import kayttoliittyma.BlockOut;
 import valmiskomponentit.Ikkuna;
@@ -71,11 +74,10 @@ public class PelinAsetukset extends Ikkuna {
 	
 	/**
 	* Alustaa asetukset.
-	* 
-	* @param
-	* @return
 	*/
 	private void alustaAsetukset() {
+		tallennetutAsetukset = new ArrayList<Asetukset>();
+		
 		Asetukset perusasetukset = new Asetukset(this);
 		perusasetukset.asetaAsetustenNimi("Perusasetukset");
 		tallennetutAsetukset.add(perusasetukset);

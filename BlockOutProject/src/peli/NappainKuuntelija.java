@@ -1,7 +1,7 @@
 package peli;
 
 import kayttoliittyma.BlockOut;
-import peli.asetukset.Nappainsetti;
+import peli.asetukset.logiikka.Nappainsetti;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;

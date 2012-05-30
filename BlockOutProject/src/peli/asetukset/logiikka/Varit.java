@@ -1,4 +1,4 @@
-package peli.asetukset;
+package peli.asetukset.logiikka;
 
 import java.util.ArrayList;
 import java.awt.Color;

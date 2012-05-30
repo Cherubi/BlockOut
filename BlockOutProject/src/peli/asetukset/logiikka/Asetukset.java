@@ -4,10 +4,7 @@ import peli.logiikka.Palikkasetti;
 
 import java.util.Scanner;
 import java.io.FileWriter;
-import peli.asetukset.Nappainsetti;
 import peli.asetukset.PelinAsetukset;
-import peli.asetukset.Ulottuvuudet;
-import peli.asetukset.Varit;
 
 public class Asetukset {
 	private PelinAsetukset pelinAsetukset;

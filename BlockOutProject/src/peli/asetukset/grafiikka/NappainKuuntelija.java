@@ -1,5 +1,6 @@
-package peli.asetukset;
+package peli.asetukset.grafiikka;
 
+import peli.asetukset.grafiikka.AsetuksetPaneli;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 

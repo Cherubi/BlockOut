@@ -4,6 +4,7 @@
  */
 package peli.asetukset;
 
+import peli.asetukset.logiikka.Ulottuvuudet;
 import org.junit.*;
 import static org.junit.Assert.*;
 

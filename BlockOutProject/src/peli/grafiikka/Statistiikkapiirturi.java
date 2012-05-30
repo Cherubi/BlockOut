@@ -1,8 +1,8 @@
 package peli.grafiikka;
 
 import peli.Peli;
-import peli.asetukset.Ulottuvuudet;
-import peli.asetukset.Varit;
+import peli.asetukset.logiikka.Ulottuvuudet;
+import peli.asetukset.logiikka.Varit;
 import peli.ennatyslista.Ennatyslistaaja;
 import peli.logiikka.Pistelaskija;
 

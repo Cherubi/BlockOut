@@ -4,6 +4,7 @@
  */
 package peli.asetukset;
 
+import peli.asetukset.logiikka.Varit;
 import java.awt.Color;
 import java.util.ArrayList;
 import org.junit.AfterClass;

@@ -5,6 +5,7 @@ package peli.asetukset;
  * and open the template in the editor.
  */
 
+import peli.asetukset.logiikka.Nappainsetti;
 import org.junit.*;
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package peli.asetukset;
+package peli.asetukset.logiikka;
 
 import java.util.HashMap;
 import java.awt.event.KeyEvent;
