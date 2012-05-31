@@ -119,6 +119,54 @@ public class Palikka {
 	}
 	
 	/**
+	* Antaa palikan leveyden.
+	* 
+	* @return Leveys ruutuina
+	*/
+	public int annaLeveys() {
+		int leveys = 0;
+		for (int i=0; i<koko; i++) {
+			if (onkoTasossaPalikoita(i, i, 0, koko-1, 0, koko-1)) {
+				leveys++;
+			}
+		}
+		
+		return leveys;
+	}
+	
+	/**
+	* Antaa palikan korkeuden.
+	* 
+	* @return Korkeus ruutuina
+	*/
+	public int annaKorkeus() {
+		int korkeus = 0;
+		for (int j=0; j<koko; j++) {
+			if (onkoTasossaPalikoita(0, koko-1, j, j, 0, koko-1)) {
+				korkeus++;
+			}
+		}
+		
+		return korkeus;
+	}
+	
+	private boolean onkoTasossaPalikoita(int iAlku, int iLoppu, int jAlku, int jLoppu, int kAlku, int kLoppu) {
+		for (int i = iAlku; i <= iLoppu; i++) {
+			for (int j = jAlku; j <= jLoppu; j++) {
+				for (int k = kAlku; k <= kLoppu; k++) {
+					
+					if (palikka[i][j][k] == Pala.TIPPUVA) {
+						return true;
+					}
+					
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
 	* Antaa Palikkaan liittyvan minimitiputuksen pistelaskukertoimen.
 	* 
 	* @return pistekerroin

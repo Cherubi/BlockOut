@@ -18,19 +18,40 @@ public class TippuvaPalikka {
 	*/
 	public TippuvaPalikka(Palikka palikka, Kentta kentta, Peli peli) {
 		this.palikka = palikka;
+		this.kentta = kentta;
+		this.peli = peli;
 		
 		this.x = (kentta.annaLeveys()+2) / 2;
 		this.y = (kentta.annaKorkeus()+2) / 2;
 		this.z = 0;
 		
-		if (palikka.annaPalikka().length > kentta.annaLeveys() || palikka.annaPalikka()[0].length > kentta.annaKorkeus()) {
-		//	pyoritaSuuntaEsille(1, 0);
-			System.out.println("liian iso");
-		}
+		mahdutaPalikkaKenttaan();
 		nollaaPyoritykset();
+	}
+	
+	private void mahdutaPalikkaKenttaan() {
+		if (palikka.annaLeveys() > kentta.annaLeveys() || palikka.annaKorkeus() > kentta.annaKorkeus()) {
+			pyoritaSuuntaEsille(1, 0);
+			if (mahtuukoPalikkaKenttaan(0, 0, 0)) {
+				return;
+			}
+			
+			pyoritaSuuntaEsille(0, 1);
+			if (mahtuukoPalikkaKenttaan(0, 0, 0)) {
+				return;
+			}
+		}
 		
-		this.kentta = kentta;
-		this.peli = peli;
+		if (!mahtuukoPalikkaKenttaan(0, 0, 0)) {
+			if (siirra(-1, 0, 0)) {
+				return;
+			}
+			if (siirra(-1, 1, 0)) {
+				return;
+			}
+			
+			System.out.println("Palikkaa ei saatu mahtumaan kenttaan. Ei pitaisi tapahtua.");
+		}
 	}
 	
 	/**
