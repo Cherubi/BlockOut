@@ -45,6 +45,7 @@ public class Palikkavarasto {
 		if (setti == Palikkasetti.EXTENDED) {
 			luoFlatExtendedPalikat();
 			luoFlatBasicExtendedPalikat();
+			luoBasicExtendedPalikat();
 			luoExtendedPalikat();
 		}
 		
@@ -108,15 +109,15 @@ public class Palikkavarasto {
 		Palikka p = new Palikka(53, 552);
 		p.lisaaPala(3,3,3);
 		p.lisaaPala(3,2,3);
-		p.lisaaPala(3,3,4);
-		p.lisaaPala(2,3,4);
+		p.lisaaPala(3,3,2);
+		p.lisaaPala(2,3,2);
 		palikat.add( p );
 		
 		p = new Palikka(53, 552);
 		p.lisaaPala(3,3,3);
 		p.lisaaPala(3,2,3);
-		p.lisaaPala(3,3,4);
-		p.lisaaPala(4,3,4);
+		p.lisaaPala(3,3,2);
+		p.lisaaPala(4,3,2);
 		palikat.add( p );
 		
 		p = new Palikka(53, 552);
@@ -251,8 +252,8 @@ public class Palikkavarasto {
 		p.lisaaPala(3,3,3);
 		p.lisaaPala(3,2,3);
 		p.lisaaPala(3,4,3);
-		p.lisaaPala(3,4,3);
-		p.lisaaPala(3,4,2);
+		p.lisaaPala(4,3,3);
+		p.lisaaPala(4,3,2);
 		palikat.add( p );
 		
 		p = new Palikka(92, 965);
