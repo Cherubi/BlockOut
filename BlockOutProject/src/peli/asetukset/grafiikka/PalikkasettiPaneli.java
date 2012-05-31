@@ -47,6 +47,7 @@ public class PalikkasettiPaneli extends JPanel {
 		luoPalikkasettiNappula("FLAT");
 		luoPalikkasettiNappula("BASIC");
 		luoPalikkasettiNappula("EXTENDED");
+		luoPalikkasettiNappula("PERSONAL");
 	}
 	
 	private void luoPalikkasettiNappula(String teksti) {
@@ -56,6 +57,9 @@ public class PalikkasettiPaneli extends JPanel {
 		
 		Palikkasetti nappulanSetti = haeNimellaSetti(teksti);
 		if (this.setti == nappulanSetti) {
+			nappula.setEnabled(false);
+		}
+		else if (nappulanSetti == Palikkasetti.PERSONAL) { //TODO
 			nappula.setEnabled(false);
 		}
 		else {
@@ -73,6 +77,9 @@ public class PalikkasettiPaneli extends JPanel {
 		}
 		else if (teksti.equals("EXTENDED")) {
 			return Palikkasetti.EXTENDED;
+		}
+		else if (teksti.equals("PERSONAL")) {
+			return Palikkasetti.PERSONAL;
 		}
 		
 		return Palikkasetti.FLAT;
@@ -120,6 +127,9 @@ public class PalikkasettiPaneli extends JPanel {
 			Nappula nappula = (Nappula)komponentti;
 			
 			if (nappula.getText().equals( setti.annaNimi().toUpperCase() )) {
+				nappula.setEnabled(false);
+			}
+			else if (nappula.getText().equals("PERSONAL")) { //TODO
 				nappula.setEnabled(false);
 			}
 			else {

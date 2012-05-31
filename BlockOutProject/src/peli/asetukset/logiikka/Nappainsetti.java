@@ -32,7 +32,7 @@ public class Nappainsetti {
 		nappaimet.put("vastapaivaan", KeyEvent.VK_E);
 		
 		nappaimet.put("tiputa", KeyEvent.VK_SPACE);
-		nappaimet.put("tiputa yksi kerros", KeyEvent.VK_MINUS);
+		nappaimet.put("tiputa yksi kerros", KeyEvent.VK_MINUS); //mac tunnisti sen plussaksi o.O, sama muualla? TODO
 		
 		nappaimet.put("tauko", KeyEvent.VK_P);
 	}

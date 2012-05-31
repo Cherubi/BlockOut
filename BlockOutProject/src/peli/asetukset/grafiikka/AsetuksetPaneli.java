@@ -125,11 +125,11 @@ public class AsetuksetPaneli extends JPanel {
 		
 		vasenPalsta.add(new PalikkasettiPaneli( asetukset, fontinNimi));
 		
-		Nappula nappainNappula = new Nappula("Nappaimet");
-		nappainNappula.setFocusable(false);
-		nappainNappula.setEnabled(false && this.muokattavissa); //TODO
+		Nappula palikatNappula = new Nappula("Palikat");
+		palikatNappula.setFocusable(false);
+		palikatNappula.setEnabled(false && this.muokattavissa); //TODO
 		//TODO kuuntelija
-		vasenPalsta.add(nappainNappula);
+		vasenPalsta.add(palikatNappula);
 		
 		kohde.add(vasenPalsta);
 	}
@@ -141,11 +141,21 @@ public class AsetuksetPaneli extends JPanel {
 		this.ulottuvuusPaneli = new UlottuvuusPaneli(this, asetukset, fontinNimi);
 		keskinPalsta.add(ulottuvuusPaneli);
 		
+		JPanel alapaneli = new JPanel(new GridLayout(2,1));
+		
+		Nappula nappainNappula = new Nappula("Nappulat");
+		nappainNappula.setFocusable(false);
+		nappainNappula.setEnabled(false && this.muokattavissa); //TODO
+		//TODO kuuntelija
+		alapaneli.add(nappainNappula);
+		
 		Nappula variNappula = new Nappula("Varit");
 		variNappula.setFocusable(false);
 		variNappula.setEnabled(false && this.muokattavissa); //TODO
 		//TODO kuuntelija
-		keskinPalsta.add(variNappula);
+		alapaneli.add(variNappula);
+		
+		keskinPalsta.add(alapaneli);
 		
 		kohde.add(keskinPalsta);
 	}

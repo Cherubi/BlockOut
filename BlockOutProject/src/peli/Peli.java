@@ -31,6 +31,7 @@ public class Peli extends Ikkuna {
 	private Palikkavarasto palikkavarasto;
 	private TippuvaPalikka tippuvaPalikka;
 	private double tiputustenVali;
+	private long viimeAjastushetki;
 	private double pohjaAika = 5.51, aikatasokerroin = 0.64;
 	
 	// Pelin statuksen, pisteiden ja tasojen hallinta
@@ -276,17 +277,23 @@ public class Peli extends Ikkuna {
 	/**
 	* Tiputtaa palikkaa yhden verran.
 	*/
-	public void tiputaPalikkaa() {
+	public void tiputaPalikkaa(long ajastushetki) {
+		if (ajastushetki>0 && ajastushetki != this.viimeAjastushetki) {
+			return;
+		}
+		this.viimeAjastushetki = System.currentTimeMillis(); //kuuluisi ennemminkin ajastaSeuraavaTiputus-metodille, mutta voisi johtaa hyvin huonolla tuurilla siihen, etta ajastin tulisi tiputtamaan palikkaa kun pelaaja on tiputtamassa sita
+		
 		if (!tippuvaPalikka.siirra(0, 0, 1)) {
 			tippuvaPalikka.tiputaPohjalle();
 		}
 		else {
+			
 			ajastaSeuraavaTiputus();
 		}
 	}
 	
 	private void ajastaSeuraavaTiputus() {
-		new Ajastin(this, tippuvaPalikka, (int)(tiputustenVali*1000) + 160); //160 drop time
+		new Ajastin(this, tippuvaPalikka, (int)(tiputustenVali*1000) + 160, this.viimeAjastushetki); //160 drop time
 	}
 	
 	//*******************************************

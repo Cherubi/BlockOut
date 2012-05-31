@@ -9,12 +9,15 @@ import javax.swing.Timer;
 public class Ajastin extends Timer implements ActionListener {
 	private Peli peli;
 	private TippuvaPalikka tippuvaPalikka;
+	private long ajastushetki;
 	
-	public Ajastin(Peli peli, TippuvaPalikka tippuvaPalikka, int aika) {
+	public Ajastin(Peli peli, TippuvaPalikka tippuvaPalikka, int aika, long ajastushetki) {
 		super(aika, null);
 		super.addActionListener(this);
 		this.peli = peli;
 		this.tippuvaPalikka = tippuvaPalikka;
+		
+		this.ajastushetki = ajastushetki;
 		
 		this.setDelay(aika);
 		this.setRepeats(false);
@@ -28,7 +31,7 @@ public class Ajastin extends Timer implements ActionListener {
 		}
 		
 		if (!peli.onkoTauolla()) {
-			peli.tiputaPalikkaa();
+			peli.tiputaPalikkaa(ajastushetki);
 		}
 	}
 }

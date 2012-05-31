@@ -23,9 +23,10 @@ public class TippuvaPalikka {
 		this.y = (kentta.annaKorkeus()+2) / 2;
 		this.z = 0;
 		
-		//if (palikka.annaPalikka().length > kentta.annaLeveys() || palikka.annaPalikka()[0].length > kentta.annaKorkeus()) {
+		if (palikka.annaPalikka().length > kentta.annaLeveys() || palikka.annaPalikka()[0].length > kentta.annaKorkeus()) {
 		//	pyoritaSuuntaEsille(1, 0);
-		//}
+			System.out.println("liian iso");
+		}
 		nollaaPyoritykset();
 		
 		this.kentta = kentta;

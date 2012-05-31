@@ -22,14 +22,16 @@ public class Palikkavarasto {
 	private void luoPalikat() {
 		/*
 		Palikka p = new Palikka(1, 2, 10);
-		p.lisaaPala(2,2,2);
+		p.lisaaPala(1,1,1);
 		palikat.add( p );
 		
-		p = new Palikka(5, 5, 80);
-		p.lisaaPala(4,4,4);
+		p = new Palikka(7, 5, 80);
+		p.lisaaPala(3,4,4);
 		p.lisaaPala(1,4,4);
 		p.lisaaPala(2,4,4);
 		p.lisaaPala(5,4,4);
+		p.lisaaPala(6,4,4);
+		p.lisaaPala(7,4,4);
 		palikat.add( p );
 		*/
 		if (setti == Palikkasetti.FLAT) {

@@ -1,7 +1,7 @@
 package peli.logiikka;
 
 public enum Palikkasetti {
-	FLAT("Flat"), BASIC("Basic"), EXTENDED("Extended"), VOID("Void");
+	FLAT("Flat"), BASIC("Basic"), EXTENDED("Extended"), VOID("Void"), PERSONAL("Personal");
 	
 	private String nimi;
 	

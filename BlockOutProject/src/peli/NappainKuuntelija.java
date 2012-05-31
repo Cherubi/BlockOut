@@ -45,6 +45,7 @@ public class NappainKuuntelija implements KeyListener {
 			return;
 		}
 		
+		onkoTauko(ke.getKeyCode());
 		if (peli.onkoTauolla()) {
 			return;
 		}
@@ -118,6 +119,18 @@ public class NappainKuuntelija implements KeyListener {
 	private boolean onkoTiputus(int koodi) {
 		if (koodi == nappainsetti.annaTiputaNappain()) {
 			peli.annaTippuvaPalikka().tiputaPohjalle();
+			return true;
+		}
+		if (koodi == nappainsetti.annaTiputaYksiKerrosNappain()) {
+			peli.tiputaPalikkaa(-1);
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean onkoTauko(int koodi) {
+		if (koodi == nappainsetti.annaTaukoNappain()) {
+			kayttis.asetaPeliTauolle( !peli.onkoTauolla() );
 			return true;
 		}
 		return false;

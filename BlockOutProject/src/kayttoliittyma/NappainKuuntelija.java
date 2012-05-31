@@ -30,7 +30,6 @@ public class NappainKuuntelija implements KeyListener {
 	* 
 	* @param ke Nappaintapahtuma nappaimen painamisesta
 	*/
-	//nappaimen pohjassa painaminen ei luo useita tapahtumia
 	public void keyPressed(KeyEvent ke) {
 		Ikkuna ikkuna = this.kayttis.annaJPanel();
 		KeyListener[] kuuntelijalista = ikkuna.getKeyListeners();

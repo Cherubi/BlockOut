@@ -18,7 +18,7 @@ public class Palikka {
 	* @param ylapisteet Ylemmat peruspisteet
 	*/
 	public Palikka(int alapisteet, int ylapisteet) {
-		this(3, alapisteet, ylapisteet);
+		this(5, alapisteet, ylapisteet);
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class Palikka {
 		if (koko%2 == 0) {
 			koko++;
 		}
-		this.koko = koko+2;
+		this.koko = koko;
 		this.palikka = new Pala[this.koko][this.koko][this.koko];
 		palikanTyhjaksiAlustus(this.palikka);
 		
@@ -85,7 +85,7 @@ public class Palikka {
 	* @return Kopioitu palikka
 	*/
 	public Palikka kopioi() {
-		Palikka kopioituPalikka = new Palikka( koko-2, this.alapisteet, this.ylapisteet );
+		Palikka kopioituPalikka = new Palikka( koko, this.alapisteet, this.ylapisteet );
 		
 		for (int i=0; i<koko; i++) {
 			for (int j=0; j<koko; j++) {
