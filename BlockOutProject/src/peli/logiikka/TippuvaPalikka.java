@@ -30,18 +30,25 @@ public class TippuvaPalikka {
 	}
 	
 	private void mahdutaPalikkaKenttaan() {
+		mahdutaPyorayttamallaKenttaan();
+		mahdutaSiirtamallaKenttaan();
+	}
+	
+	private void mahdutaPyorayttamallaKenttaan() {
 		if (palikka.annaLeveys() > kentta.annaLeveys() || palikka.annaKorkeus() > kentta.annaKorkeus()) {
-			pyoritaSuuntaEsille(1, 0);
-			if (mahtuukoPalikkaKenttaan(0, 0, 0)) {
-				return;
-			}
-			
 			pyoritaSuuntaEsille(0, 1);
 			if (mahtuukoPalikkaKenttaan(0, 0, 0)) {
 				return;
 			}
+			
+			pyoritaSuuntaEsille(1, 0);
+			if (mahtuukoPalikkaKenttaan(0, 0, 0)) {
+				return;
+			}
 		}
-		
+	}
+	
+	private void mahdutaSiirtamallaKenttaan() {
 		if (!mahtuukoPalikkaKenttaan(0, 0, 0)) {
 			if (siirra(-1, 0, 0)) {
 				return;
@@ -50,7 +57,7 @@ public class TippuvaPalikka {
 				return;
 			}
 			
-			System.out.println("Palikkaa ei saatu mahtumaan kenttaan. Ei pitaisi tapahtua.");
+			System.out.println("Palikkaa ei saatu mahtumaan kenttaan. Ei pitaisi tapahtua jos kyseessa ei ole itse tehty palikka.");
 		}
 	}
 	

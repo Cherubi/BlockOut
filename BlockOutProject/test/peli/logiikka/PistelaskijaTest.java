@@ -38,7 +38,7 @@ public class PistelaskijaTest {
 		Peli peli = null;
 		try {
 			BlockOut blockOut = new BlockOut();
-			peli = new Peli(blockOut, new Asetukset(new PelinAsetukset(blockOut, "tiedosto")), new Ennatyslistaaja());
+			peli = new Peli(blockOut, new Asetukset(new PelinAsetukset(blockOut, "tiedosto")), new Ennatyslistaaja(), 0, 0);
 		} catch (Exception e) {}
 		this.pistelaskija = new Pistelaskija(peli, 6, Palikkasetti.FLAT);
 	}
