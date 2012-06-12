@@ -1,4 +1,6 @@
-Huom! Ajankäytön syistä ennätyslistan uudistus päivittyy vasta ensi viikolla (4.6. alkava) kun Ohjan testit on kirjoitettu. Ennen päivitystä luodut ennätykset eivät siirry uuteen päivitykseen.
+Ennätyslista uudessa muodossaan lopultakin. Lisäksi vannon, etten tuota enää mene muuttamaan, joten tästä lähtien ennätykset tulevat säilymään. (Paitsi jos tuossa on bugi.)
+
+Seuraava päivitys mahdollisesti näppäinten valitseminen. Ilmestynee ohjan jälkeen tai kun tulee tylsää.
 
 
 BlockOut
