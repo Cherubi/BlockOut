@@ -254,7 +254,6 @@ public class Peli extends Ikkuna {
 	}
 	
 	private void haeTippuvaPalikka() {
-		//TODO jos tippuva palikka reunojen paalla jo annettaessa niin ei saisi johtaa gameoveriin, ratkaisuehdotus: palikat annetaan niin, ettei tule tata ongelmaa
 		if (!kentta.onkoKentanEdustaVapaana()) {
 			this.tauolla = true;
 			this.gameOver = true;

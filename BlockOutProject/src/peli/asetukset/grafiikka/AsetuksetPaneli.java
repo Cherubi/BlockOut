@@ -104,7 +104,7 @@ public class AsetuksetPaneli extends JPanel {
 				asetuksenNimi.setText( nimi.substring( 0, nimi.length()-1 ) );
 			}
 		}
-		else if (merkki.matches("\\p{ASCII}")) { //TODO erikoismerkit
+		else if (merkki.matches("\\p{ASCII}|[ŒŠš€…§Ÿ†]")) {
 			asetuksenNimi.setText( nimi + merkki );
 		}
 	}

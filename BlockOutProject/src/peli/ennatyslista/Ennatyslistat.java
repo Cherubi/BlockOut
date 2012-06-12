@@ -3,7 +3,9 @@ package peli.ennatyslista;
 import peli.logiikka.Palikkasetti;
 
 import java.util.ArrayList;
+import java.math.BigInteger;
 
+import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -15,6 +17,8 @@ import java.util.Scanner;
 //import java.io.ObjectOutput;
 
 import java.io.FileNotFoundException;
+import java.beans.PropertyVetoException;
+import java.beans.PropertyChangeEvent;
 
 public class Ennatyslistat {
 	private ArrayList<Ennatyslista> listat;
@@ -51,10 +55,12 @@ public class Ennatyslistat {
 	private void avaaListat() {
 		this.listat = new ArrayList<Ennatyslista>();
 		
-		//tarkistaEnnatyslistanOikeellisuus(new Scanner(listojenOsoite));
-		
 		Scanner lukija = null;
 		try {
+			if (!tarkistaEnnatyslistanOikeellisuus(listojenOsoite)) {
+				throw new Exception();
+			}
+			
 			lukija = new Scanner(new File(listojenOsoite));
 			
 			int listojenMaara = Integer.parseInt(lukija.nextLine());
@@ -63,11 +69,19 @@ public class Ennatyslistat {
 			}
 			
 			lueTiedostostaYksittaisetEnnatyslistat(lukija, listojenMaara);
-		} catch (Exception e) {
+		} catch (IOException ioe) {
 			this.listat = new ArrayList<Ennatyslista>();
 			
 			System.out.println("Tiedoston 'ennatyslista' avaus ei onnistunut.");
-			e.printStackTrace();
+			ioe.printStackTrace();
+		} catch (NumberFormatException ne) {
+			this.listat = new ArrayList<Ennatyslista>();
+			
+			System.out.println("Tiedostoon 'ennatyslista' oli kajottu.");
+		} catch (Exception e) {
+			this.listat = new ArrayList<Ennatyslista>();
+			
+			System.out.println("Tiedoston 'ennatyslista' oikeellisuutta ei voitu tarkistaa tai ennatyslistaan oli kajottu.");
 		} finally {
 			try {
 				lukija.close();
@@ -135,6 +149,117 @@ public class Ennatyslistat {
 		}
 	}
 	
+	private boolean tarkistaEnnatyslistanOikeellisuus(String listojenOsoite) throws Exception {
+		boolean oikeellisuus = true;
+		
+		Scanner lukija = null;
+		try {
+			lukija = new Scanner(new File(listojenOsoite));
+			
+			tarkistaOikeellisuusRiveittain(lukija, true);
+		} catch (IOException ioe) {
+			System.out.println("Tiedoston 'ennatyslista' avaus ei onnistunut kun yritettiin selvittŠŠ ennŠtyslistan oikeellisuutta.");
+			ioe.printStackTrace();
+			
+			oikeellisuus = false;
+		} catch (PropertyVetoException pve) {
+			System.out.println("Tiedostoa 'ennatyslista' ei avattu, koska sen tarkistusrivi ei tŠsmŠnnyt tiedoston muuta sisŠltšŠ.");
+			pve.printStackTrace();
+			
+			oikeellisuus = false;
+		} catch (Exception e) {
+			System.out.println("Virhe oikeellisuuden tarkastuksessa, johon ei osattu varautua.");
+			oikeellisuus = false;
+		} finally {
+			try {
+				lukija.close();
+			} catch (Exception e) {}
+		}
+		
+		return oikeellisuus;
+	}
+	
+	private String tarkistaOikeellisuusRiveittain(Scanner lukija, boolean avataan) throws Exception {
+		BigInteger summa = BigInteger.ZERO, pistesumma = BigInteger.ZERO, juoksevaPistesumma = BigInteger.ZERO;
+		int edellinenMerkki = 'a';
+		int edellisestaListanAlusta = 1, moneskoMerkki = 0, moneskoEnnatys = 1;
+		
+		String rivi = "";
+		while (lukija.hasNextLine()) {
+			rivi = lukija.nextLine();
+			if (!lukija.hasNextLine() && avataan) {
+				break;
+			}
+			
+			for (char merkki : rivi.toCharArray()) {
+				summa = summa.add( new BigInteger("" + merkki*edellinenMerkki * edellisestaListanAlusta));
+				edellinenMerkki = merkki;
+			}
+			
+			if (rivi.equals(":")) {
+				edellisestaListanAlusta = 0;
+			}
+			else if (rivi.split(" ").length == 2) {
+				int pistemaara = Integer.parseInt(rivi.split(" ")[0]);
+				
+				pistesumma = pistesumma.add(new BigInteger("" + pistemaara % moneskoEnnatys));
+				
+				if (pistemaara != 0) {
+					moneskoMerkki = selvitaMoneskoMerkki(moneskoMerkki, pistemaara);
+					juoksevaPistesumma = juoksevaPistesumma.add(new BigInteger(("" + pistemaara).charAt(moneskoMerkki) + ""));
+				}
+				moneskoEnnatys++;
+			}
+			edellisestaListanAlusta++;
+		}
+		
+		String tarkistusrivi = summa + " " + pistesumma + " " + juoksevaPistesumma;
+		System.out.println(tarkistusrivi);
+		
+		if (avataan) {
+			if (!tarkistusrivi.equals(rivi)) {
+				throw new PropertyVetoException("Tiedostoon oli kajottu.", new PropertyChangeEvent(this, "tarkistusrivi", tarkistusrivi, rivi));
+			}
+		}
+		return tarkistusrivi;
+	}
+	
+	private int selvitaMoneskoMerkki(int edellinenMoneskoMerkki, int pistemaara) {
+		int moneskoMerkki = edellinenMoneskoMerkki + 1;
+		
+		String pisteet = "" + pistemaara;
+		if (pisteet.length()-1 >= moneskoMerkki) {
+			return moneskoMerkki;
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	private void kirjoitaTarkistusrivi(String listojenOsoite) {
+		FileWriter kirjuri = null;
+		Scanner lukija = null;
+		try {
+			lukija = new Scanner(new File(listojenOsoite));
+			
+			String tarkistusrivi = tarkistaOikeellisuusRiveittain( lukija, false );
+			System.out.println("Haluttu tarkistusrivi: " + tarkistusrivi);
+			
+			kirjuri = new FileWriter(new File(listojenOsoite), true);
+			kirjuri.write("\n" + tarkistusrivi);
+		} catch (Exception e) {
+			System.out.println("Tarkistusrivin kirjoituksessa meni jokin pieleen.");
+			e.printStackTrace();
+		} finally {
+			try {
+				kirjuri.close();
+			} catch (Exception e) {}
+			try {
+				lukija.close();
+			} catch (Exception e) {}
+		}
+	}
+	
 	/**
 	* Tallentaa ennatyslistat tiedostoon.
 	*/
@@ -145,9 +270,6 @@ public class Ennatyslistat {
 			
 			kirjuri.write(this.listat.size() + "\n\n");
 			tallennaKukinEnnatyslista(kirjuri);
-			///ObjectOutput out = new ObjectOutputStream( new FileOutputStream(listojenOsoite) );
-			//out.writeObject(listat);
-			//out.close();
 		} catch (Exception e) {
 			System.out.println("Tiedoston tallennus ei onnistunut");
 			e.printStackTrace();
@@ -156,6 +278,8 @@ public class Ennatyslistat {
 				kirjuri.close();
 			} catch (Exception e) {}
 		}
+		
+		kirjoitaTarkistusrivi(listojenOsoite);
 	}
 	
 	/**
@@ -164,16 +288,12 @@ public class Ennatyslistat {
 	* @param FileWriter, johon on liitetty tiedosto.
 	*/
 	private void tallennaKukinEnnatyslista(FileWriter kirjuri) throws Exception {
-		//TODO tarkista onko tallennettava tiedosto pateva
-		
 		for (Ennatyslista lista : this.listat) {
 			kirjuri.write( lista.annaPienempiLeveys() + " " + lista.annaSuurempiLeveys() + " " + lista.annaSyvyys() + " " + lista.annaPalikkasetti() + "\n");
 			
 			kirjuri.write(":\n");
 			kirjuri.write( lista.tallennaLista() );
 		}
-		
-		kirjuri.write("\n-1 -1 -1 -1");
 	}
 	
 	/**

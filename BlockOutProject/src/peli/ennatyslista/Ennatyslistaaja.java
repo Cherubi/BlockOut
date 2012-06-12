@@ -31,8 +31,6 @@ public class Ennatyslistaaja extends Ikkuna {
 	private JPanel listapaneli, valikkopaneli, nimipaneli;
 	private Saatopaneli saatopaneli;
 	
-	//TODO listanakyma/listapanelivalitsin, niminakyma?
-	
 	/**
 	* Hallinnoi ennatyslistoja.
 	*/
