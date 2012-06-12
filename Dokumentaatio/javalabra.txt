@@ -1,0 +1,17 @@
+20:31 <@pllk> Cherubi: infoa kesän harjoitustyökursseista on seuraavalla 
+              sivulla: http://www.cs.helsinki.fi/opiskelu/opetusohjelma-kes-2012
+20:32 <@pllk> kristiina pitää kesän alussa tiiviskurssin ja hän sanoi että
+              aiemmin tehty ohjelma kelpaa jos sen dokumentoi jne.
+
+
+
+
+Javalabran työ
+
+Hei,
+
+miä kuulin tuossa keväällä, että siä hyväksyt javalabran aiheeksi ohjelman, joka on tehty jo ennen kurssia, ja nyt taitaisi olla jo ihan hyvä aika varmistaa asia ihan siultakin.
+
+Joten onko tuollainen mahdollista ja millaisia asioita siä haluaisit tietää ohjelmasta ennen kuin siä hyväksyt sen kurssin työksi? (...) Ohjelma mitä miä oon askarrellut äitienpäiväksi ja osin myös tätä kurssia varten on BlockOut, eli 3D-versio tetriksestä.
+
+Terv. Jenna Tuominen
