@@ -16,3 +16,7 @@ palikat
 asetuksiin poista asetussetti-nappula
 
 uusimmat päivitykset etusivulle näkyviin
+
+ennätyslistat kuilu/yleinen välilehdille, jotta näkisi helpommin onko kyseessä yleinen vai ei, tai joku Strawberry-alleviivaus?
+
+skaalaa pelin tietopalkkien tietojen kohdat ikkunan koon mukaisiksi

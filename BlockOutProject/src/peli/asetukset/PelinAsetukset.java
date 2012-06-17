@@ -2,6 +2,7 @@ package peli.asetukset;
 
 import peli.asetukset.grafiikka.NappainKuuntelija;
 import peli.asetukset.grafiikka.AsetuksetPaneli;
+import peli.asetukset.grafiikka.Nappainpaletti;
 import peli.asetukset.grafiikka.TalletetutAsetuksetPaneli;
 import peli.asetukset.logiikka.Asetukset;
 import kayttoliittyma.BlockOut;
@@ -155,7 +156,7 @@ public class PelinAsetukset extends Ikkuna {
 		this.talletetutPaneli.setOpaque(false);
 		this.add(talletetutPaneli, BorderLayout.WEST);
 		
-		this.asetuksetPaneli = new AsetuksetPaneli( talletetutPaneli, annaValitutAsetukset(), valittuAsetus != 0 );
+		this.asetuksetPaneli = new AsetuksetPaneli( kayttis, this, talletetutPaneli, annaValitutAsetukset(), valittuAsetus != 0 );
 		this.asetuksetPaneli.setOpaque(false);
 		this.add(asetuksetPaneli, BorderLayout.CENTER);
 		
@@ -210,14 +211,24 @@ public class PelinAsetukset extends Ikkuna {
 	/**
 	* Vaihtaa nakymassa asetuksetPanelin valittua asetusta vastaavaksi.
 	*/
-	private void vaihdaAsetuksetPanelia() {
-		this.asetuksetPaneli = new AsetuksetPaneli( talletetutPaneli, annaValitutAsetukset(), valittuAsetus != 0 );
+	public void vaihdaAsetuksetPanelia() {
+		this.asetuksetPaneli = new AsetuksetPaneli( kayttis, this, talletetutPaneli, annaValitutAsetukset(), valittuAsetus != 0 );
 		this.asetuksetPaneli.setOpaque(false);
 		
 		this.remove(2);
 		this.add(asetuksetPaneli, BorderLayout.CENTER);
 		
-		this.nappainKuuntelija.asetaUusiAsetuksetPaneli( asetuksetPaneli );
+		this.nappainKuuntelija.asetaUusiKuuntelija( asetuksetPaneli );
+	}
+	
+	public void naytaNappaimet() {
+		this.remove(2);
+		Nappainpaletti nappainpaletti = new Nappainpaletti(this);
+		this.add(nappainpaletti, BorderLayout.CENTER);
+		
+		this.nappainKuuntelija.asetaUusiKuuntelija( nappainpaletti );
+		
+		this.revalidate();
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package kayttoliittyma;
 
 import peli.Peli;
 import peli.asetukset.PelinAsetukset;
+import peli.asetukset.grafiikka.Nappainpaletti;
 import peli.asetukset.logiikka.Asetukset;
 import peli.asetukset.logiikka.Ulottuvuudet;
 import peli.ennatyslista.Ennatyslistaaja;
@@ -28,7 +29,6 @@ public class BlockOut implements Runnable {
 	
 	private Peli peli;
 	private PelinAsetukset pelinAsetukset;
-	//private Nappainpaletti nappainpaletti;
 	//private Varipaletti varipaletti;
 	private Ennatyslistaaja ennatyslistaaja;
 	
@@ -71,10 +71,8 @@ public class BlockOut implements Runnable {
 		
 		pelinAsetukset = new PelinAsetukset(this, "asetukset.javafile");
 		this.ikkunat.put(ValittuIkkuna.ASETUKSET, pelinAsetukset);
-		/*
-		nappainpaletti = new Nappainpaletti();
-		this.ikkunat.put(ValittuIkkuna.NAPPULAT, nappainpaletti);
 		
+		/*
 		varipaletti = new Varipaletti();
 		this.ikkunat.put(ValittuIkkuna.VARIT, varipaletti);
 		*/
@@ -100,6 +98,9 @@ public class BlockOut implements Runnable {
 	*/
 	public void vaihdaJPanel(ValittuIkkuna nytValittuIkkuna) {
 		asetaPeliTarvittaessaTauolle(nytValittuIkkuna);
+		if (this.valittuIkkuna == ValittuIkkuna.ASETUKSET) {
+			pelinAsetukset.vaihdaAsetuksetPanelia();
+		}
 		
 		this.valittuIkkuna = nytValittuIkkuna;
 		this.kehys.getContentPane().remove(1);

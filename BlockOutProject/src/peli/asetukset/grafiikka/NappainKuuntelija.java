@@ -5,15 +5,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 public class NappainKuuntelija implements KeyListener {
-	private AsetuksetPaneli asetuksetPaneli;
+	private KeyListener paneli;
 	
 	/**
 	* Nappainkuuntelija, joka valittaa kuulemansa tapahtumat asetuspanelille
 	* 
 	* @param asetuksetPaneli Paneli, jolle kuuntelija kuuntelee nappaimistoa
 	*/
-	public NappainKuuntelija(AsetuksetPaneli asetuksetPaneli) {
-		this.asetuksetPaneli = asetuksetPaneli;
+	public NappainKuuntelija(KeyListener paneli) {
+		this.paneli = paneli;
 	}
 	
 	/**
@@ -21,8 +21,8 @@ public class NappainKuuntelija implements KeyListener {
 	* 
 	* @param asetuksetPaneli Uusi asetuspaneli
 	*/
-	public void asetaUusiAsetuksetPaneli(AsetuksetPaneli asetuksetPaneli) {
-		this.asetuksetPaneli = asetuksetPaneli;
+	public void asetaUusiKuuntelija(KeyListener paneli) {
+		this.paneli = paneli;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class NappainKuuntelija implements KeyListener {
 	* @param ke Nappaintapahtuma nappaimen pohjaan painamisesta
 	*/
 	public void keyPressed(KeyEvent ke) {
-		asetuksetPaneli.keyPressed(ke);
+		paneli.keyPressed(ke);
 	}
 	
 	/**

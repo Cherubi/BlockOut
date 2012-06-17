@@ -110,6 +110,10 @@ public class Ennatyslistaaja extends Ikkuna {
 		}
 	}
 	
+	private void vaihdaNakyvaaListaa() {
+		vaihdaNakyvaaListaa((JPanel)listapaneli.getComponent(0));
+	}
+	
 	/**
 	* Vaihtaa listapanelissa nakyvaa listaa kuilukohtaisen ja yleisen listan valilla.
 	* 
@@ -198,6 +202,7 @@ public class Ennatyslistaaja extends Ikkuna {
 		this.lisattavanNimi = "";
 		
 		saadaEnnatyslistanParametrit(pienempiLeveys, suurempiLeveys, syvyys, palikkasetti);
+		valitseKumpiEnnatyslista(pisteet);
 	}
 	
 	/**
@@ -213,6 +218,19 @@ public class Ennatyslistaaja extends Ikkuna {
 		this.valittuSuurempiLeveys = suurempiLeveys;
 		this.valittuSyvyys = syvyys;
 		this.valittuPalikkasetti = palikkasetti;
+	}
+	
+	private void valitseKumpiEnnatyslista(int pisteet) {
+		if ( ennatyslistat.paaseekoListalle(pisteet, -1, -1, -1, Palikkasetti.VOID) ) {
+			if (!yleinenListaNakyvissa) {
+				vaihdaNakyvaaListaa();
+			}
+		}
+		else {
+			if (yleinenListaNakyvissa) {
+				vaihdaNakyvaaListaa();
+			}
+		}
 	}
 	
 	/**
@@ -332,7 +350,7 @@ public class Ennatyslistaaja extends Ikkuna {
 			String sijanPitaja = ennatyslistat.annaListanSija(i, pienempiLeveys, suurempiLeveys, syvyys, palikkasetti);
 			
 			g.drawString(i + ":", 40, 100 + 30*i);
-			g.drawString(sijanPitaja, 60, 100 + 30*i);
+			g.drawString(sijanPitaja, 70, 100 + 30*i);
 		}
 	}
 	

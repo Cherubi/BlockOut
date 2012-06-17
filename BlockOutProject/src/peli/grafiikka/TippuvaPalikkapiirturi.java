@@ -51,7 +51,6 @@ public class TippuvaPalikkapiirturi {
 		int palikanY = tippuvaPalikka.annaY();
 		int palikanZ = tippuvaPalikka.annaZ();
 		
-		//TODO korjaa?
 		int keskipiste = tippuvaPalikka.annaPalikka().annaKeskipiste();
 		int x = kuiluKoordinaatti.annaX() + palikanX - keskipiste;
 		int y = kuiluKoordinaatti.annaY() + palikanY - keskipiste;

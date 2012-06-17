@@ -1,15 +1,19 @@
 package peli.asetukset.logiikka;
 
+import peli.asetukset.PelinAsetukset;
+
 import java.util.HashMap;
 import java.awt.event.KeyEvent;
 
 public class Nappainsetti {
+	private PelinAsetukset pelinAsetukset;
 	private HashMap<String, Integer> nappaimet;
 	
 	/**
 	* Hallinnoi peliin liittyvaa nappainsettia
 	*/
-	public Nappainsetti() {
+	public Nappainsetti(PelinAsetukset pelinAsetukset) {
+		this.pelinAsetukset = pelinAsetukset;
 		nappaimet = new HashMap<String, Integer>();
 		
 		asetaPerusnappaimet();
@@ -132,6 +136,7 @@ public class Nappainsetti {
 	public boolean asetaYlosNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("ylos", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -155,6 +160,7 @@ public class Nappainsetti {
 	public boolean asetaAlasNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("alas", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -178,6 +184,7 @@ public class Nappainsetti {
 	public boolean asetaVasemmalleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("vasemmalle", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -201,6 +208,7 @@ public class Nappainsetti {
 	public boolean asetaOikealleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("oikealle", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -224,6 +232,7 @@ public class Nappainsetti {
 	public boolean asetaYlapuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("ylapuoli esille", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -247,6 +256,7 @@ public class Nappainsetti {
 	public boolean asetaAlapuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("alapuoli esille", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -270,6 +280,7 @@ public class Nappainsetti {
 	public boolean asetaVasenPuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("vasen puoli esille", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -293,6 +304,7 @@ public class Nappainsetti {
 	public boolean asetaOikeaPuoliEsilleNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("oikea puoli esille", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -316,6 +328,7 @@ public class Nappainsetti {
 	public boolean asetaKierraMyotapaivaanNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("myotapaivaan", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -339,6 +352,7 @@ public class Nappainsetti {
 	public boolean asetaKierraVastapaivaanNappain(int uusiKoodi)  {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("vastapaivaan", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -362,6 +376,7 @@ public class Nappainsetti {
 	public boolean asetaTiputaNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("tiputa", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -385,6 +400,7 @@ public class Nappainsetti {
 	public boolean asetaTiputaYksiKerrosNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("tiputa yksi kerros", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
 		}
 		return false;
@@ -408,7 +424,26 @@ public class Nappainsetti {
 	public boolean asetaTaukoNappain(int uusiKoodi) {
 		if (!onkoNappainVarattu(uusiKoodi)) {
 			this.nappaimet.put("tauko", uusiKoodi);
+			pelinAsetukset.tallennaTallennokset();
 			return true;
+		}
+		return false;
+	}
+	
+	/**
+	* Asettaa avaimen perusteella nappaimen KeyEvent-koodiin.
+	* 
+	* @param avain Halutun tapahtuman avainnimi
+	* @param uusiKoodi Haluttu KeyEvent-koodi
+	* @return Tieto siita asetettiinko nappain vai estettiinko asettaminen
+	*/
+	public boolean asetaNappain(String avain, int uusiKoodi) {
+		if (this.nappaimet.containsKey(avain)) {
+			if (!onkoNappainVarattu(uusiKoodi)) {
+				this.nappaimet.put(avain, uusiKoodi);
+				pelinAsetukset.tallennaTallennokset();
+				return true;
+			}
 		}
 		return false;
 	}

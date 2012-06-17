@@ -30,7 +30,7 @@ public class Asetukset {
 		this.aloitustaso = 0;
 		
 		this.palikkasetti = Palikkasetti.FLAT;
-		this.nappainsetti = new Nappainsetti();
+		this.nappainsetti = new Nappainsetti(pelinAsetukset);
 		this.varit = new Varit();
 	}
 	

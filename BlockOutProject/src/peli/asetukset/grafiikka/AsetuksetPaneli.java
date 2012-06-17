@@ -1,5 +1,7 @@
 package peli.asetukset.grafiikka;
 
+import kayttoliittyma.BlockOut;
+import peli.asetukset.PelinAsetukset;
 import peli.asetukset.grafiikka.TalletetutAsetuksetPaneli;
 import peli.asetukset.logiikka.Asetukset;
 import valmiskomponentit.Nappula;
@@ -7,6 +9,7 @@ import valmiskomponentit.Nappula;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,7 +19,9 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
-public class AsetuksetPaneli extends JPanel {
+public class AsetuksetPaneli extends JPanel implements KeyListener {
+	private BlockOut kayttis;
+	private PelinAsetukset pelinAsetukset;
 	private TalletetutAsetuksetPaneli talletetutPaneli;
 	private Asetukset asetukset;
 	
@@ -34,7 +39,9 @@ public class AsetuksetPaneli extends JPanel {
 	* @param valitutAsetukset Silla hetkella valittu asetussetti
 	* @param muokattavissa Kertoo onko kaikki asetukset muokattavissa. Perusasetuksien kaikkia asetuksia ei voi muokata
 	*/
-	public AsetuksetPaneli (TalletetutAsetuksetPaneli talletetutPaneli, Asetukset valitutAsetukset, boolean muokattavissa) {
+	public AsetuksetPaneli (BlockOut kayttis, PelinAsetukset pelinAsetukset, TalletetutAsetuksetPaneli talletetutPaneli, Asetukset valitutAsetukset, boolean muokattavissa) {
+		this.kayttis = kayttis;
+		this.pelinAsetukset = pelinAsetukset;
 		this.talletetutPaneli = talletetutPaneli;
 		this.asetukset = valitutAsetukset;
 		this.muokattavissa = muokattavissa;
@@ -75,6 +82,10 @@ public class AsetuksetPaneli extends JPanel {
 		asetuksenNimi.setForeground(Color.WHITE);
 		alue.add(asetuksenNimi);
 	}
+	
+	public void keyTyped(KeyEvent ke) {}
+	
+	public void keyReleased(KeyEvent ke) {}
 	
 	/**
 	* Kasittelee asetukset-nakymalle tulevat nappaintapahtumat.
@@ -127,6 +138,7 @@ public class AsetuksetPaneli extends JPanel {
 		
 		Nappula palikatNappula = new Nappula("Palikat");
 		palikatNappula.setFocusable(false);
+		palikatNappula.asetaFontti(fontinNimi, 20);
 		palikatNappula.setEnabled(false && this.muokattavissa); //TODO
 		//TODO kuuntelija
 		vasenPalsta.add(palikatNappula);
@@ -145,12 +157,14 @@ public class AsetuksetPaneli extends JPanel {
 		
 		Nappula nappainNappula = new Nappula("Nappulat");
 		nappainNappula.setFocusable(false);
-		nappainNappula.setEnabled(false && this.muokattavissa); //TODO
-		//TODO kuuntelija
+		nappainNappula.asetaFontti(fontinNimi, 20);
+		nappainNappula.setEnabled(this.muokattavissa);
+		nappainNappula.addActionListener(new NappainNappulaKuuntelija(pelinAsetukset));
 		alapaneli.add(nappainNappula);
 		
 		Nappula variNappula = new Nappula("Varit");
 		variNappula.setFocusable(false);
+		variNappula.asetaFontti(fontinNimi, 20);
 		variNappula.setEnabled(false && this.muokattavissa); //TODO
 		//TODO kuuntelija
 		alapaneli.add(variNappula);
@@ -158,6 +172,19 @@ public class AsetuksetPaneli extends JPanel {
 		keskinPalsta.add(alapaneli);
 		
 		kohde.add(keskinPalsta);
+	}
+	
+	private static class NappainNappulaKuuntelija implements ActionListener {
+		private PelinAsetukset kohde;
+		
+		public NappainNappulaKuuntelija(PelinAsetukset kohde) {
+			this.kohde = kohde;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			kohde.naytaNappaimet();
+		}
 	}
 	
 	/**
