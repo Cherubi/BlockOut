@@ -1,6 +1,6 @@
-Näppäinten omatoiminen valinta toteutettu vaikkakin on vielä vähän mietinnässä miten KeyEventit saisi näkymään järkevämmin nappulat-näkymässä.
+Korjattu bugi liittyen ennätyslistan kirjoittamiseen. Bugin takia pienempi leveys saattoi olla joskus suurempi kuin suurempi leveys, jota tiedostoa lukiessa ei sallittu.
 
-Seuraavat projektit vähän suurempia; värien valinta ja palikoiden rakentaminen, joten niiden mietinnässä saattaa mennä tovi.
+Lisätty ääni tason vaihtumiseen. Äänet voi myös laittaa pois päältä asetuksista. Tarkoituksena on myös lisätä äänen voimakkuuden säätö myöhemmin.
 
 
 BlockOut
@@ -13,6 +13,8 @@ Toteutuksena 3D-tetris jossa mahdollisuutena pelata, mutta myös valita asetuksi
 
 
 Viimeisimmät päivitykset:
+
+23.6.2012 Korjattu bugi ennätyslistasta. Ennätyslistan pienempi leveys saattoi joskus olla suurempi kuin suurempi leveys. Lisätty äänet tason muuttumiseen.
 
 17.6.2012 Pelissä käytettävät näppäimet voi valita itse asetuksista. (Vaihtaa voi kaikkien muiden asetuksien näppäimiä paitsi perusasetuksien.) Uuden näppäimen voi asettaa klikkaamalla siihen liittyvää nappulaa ja painamalla haluamaansa näppäintä.
 
