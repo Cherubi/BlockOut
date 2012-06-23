@@ -1,3 +1,5 @@
+Kotisivut: http://www.cs.helsinki.fi/u/jetuomin/blockout.html
+
 Korjattu bugi liittyen ennätyslistan kirjoittamiseen. Bugin takia pienempi leveys saattoi olla joskus suurempi kuin suurempi leveys, jota tiedostoa lukiessa ei sallittu.
 
 Lisätty ääni tason vaihtumiseen. Äänet voi myös laittaa pois päältä asetuksista. Tarkoituksena on myös lisätä äänen voimakkuuden säätö myöhemmin.
