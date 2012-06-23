@@ -153,7 +153,7 @@ public class AsetuksetPaneli extends JPanel implements KeyListener {
 		this.ulottuvuusPaneli = new UlottuvuusPaneli(this, asetukset, fontinNimi);
 		keskinPalsta.add(ulottuvuusPaneli);
 		
-		JPanel alapaneli = new JPanel(new GridLayout(2,1));
+		JPanel alapaneli = new JPanel(new GridLayout(3,1));
 		
 		Nappula nappainNappula = new Nappula("Nappulat");
 		nappainNappula.setFocusable(false);
@@ -168,6 +168,16 @@ public class AsetuksetPaneli extends JPanel implements KeyListener {
 		variNappula.setEnabled(false && this.muokattavissa); //TODO
 		//TODO kuuntelija
 		alapaneli.add(variNappula);
+		
+		Nappula aaniNappula = new Nappula("€Šnet pŠŠllŠ");
+		if (!asetukset.annaAanet()) {
+			aaniNappula.setText("€Šnet poissa");
+		}
+		aaniNappula.setFocusable(false);
+		aaniNappula.asetaFontti(fontinNimi, 20);
+		aaniNappula.setEnabled(true);
+		aaniNappula.addActionListener(new AaniNappulaKuuntelija( aaniNappula, asetukset ));
+		alapaneli.add(aaniNappula);
 		
 		keskinPalsta.add(alapaneli);
 		

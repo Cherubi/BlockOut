@@ -13,6 +13,7 @@ public class Nappula extends JButton {
 	private int fontinKoko;
 	
 	private int nappulanKavennus;
+	private int yvYlitys, yoYlitys, avYlitys, aoYlitys, vyYlitys, vaYlitys, oyYlitys, oaYlitys;
 	
 	/**
 	* Luo JButtonin, jonka ulkonakoa on muutettu.
@@ -44,6 +45,21 @@ public class Nappula extends JButton {
 		this.fontinKoko = 12;
 		
 		this.nappulanKavennus = 0;
+		
+		arvoNappulanReunojenYlitykset();
+	}
+	
+	private void arvoNappulanReunojenYlitykset() {
+		Random arpoja = new Random();
+		
+		yvYlitys = arpoja.nextInt(4)+1;
+		yoYlitys = arpoja.nextInt(4)+1;
+		avYlitys = arpoja.nextInt(4)+1;
+		aoYlitys = arpoja.nextInt(4)+1;
+		vyYlitys = arpoja.nextInt(4)+1;
+		vaYlitys = arpoja.nextInt(4)+1;
+		oyYlitys = arpoja.nextInt(4)+1;
+		oaYlitys = arpoja.nextInt(4)+1;
 	}
 	
 	/**
@@ -154,23 +170,23 @@ public class Nappula extends JButton {
 		Random arpoja = new Random();
 		
 		//ylempi vaakaviiva
-		int ekaYlitys = arpoja.nextInt(4)+1;
-		int tokaYlitys = arpoja.nextInt(4)+1;
+		int ekaYlitys = yvYlitys;
+		int tokaYlitys = yoYlitys;
 		g.drawRect(5-tokaYlitys+nappulanKavennus, 5, getWidth()-2*nappulanKavennus-2*5+ekaYlitys+tokaYlitys, 1);
 		
 		//alempi vaakaviiva
-		ekaYlitys = arpoja.nextInt(4)+1;
-		tokaYlitys = arpoja.nextInt(4)+1;
+		ekaYlitys = avYlitys;
+		tokaYlitys = aoYlitys;
 		g.drawRect(5-tokaYlitys+nappulanKavennus, getHeight()-5, getWidth()-2*nappulanKavennus-2*5+ekaYlitys+tokaYlitys, 1);
 		
 		//vasen pystyviiva
-		ekaYlitys = arpoja.nextInt(4)+1;
-		tokaYlitys = arpoja.nextInt(4)+1;
+		ekaYlitys = vyYlitys;
+		tokaYlitys = vaYlitys;
 		g.drawRect(nappulanKavennus+5, 5-ekaYlitys, 1, getHeight()-2*5+ekaYlitys+tokaYlitys);
 		
 		//oikea pystyviiva
-		ekaYlitys = arpoja.nextInt(4)+1;
-		tokaYlitys = arpoja.nextInt(4)+1;
+		ekaYlitys = oyYlitys;
+		tokaYlitys = oaYlitys;
 		g.drawRect(getWidth()-nappulanKavennus-5, 5-ekaYlitys, 1, getHeight()-2*5+ekaYlitys+tokaYlitys);
 	}
 	

@@ -18,6 +18,8 @@ public class Asetukset {
 	private Nappainsetti nappainsetti;
 	private Varit varit;
 	
+	private boolean aanetPaalla;
+	
 	/**
 	* Hallinnoi yhta settia asetuksia. Sisaltaa seka pelin parametreja etta pelin grafiikkaan ja pelaamiseen liittyvia valintoja.
 	*/
@@ -32,6 +34,8 @@ public class Asetukset {
 		this.palikkasetti = Palikkasetti.FLAT;
 		this.nappainsetti = new Nappainsetti(pelinAsetukset);
 		this.varit = new Varit();
+		
+		this.aanetPaalla = true;
 	}
 	
 	/**
@@ -47,7 +51,13 @@ public class Asetukset {
 		
 		avaaPalikkasetti(lukija.nextLine());
 		this.nappainsetti.avaaNappainsetti(lukija.nextLine());
-		this.varit.avaaVarit(lukija.nextLine());
+		boolean jatkuuko = this.varit.avaaVarit(lukija.nextLine());
+		
+		if (jatkuuko) {
+			String[] aanet = lukija.nextLine().split(" ");
+			
+			this.aanetPaalla = aanet[0].equals("true");
+		}
 	}
 	
 	/**
@@ -80,7 +90,9 @@ public class Asetukset {
 		kirjuri.write(palikkasetti.annaNimi().toLowerCase() + "\n");
 		
 		kirjuri.write(nappainsetti.tallennaNappainsetti() + "\n");
-		kirjuri.write(varit.tallennaVarit() + "\n");
+		kirjuri.write(varit.tallennaVarit() + " ...\n");
+		
+		kirjuri.write(this.aanetPaalla + "\n");
 	}
 	
 	//*********************************
@@ -195,5 +207,15 @@ public class Asetukset {
 	*/
 	public Varit annaVarit() {
 		return this.varit;
+	}
+	
+	public boolean annaAanet() {
+		return this.aanetPaalla;
+	}
+	
+	public boolean asetaAanet(boolean paalla) {
+		this.aanetPaalla = paalla;
+		pelinAsetukset.tallennaTallennokset();
+		return true;
 	}
 }

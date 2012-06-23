@@ -2,15 +2,13 @@ haeXViivanSarmat..?
 
 palikkavarasto Stringit lisattavia
 
-äänet
+äänet siistiminen
 
 
 
 värit
-näppäimet
+näppäimet keyChar
 palikat
-
-ääkköset
 
 
 asetuksiin poista asetussetti-nappula
@@ -20,3 +18,15 @@ uusimmat päivitykset etusivulle näkyviin
 ennätyslistat kuilu/yleinen välilehdille, jotta näkisi helpommin onko kyseessä yleinen vai ei, tai joku Strawberry-alleviivaus?
 
 skaalaa pelin tietopalkkien tietojen kohdat ikkunan koon mukaisiksi
+
+
+
+ennätyslistat jaettavia
+ennätyslistaan aika millon tehty (17.3.2011, 3.4., ma, 14:56)
+
+
+tekoäly (alkuanimaatio)
+pyörivä kenttä
+näppäimistö näyttämään mitä näppäintä klikattiin
+tippuvalla palikalla on varjo
+lumisade / event

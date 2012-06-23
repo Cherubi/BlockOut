@@ -24,8 +24,9 @@ public class Varit {
 	* Avaa varit tallenteesta.
 	* 
 	* @param tallenne Tallenne
+	* @return Tieto siita tuleeko varien jalkeen viela tietoa asetuksista
 	*/
-	public void avaaVarit(String tallenne) {
+	public boolean avaaVarit(String tallenne) {
 		String[] tallennevarit = tallenne.split(" ");
 		
 		if (tallennevarit.length > 0) {
@@ -33,18 +34,24 @@ public class Varit {
 		}
 		
 		for (int i=0; i<tallennevarit.length; i++) {
+			if (tallennevarit[i].equals("...")) {
+				return true;
+			}
+			
 			try {
 				int hashKoodi = Integer.parseInt(tallennevarit[i]);
 				Color vari = new Color( hashKoodi );
 				this.varit.add(vari);
 			} catch (NumberFormatException e) {
-				System.out.println("Varin luonti ei onnistunut, koska syote ei ollut kokonaisnumero vaan " + tallennevarit[i].getClass() + ".");
+				System.out.println("Varin luonti ei onnistunut, koska syote ei ollut kokonaisnumero vaan " + tallennevarit[i].getClass() + "\nSyšte oli " + tallennevarit[i]);
 				this.varit.add(Color.GRAY);
 			} catch (Exception e) {
 				System.out.println("Varin luonti ei onnistunut hashKoodista, joka on outoa koska kaikille kokonaisluvuille tulisi olla vari");
 				this.varit.add(Color.GRAY);
 			}
 		}
+		
+		return false;
 	}
 	
 	/**

@@ -193,29 +193,26 @@ public class Ennatyslistaaja extends Ikkuna {
 	* @param palikkasetti Pelin palikkasetti
 	*/
 	public void annaEnnatyslistalleKasiteltavaksi(int pisteet, int leveys, int korkeus, int syvyys, Palikkasetti palikkasetti) {
-		int pienempiLeveys = Math.min(leveys, korkeus);
-		int suurempiLeveys = Math.max(leveys, korkeus);
-		
 		//valmistautuu oikean listan ja nimikyselyn nayttamiseen
 		this.kysytaanNimea = true;
 		this.lisattavanPisteet = pisteet;
 		this.lisattavanNimi = "";
 		
-		saadaEnnatyslistanParametrit(pienempiLeveys, suurempiLeveys, syvyys, palikkasetti);
+		saadaEnnatyslistanParametrit(leveys, korkeus, syvyys, palikkasetti);
 		valitseKumpiEnnatyslista(pisteet);
 	}
 	
 	/**
 	* Saataa ennatyslistan parametrit tietylle peliasetukselle, jolloin voidaan nayttaa kyseisen pelin ennatyslista.
 	* 
-	* @param pienempiLeveys Pelin kuilun pienempi leveys ruutuina
-	* @param suurempiLeveys Pelin kuilun suurempi leveys ruutuina
+	* @param leveys Pelin kuilun leveys ruutuina
+	* @param korkeus Pelin kuilun korkeus ruutuina
 	* @param syvyys Pelin kuilun syvyys ruutuina
 	* @param palikkasetti Pelin palikkasetti
 	*/
-	public void saadaEnnatyslistanParametrit(int pienempiLeveys, int suurempiLeveys, int syvyys, Palikkasetti palikkasetti) {
-		this.valittuPienempiLeveys = pienempiLeveys;
-		this.valittuSuurempiLeveys = suurempiLeveys;
+	public void saadaEnnatyslistanParametrit(int leveys, int korkeus, int syvyys, Palikkasetti palikkasetti) {
+		this.valittuPienempiLeveys = Math.min(leveys, korkeus);
+		this.valittuSuurempiLeveys = Math.max(leveys, korkeus);
 		this.valittuSyvyys = syvyys;
 		this.valittuPalikkasetti = palikkasetti;
 	}

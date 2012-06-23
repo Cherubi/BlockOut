@@ -19,6 +19,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.applet.AudioClip;
+import java.applet.Applet;
 
 public class Peli extends Ikkuna {
 	private BlockOut kayttis;
@@ -41,6 +43,9 @@ public class Peli extends Ikkuna {
 	private Palikkasetti palikkasetti;
 	private boolean tauolla, gameOver;
 	private long gameOverHetki;
+	
+	private boolean aanetPaalla;
+	private AudioClip tasoAani;
 	
 	/**
 	* Alustaa ja hallinnoi pelin osasia.
@@ -70,6 +75,8 @@ public class Peli extends Ikkuna {
 		
 		NappainKuuntelija nappainKuuntelija = new NappainKuuntelija( this, this.kayttis, asetukset.annaNappainsetti() );
 		this.addKeyListener(nappainKuuntelija);
+		
+		haeAanet(asetukset.annaAanet());
 	}
 	
 	private void alustaTilanne(int aloitustaso) {
@@ -95,6 +102,13 @@ public class Peli extends Ikkuna {
 		this.piirturi = new Piirturi( this, leveys, korkeus, ulottuvuudet, asetukset.annaPalikkasetti(), asetukset.annaVarit(), this.pistelaskija, this.ennatyslistaaja );
 	}
 	
+	private void haeAanet(boolean aanetPaalla) {
+		this.aanetPaalla = aanetPaalla;
+		
+		URL tasoUrl = Peli.class.getResource("Taso.wav");
+		this.tasoAani = Applet.newAudioClip(tasoUrl);
+	}
+	
 	/**
 	* Asettaa peliin uudet asetukset. Kayttajan muuttamista asetuksista vain grafiikkaan ja nappaimiin vaikuttavat asetukset otetaan voimaan.
 	*/
@@ -103,6 +117,8 @@ public class Peli extends Ikkuna {
 		
 		this.removeKeyListener( this.getKeyListeners()[0] );
 		this.addKeyListener( new NappainKuuntelija( this, this.kayttis, asetukset.annaNappainsetti() ) );
+		
+		this.aanetPaalla = asetukset.annaAanet();
 	}
 	
 	//*******************************************
@@ -225,6 +241,9 @@ public class Peli extends Ikkuna {
 		if (taso < 10 && this.pelattujaPalikoita >= 15*( kentta.annaLeveys() + kentta.annaKorkeus() ) * (this.taso+1) ) {
 			this.taso++;
 			this.tiputustenVali *= aikatasokerroin;
+			if (aanetPaalla) {
+				tasoAani.play();
+			}
 		}
 	}
 	

@@ -77,11 +77,12 @@ public class Ennatyslistat {
 		} catch (NumberFormatException ne) {
 			this.listat = new ArrayList<Ennatyslista>();
 			
-			System.out.println("Tiedostoon 'ennatyslista' oli kajottu.");
+			System.out.println("Tiedostoon 'ennatyslista' oli kajottu. (NumberFormatException)");
 		} catch (Exception e) {
 			this.listat = new ArrayList<Ennatyslista>();
 			
 			System.out.println("Tiedoston 'ennatyslista' oikeellisuutta ei voitu tarkistaa tai ennatyslistaan oli kajottu.");
+			e.printStackTrace();
 		} finally {
 			try {
 				lukija.close();
@@ -105,6 +106,7 @@ public class Ennatyslistat {
 			String palikkasetti = ennatyslistanMaareet[3];
 			
 			if (!tallenteenMaareetSopivat(pienempiLeveys, suurempiLeveys, syvyys, palikkasetti)) {
+				System.out.println("Ennätyslistaan oli tallennettu kentän tiedot väärässä muodossa.");
 				throw new Exception();
 			}
 			
