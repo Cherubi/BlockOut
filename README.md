@@ -1,4 +1,5 @@
 Kotisivut: http://www.cs.helsinki.fi/u/jetuomin/blockout.html
+Home pages: http://www.cs.helsinki.fi/u/jetuomin/blockout_in_english.html
 
 Korjattu bugi liittyen ennätyslistan kirjoittamiseen. Bugin takia pienempi leveys saattoi olla joskus suurempi kuin suurempi leveys, jota tiedostoa lukiessa ei sallittu.
 
