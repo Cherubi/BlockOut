@@ -1,9 +1,7 @@
 Kotisivut: http://www.cs.helsinki.fi/u/jetuomin/blockout.html
 Home pages: http://www.cs.helsinki.fi/u/jetuomin/blockout_in_english.html
 
-Korjattu bugi liittyen ennätyslistan kirjoittamiseen. Bugin takia pienempi leveys saattoi olla joskus suurempi kuin suurempi leveys, jota tiedostoa lukiessa ei sallittu.
-
-Lisätty ääni tason vaihtumiseen. Äänet voi myös laittaa pois päältä asetuksista. Tarkoituksena on myös lisätä äänen voimakkuuden säätö myöhemmin.
+Lisätty kerroksien värien hallinnoiminen valintoihin.
 
 
 BlockOut
@@ -16,6 +14,8 @@ Toteutuksena 3D-tetris jossa mahdollisuutena pelata, mutta myös valita asetuksi
 
 
 Viimeisimmät päivitykset:
+
+29.7.2012 Lisätty kerroksien värien hallinnoiminen valintoihin.
 
 23.6.2012 Korjattu bugi ennätyslistasta. Ennätyslistan pienempi leveys saattoi joskus olla suurempi kuin suurempi leveys. Lisätty äänet tason muuttumiseen.
 
