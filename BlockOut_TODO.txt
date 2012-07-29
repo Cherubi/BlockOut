@@ -26,7 +26,12 @@ ennätyslistaan aika millon tehty (17.3.2011, 3.4., ma, 14:56)
 
 
 tekoäly (alkuanimaatio)
+3D-muunnos
 pyörivä kenttä
 näppäimistö näyttämään mitä näppäintä klikattiin
 tippuvalla palikalla on varjo
 lumisade / event
+
+
+
+ääni sille, että kenttä tyhjä

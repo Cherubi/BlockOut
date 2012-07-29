@@ -65,22 +65,27 @@ public class AsetuksetPaneli extends JPanel implements KeyListener {
 	
 	private void luoAsetuksenNimiPaneli() {
 		JPanel alue = new JPanel();
+		alue.setLayout(new GridLayout(1,3));
 		alue.setOpaque(false);
 		this.add(alue, BorderLayout.NORTH);
 		
 		Font isompiFontti = new Font(this.fontinNimi, Font.PLAIN, 24);
 		
-		JLabel selite = new JLabel("Nimi: ", JLabel.LEFT);
+		JLabel selite = new JLabel("Nimi: ", JLabel.RIGHT);
 		selite.setFocusable(false);
 		selite.setFont( isompiFontti );
 		selite.setForeground(Color.WHITE);
 		alue.add(selite);
 		
-		asetuksenNimi = new JLabel( asetukset.annaAsetustenNimi(), JLabel.TRAILING );
+		asetuksenNimi = new JLabel( asetukset.annaAsetustenNimi(), JLabel.LEFT );
 		asetuksenNimi.setFocusable(false);
 		asetuksenNimi.setFont( isompiFontti );
 		asetuksenNimi.setForeground(Color.WHITE);
 		alue.add(asetuksenNimi);
+		
+		/*Nappula alustaSetti = new Nappula("Alusta asetussetti");
+		alustaSetti.setFocusable(false);
+		alue.add(alustaSetti);*/ //PelinAsetukset.java:aan
 	}
 	
 	public void keyTyped(KeyEvent ke) {}
@@ -162,11 +167,11 @@ public class AsetuksetPaneli extends JPanel implements KeyListener {
 		nappainNappula.addActionListener(new NappainNappulaKuuntelija(pelinAsetukset));
 		alapaneli.add(nappainNappula);
 		
-		Nappula variNappula = new Nappula("Varit");
+		Nappula variNappula = new Nappula("VŠrit");
 		variNappula.setFocusable(false);
 		variNappula.asetaFontti(fontinNimi, 20);
-		variNappula.setEnabled(false && this.muokattavissa); //TODO
-		//TODO kuuntelija
+		variNappula.setEnabled(this.muokattavissa);
+		variNappula.addActionListener(new VariNappulaKuuntelija( pelinAsetukset ));
 		alapaneli.add(variNappula);
 		
 		Nappula aaniNappula = new Nappula("€Šnet pŠŠllŠ");
@@ -194,6 +199,19 @@ public class AsetuksetPaneli extends JPanel implements KeyListener {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			kohde.naytaNappaimet();
+		}
+	}
+	
+	private static class VariNappulaKuuntelija implements ActionListener {
+		private PelinAsetukset kohde;
+		
+		public VariNappulaKuuntelija(PelinAsetukset kohde) {
+			this.kohde = kohde;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			kohde.naytaVarit();
 		}
 	}
 	

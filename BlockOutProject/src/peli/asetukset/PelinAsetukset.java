@@ -7,6 +7,8 @@ import peli.asetukset.grafiikka.TalletetutAsetuksetPaneli;
 import peli.asetukset.logiikka.Asetukset;
 import kayttoliittyma.BlockOut;
 import valmiskomponentit.Ikkuna;
+import valmiskomponentit.Nappula;
+import varipaletti.Varipaletti;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -168,6 +170,9 @@ public class PelinAsetukset extends Ikkuna {
 	* Luo PelinAsetukset JPanelin otsikko-komponentin.
 	*/
 	public void luoOtsikko() {
+		JPanel otsikkorivi = new JPanel(new BorderLayout());
+		otsikkorivi.setOpaque(false);
+		
 		JLabel otsikko = new JLabel("Asetukset", JLabel.CENTER);
 		String fontinNimi = haeFontti();
 		int fontinKoko = 48;
@@ -176,7 +181,15 @@ public class PelinAsetukset extends Ikkuna {
 		}
 		otsikko.setFont( new Font(fontinNimi, Font.PLAIN, fontinKoko) );
 		otsikko.setForeground(Color.WHITE);
-		this.add(otsikko, BorderLayout.NORTH);
+		//this.add(otsikko, BorderLayout.NORTH);
+		otsikkorivi.add(otsikko, BorderLayout.CENTER);
+		
+		Nappula alustaSetti = new Nappula("Alusta asetussetti");
+		alustaSetti.setFocusable(false);
+		alustaSetti.asetaNappulanKavennus(10);
+		//otsikkorivi.add(alustaSetti, BorderLayout.EAST);
+		
+		this.add(otsikkorivi, BorderLayout.NORTH);
 	}
 	
 	/**
@@ -227,6 +240,16 @@ public class PelinAsetukset extends Ikkuna {
 		this.add(nappainpaletti, BorderLayout.CENTER);
 		
 		this.nappainKuuntelija.asetaUusiKuuntelija( nappainpaletti );
+		
+		this.revalidate();
+	}
+	
+	public void naytaVarit() {
+		this.remove(2);
+		Varipaletti varipaletti = new Varipaletti(this);
+		this.add(varipaletti, BorderLayout.CENTER);
+		
+		this.nappainKuuntelija.asetaUusiKuuntelija( varipaletti );
 		
 		this.revalidate();
 	}

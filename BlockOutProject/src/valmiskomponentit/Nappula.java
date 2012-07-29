@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 
 public class Nappula extends JButton {
-	private Color tekstinVari, taustanVari, tekstinVariAktiivisena, taustanVariAktiivisena;
+	private Color tekstinVari, taustanVari, reunanVari, tekstinVariAktiivisena, taustanVariAktiivisena;
 	private String fontinNimi;
 	private int fontinKoko;
 	
@@ -40,6 +40,7 @@ public class Nappula extends JButton {
 		this.tekstinVariAktiivisena = tekstinVari;
 		this.taustanVari = taustanVari;
 		this.taustanVariAktiivisena = taustanVari;
+		this.reunanVari = Color.WHITE;
 		
 		this.fontinNimi = "futura";
 		this.fontinKoko = 12;
@@ -104,6 +105,17 @@ public class Nappula extends JButton {
 			this.taustanVari = vari;
 		}
 		this.taustanVariAktiivisena = vari;
+		
+		this.setBackground(vari);
+	}
+	
+	public void tummennaReuna(boolean tummenna) {
+		if (tummenna) {
+			reunanVari = Color.GRAY;
+		}
+		else {
+			reunanVari = Color.WHITE;
+		}
 	}
 	
 	/**
@@ -165,7 +177,7 @@ public class Nappula extends JButton {
 	* @param g Graphics
 	*/
 	private void varitaReunat(Graphics g) {
-		g.setColor(Color.WHITE);
+		g.setColor(reunanVari);
 		
 		Random arpoja = new Random();
 		

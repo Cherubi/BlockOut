@@ -103,7 +103,7 @@ public class Varit {
 	/**
 	* Vaihtaa tietyn kerroksen varin toiseksi.
 	*
-	* @param kerros Kerros, jonka varia halutaan vaihtaa. Kerroksien numerointi alkaa pohjalta.
+	* @param kerros Kerros, jonka varia halutaan vaihtaa. Kerroksien numerointi alkaa pohjalta ykkösestä.
 	* @param vari Vari, joka kerrokselle halutaan asettaa.
 	*/
 	public boolean vaihdaVari(int kerros, Color vari) {
@@ -136,6 +136,13 @@ public class Varit {
 		varit.add(kerros-1, vari);
 	}
 	
+	public boolean lisaaVari(int kerros, Color vari) {
+		if (kerros-1 < varit.size()) {
+			varit.add(kerros-1+1, vari);
+		}
+		return false;
+	}
+	
 	/**
 	* Poistaa varin variasetuksista.
 	* 
@@ -144,6 +151,10 @@ public class Varit {
 	*/
 	public boolean poistaVari(int kerros) {
 		if (kerros <=0 || kerros > varit.size()) {
+			return false;
+		}
+		
+		if (varit.size() <= 1) {
 			return false;
 		}
 		

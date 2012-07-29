@@ -19,8 +19,13 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
-import java.applet.AudioClip;
-import java.applet.Applet;
+//import java.applet.AudioClip;
+//import java.applet.Applet;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.FloatControl.Type;
 
 public class Peli extends Ikkuna {
 	private BlockOut kayttis;
@@ -45,7 +50,7 @@ public class Peli extends Ikkuna {
 	private long gameOverHetki;
 	
 	private boolean aanetPaalla;
-	private AudioClip tasoAani;
+	private Clip tasoAani;
 	
 	/**
 	* Alustaa ja hallinnoi pelin osasia.
@@ -106,7 +111,18 @@ public class Peli extends Ikkuna {
 		this.aanetPaalla = aanetPaalla;
 		
 		URL tasoUrl = Peli.class.getResource("Taso.wav");
-		this.tasoAani = Applet.newAudioClip(tasoUrl);
+		
+		try {
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream( tasoUrl );
+			this.tasoAani = AudioSystem.getClip();
+			this.tasoAani.open(audioInputStream);
+			
+			FloatControl gainControl = (FloatControl) tasoAani.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-10.0f);
+		} catch (Exception e) {
+			System.out.println("€Šnitiedoston avaus ei onnistunut.");
+			this.aanetPaalla = false;
+		}
 	}
 	
 	/**
@@ -242,7 +258,13 @@ public class Peli extends Ikkuna {
 			this.taso++;
 			this.tiputustenVali *= aikatasokerroin;
 			if (aanetPaalla) {
-				tasoAani.play();
+				try {
+					tasoAani.start();
+					System.out.println("€Šnen olisi pitŠnyt soida.");
+				} catch (Exception e) {
+					System.out.println("Ongelma");
+					e.printStackTrace();
+				}
 			}
 		}
 	}
