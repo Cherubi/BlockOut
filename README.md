@@ -4,8 +4,8 @@ Kotisivut: http://www.cs.helsinki.fi/u/jetuomin/blockout.html
 Lisätty kerroksien värien hallinnoiminen valintoihin.
 
 
-BlockOut 1.3
-============
+BlockOut 1.3.1
+==============
 
 3D-tetris
 ---------
@@ -15,6 +15,8 @@ Toteutuksena 3D-tetris jossa mahdollisuutena pelata, mutta myös valita asetuksi
 ---------
 
 <h3>Viimeisimmät päivitykset:</h3>
+
+30.7.2012 Korjattu focusable JButton, joka esti palikoiden siirron ja kääntelyn.
 
 29.7.2012 Lisätty kerroksien värien hallinnoiminen valintoihin.
 

@@ -79,7 +79,7 @@ public class Varipaletti extends JPanel implements KeyListener {
 		paneli.add(kerrosValikoima, BorderLayout.CENTER);
 		
 		Nappula palaa = new Nappula("Palaa");
-		palaa.setFocusable(true);
+		palaa.setFocusable(false);
 		palaa.addActionListener(new PaluuKuuntelija(pelinAsetukset));
 		paneli.add(palaa, BorderLayout.SOUTH);
 		

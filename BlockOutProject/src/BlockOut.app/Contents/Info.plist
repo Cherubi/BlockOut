@@ -7,7 +7,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>kayttoliittyma.BlockOut</string>
 	<key>CFBundleVersion</key>
-	<string>1.3</string>
+	<string>1.3.1</string>
 	<key>CFBundleAllowMixedLocalizations</key>
 	<string>true</string>
 	<key>CFBundleExecutable</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>Cherubi</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Version 1.3</string>
+	<string>Versio 1.3.1</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleIconFile</key>

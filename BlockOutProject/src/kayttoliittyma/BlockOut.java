@@ -43,7 +43,7 @@ public class BlockOut implements Runnable {
 		
 		luoAloitusIkkuna();
 		
-		this.kehys.setTitle("BlockOut 1.3");
+		this.kehys.setTitle("BlockOut 1.3.1");
 		this.kehys.setSize(800, 600);
 		this.kehys.setBackground(Color.BLACK);
 		this.kehys.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
