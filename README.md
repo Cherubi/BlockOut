@@ -1,14 +1,14 @@
 Kotisivut: http://www.cs.helsinki.fi/u/jetuomin/blockout.html
-Home pages: http://www.cs.helsinki.fi/u/jetuomin/blockout_in_english.html
+<br>Home pages: http://www.cs.helsinki.fi/u/jetuomin/blockout_in_english.html
 
 Lisätty kerroksien värien hallinnoiminen valintoihin.
 
 
-BlockOut
-========
+BlockOut 1.3
+============
 
 3D-tetris
-
+---------
 
 Toteutuksena 3D-tetris jossa mahdollisuutena pelata, mutta myös valita asetuksista pelin ulottuvuuksia, palikkasettejä, kerrosten värejä ja omia näppäinvalintoja peliin. Peli sisältää myös ennätyslistan.
 
