@@ -12,7 +12,7 @@ BlockOut 1.3
 
 Toteutuksena 3D-tetris jossa mahdollisuutena pelata, mutta myös valita asetuksista pelin ulottuvuuksia, palikkasettejä, kerrosten värejä ja omia näppäinvalintoja peliin. Peli sisältää myös ennätyslistan.
 
----------
+<h2> </h2>
 
 Viimeisimmät päivitykset:
 
