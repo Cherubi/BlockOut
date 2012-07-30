@@ -14,7 +14,7 @@ Toteutuksena 3D-tetris jossa mahdollisuutena pelata, mutta myös valita asetuksi
 
 ---------
 
-Viimeisimmät päivitykset:
+<h3>Viimeisimmät päivitykset:</h3>
 
 29.7.2012 Lisätty kerroksien värien hallinnoiminen valintoihin.
 
